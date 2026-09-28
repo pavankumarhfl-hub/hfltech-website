@@ -64,3 +64,6 @@ body{color:var(--ink);background:var(--surface)}
 .notice{border-color:var(--blue);background:var(--blue-soft)}
 .code-panel{background:#0D1729}
 @media(max-width:700px){.menu{background:transparent}}
+
+/* Contact form — same system, no page-local styling */
+.form{max-width:760px;margin-top:32px}.field{margin-bottom:18px}.field label{display:block;font-weight:750;margin-bottom:7px}.field input,.field textarea,.field select{width:100%;padding:13px 14px;border:1px solid var(--line-strong);border-radius:8px;font:inherit;color:var(--ink);background:#fff}.field input:focus,.field textarea:focus,.field select:focus{outline:3px solid rgba(49,87,166,.12);border-color:var(--blue)}.field textarea{min-height:150px;resize:vertical}.form button{border:0;cursor:pointer}.form-note{font-size:13px;color:var(--muted);margin-top:12px}
