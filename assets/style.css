@@ -152,3 +152,33 @@ form button.cta{border:0;cursor:pointer;display:inline-block}
 
 /* Volunteer impact dashboard */
 .volunteer-impact{background:#F8FAFC}.volunteer-impact-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(420px,1.1fr);gap:54px;align-items:center}.impact-flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:28px}.impact-flow span{padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:#fff;font:600 11px/1.2 "IBM Plex Mono",monospace;color:#344054}.impact-flow i{font-style:normal;color:#2563EB}.impact-panel{border:1px solid var(--line);border-radius:18px;background:#fff;padding:24px;box-shadow:0 18px 50px rgba(16,24,40,.06)}.impact-panel-head{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:20px}.impact-panel-head span{font-size:17px;font-weight:750;color:#0B1F3A}.impact-panel-head small{color:#98A2B3;font:500 10px/1 "IBM Plex Mono",monospace}.impact-stat{margin:15px 0}.impact-stat>div{display:flex;justify-content:space-between;gap:14px;align-items:baseline;margin-bottom:7px}.impact-stat strong{font:750 19px/1 Inter,sans-serif;color:#0B1F3A}.impact-stat span{font-size:12px;color:#667085;text-align:right}.impact-stat>b{display:block;height:7px;border-radius:99px;background:linear-gradient(90deg,#3157A6,#6D8FD1);box-shadow:inset 0 0 0 1px rgba(18,43,95,.06)}.impact-foot{margin-top:20px;padding-top:14px;border-top:1px solid var(--line);color:#98A2B3;font-size:11px;line-height:1.5}.volunteer-application{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)}.volunteer-form-intro{position:sticky;top:96px}.application-steps{margin-top:30px;border-top:1px solid var(--line)}.application-steps>div{display:grid;grid-template-columns:35px 1fr;gap:12px;padding:17px 0;border-bottom:1px solid var(--line)}.application-steps span{font:700 10px/1 "IBM Plex Mono",monospace;color:#2563EB;padding-top:4px}.application-steps strong{display:block;font-size:14px;color:#0B1F3A}.application-steps small{display:block;color:#667085;font-size:12px;margin-top:3px}.volunteer-form-card{box-shadow:0 20px 55px rgba(16,24,40,.07)}.form-status{margin:14px 0 0;font-size:13px;color:#667085}.form-status.success{color:#166534}.form-status.error{color:#B42318}@media(max-width:900px){.volunteer-impact-grid{grid-template-columns:1fr;gap:30px}.volunteer-form-intro{position:static}}@media(max-width:700px){.impact-panel{padding:18px}.impact-panel-head{align-items:flex-start;flex-direction:column;gap:6px}.impact-stat span{font-size:11px}.impact-flow i{display:none}.impact-flow span{width:100%}}
+
+
+/* Living HFL impact showcase */
+.impact-showcase{position:relative;overflow:hidden;background:#F8FAFC;border-top:1px solid #EEF2F6;border-bottom:1px solid #EEF2F6}
+.impact-showcase:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(37,99,235,.035),transparent 32%,transparent 68%,rgba(37,99,235,.035))}
+.impact-showcase-head{position:relative;display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:30px}
+.impact-showcase-head h2{margin-bottom:10px}
+.impact-marquee{position:relative;overflow:hidden;margin:0 -24px;padding:8px 24px 24px}
+.impact-track{display:flex;gap:16px;width:max-content;overflow-x:auto;padding:0 0 8px;scroll-snap-type:x proximity;cursor:grab;scrollbar-width:none;touch-action:pan-y}
+.impact-track::-webkit-scrollbar{display:none}
+.impact-track.dragging{cursor:grabbing;scroll-snap-type:none}
+.impact-card{position:relative;flex:0 0 292px;min-height:235px;padding:23px 22px 20px;border:1px solid #DDE4EE;border-radius:17px;background:rgba(255,255,255,.94);box-shadow:0 14px 36px rgba(16,24,40,.055);scroll-snap-align:start;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.impact-card:hover{transform:translateY(-6px);border-color:#B9C9E4;box-shadow:0 22px 48px rgba(16,24,40,.10)}
+.impact-card:after{content:"";position:absolute;right:-45px;top:-55px;width:130px;height:130px;border:1px solid rgba(37,99,235,.10);border-radius:50%;box-shadow:0 0 0 22px rgba(37,99,235,.025),0 0 0 44px rgba(37,99,235,.018)}
+.impact-top{position:relative;z-index:1;display:flex;align-items:center;gap:9px;margin-bottom:22px;color:#98A2B3;font:600 10px/1 "IBM Plex Mono",monospace;letter-spacing:.08em}
+.impact-top span{color:#2563EB}
+.impact-top i{width:5px;height:5px;border-radius:50%;background:#2563EB;box-shadow:0 0 0 0 rgba(37,99,235,.28);animation:impactPulse 1.8s infinite}
+.impact-top small{margin-left:auto;font-size:9px;color:#98A2B3}
+.impact-number{position:relative;z-index:1;display:block;margin:0;font:800 38px/1 Inter,sans-serif;letter-spacing:-.055em;color:#0B1F3A}
+.impact-card h3{position:relative;z-index:1;margin:13px 0 5px;font-size:17px;letter-spacing:-.02em;color:#101828}
+.impact-card p{position:relative;z-index:1;margin:0;color:#667085;font-size:12px;line-height:1.5;max-width:230px}
+.impact-line{position:absolute;left:0;right:0;bottom:0;height:4px;background:#E9EEF6;overflow:hidden}
+.impact-line b{display:block;width:48%;height:100%;background:linear-gradient(90deg,#3157A6,#5B83CC);animation:impactSweep 2.8s ease-in-out infinite alternate}
+.impact-card:nth-child(2) .impact-line b{width:31%;animation-delay:.2s}.impact-card:nth-child(3) .impact-line b{width:66%;animation-delay:.4s}.impact-card:nth-child(4) .impact-line b{width:43%;animation-delay:.6s}.impact-card:nth-child(5) .impact-line b{width:27%;animation-delay:.8s}.impact-card:nth-child(6) .impact-line b{width:72%;animation-delay:1s}.impact-card:nth-child(7) .impact-line b{width:61%;animation-delay:1.2s}
+.impact-bottom{position:relative;display:flex;justify-content:space-between;gap:18px;padding-top:4px;color:#98A2B3;font:500 10px/1.4 "IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.05em}
+.impact-bottom b{display:inline-block;width:6px;height:6px;margin-right:6px;border-radius:50%;background:#16A34A;box-shadow:0 0 0 4px #DCFCE7}
+@keyframes impactSweep{0%{transform:translateX(-20%);opacity:.65}100%{transform:translateX(90%);opacity:1}}
+@keyframes impactPulse{0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,.25)}50%{box-shadow:0 0 0 5px rgba(37,99,235,0)}}
+@media(max-width:700px){.impact-showcase-head{align-items:flex-start;flex-direction:column;gap:12px}.impact-marquee{margin:0 -16px;padding-left:16px;padding-right:16px}.impact-card{flex-basis:270px;min-height:225px}.impact-bottom{flex-direction:column;gap:8px}.impact-bottom span:last-child{display:none}}
+@media(prefers-reduced-motion:reduce){.impact-top i,.impact-line b{animation:none}.impact-card{transition:none}}
