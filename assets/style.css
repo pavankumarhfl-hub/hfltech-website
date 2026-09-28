@@ -8,3 +8,59 @@
 .proof-strip{border-bottom:1px solid #e7eaf0;background:#fbfcfe}.proof-grid{display:grid;grid-template-columns:repeat(3,1fr)}.proof-grid>div{padding:25px 24px;border-right:1px solid #e7eaf0}.proof-grid>div:last-child{border-right:0}.proof-kicker{display:block;font:800 10px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;color:#98a2b3;margin-bottom:10px}.proof-grid strong{display:block;font-size:17px;letter-spacing:-.02em}.proof-grid small{display:block;color:#667085;margin-top:3px;font-size:13px}.system-section{background:#fff}.system-visual{margin-top:34px;padding:24px;border:1px solid #dfe5ee;border-radius:16px;background:linear-gradient(180deg,#fbfcfe,#f4f7fb);display:grid;grid-template-columns:1fr 42px 1fr 42px 1.15fr 42px 1fr 42px 1fr;align-items:center;box-shadow:0 18px 50px rgba(16,24,40,.055)}.system-node{min-height:126px;padding:18px;border:1px solid #d5ddea;border-radius:12px;background:#fff;box-shadow:0 8px 24px rgba(16,24,40,.045);display:flex;flex-direction:column;justify-content:center}.system-node span{font:800 10px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#3157a6;margin-bottom:10px}.system-node strong{font-size:17px;letter-spacing:-.02em}.system-node small{color:#667085;margin-top:4px;font-size:12px}.system-core{border-color:#9eb1d3;box-shadow:0 14px 32px rgba(36,59,128,.12);transform:translateY(-5px)}.system-control{border-color:#b9c9b9}.system-line{height:1px;background:#bfc9d8;position:relative}.system-line:after{content:"";position:absolute;right:-1px;top:-4px;border-left:6px solid #3157a6;border-top:4px solid transparent;border-bottom:4px solid transparent}.project-stack{position:relative}.project-row{transition:transform .2s ease,background .2s ease;padding-left:8px;padding-right:8px}.project-row:hover{transform:translateX(4px);background:#fff}.feature-card{transition:transform .2s ease,border-color .2s ease}.feature-card:hover{transform:translateY(-3px);border-color:#3157a6}.cta{transition:transform .2s ease,box-shadow .2s ease}.cta:hover{transform:translateY(-1px);box-shadow:0 12px 28px rgba(36,59,128,.2)}@media(max-width:1000px){.system-visual{grid-template-columns:1fr;gap:10px}.system-line{width:1px;height:24px;margin:auto}.system-line:after{right:auto;left:-3px;top:auto;bottom:-1px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid #3157a6;border-bottom:0}.system-core{transform:none}}@media(max-width:700px){.proof-grid{grid-template-columns:1fr}.proof-grid>div{border-right:0;border-bottom:1px solid #e7eaf0}.proof-grid>div:last-child{border-bottom:0}.system-visual{padding:14px}.system-node{min-height:105px}.system-node strong{font-size:16px}}
 
 .code-panel{margin-top:30px;border:1px solid #dfe5ee;border-radius:14px;overflow:hidden;background:#0f172a;box-shadow:0 18px 45px rgba(15,23,42,.12)}.code-bar{height:42px;display:flex;align-items:center;gap:7px;padding:0 14px;border-bottom:1px solid #273449;color:#94a3b8;font:700 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace}.code-bar span{width:8px;height:8px;border-radius:50%;background:#64748b}.code-bar strong{margin-left:8px;font-weight:700}.code-panel pre{margin:0;padding:28px;overflow:auto;color:#dbeafe;font:500 14px/1.9 ui-monospace,SFMono-Regular,Menlo,monospace}@media(max-width:700px){.code-panel pre{font-size:12px;padding:20px}}
+
+/* FINAL HFL TECH VISUAL SYSTEM — restrained enterprise palette */
+:root{
+  --ink:#101828;
+  --ink-2:#344054;
+  --muted:#667085;
+  --faint:#98A2B3;
+  --line:#E4E7EC;
+  --line-strong:#D0D5DD;
+  --surface:#FFFFFF;
+  --surface-2:#F8FAFC;
+  --surface-3:#F2F4F7;
+  --navy:#122B5F;
+  --blue:#3157A6;
+  --blue-soft:#EEF4FF;
+}
+body{color:var(--ink);background:var(--surface)}
+.site-header{background:rgba(255,255,255,.96);border-color:var(--line)}
+.brand{color:var(--ink)}
+.brand span,.footer-top strong span{color:var(--blue)}
+.menu a{color:var(--ink-2)}
+.menu a:hover{color:var(--blue)}
+.hero{background:linear-gradient(180deg,#fff 0%,#F8FAFC 100%);border-color:var(--line)}
+.eyebrow{color:var(--blue)}
+.lead,.section-intro{color:var(--muted)}
+.section{border-color:var(--line)}
+.card,.system-node{background:var(--surface);border-color:var(--line);box-shadow:0 8px 28px rgba(16,24,40,.035)}
+.card:hover{border-color:#C8D4EA}
+.tag{border-color:#D5DDF0;color:var(--blue);background:#FBFCFF}
+.cta{background:var(--navy);box-shadow:0 8px 22px rgba(18,43,95,.16)}
+.cta.secondary{background:#fff;color:var(--navy);border-color:var(--line-strong)}
+.product-section{background:var(--surface-2)}
+.proof-strip{background:#FBFCFE;border-color:var(--line)}
+.proof-grid>div{border-color:var(--line)}
+.hero-meta span{border-color:var(--line);background:#fff}
+.project-stack,.project-row{border-color:var(--line)}
+.project-row:hover{background:#fff}
+.ecosystem-strip{border-color:var(--line);background:#fff}
+.ecosystem-strip a{border-color:var(--line)}
+.text-link{color:var(--blue)}
+.system-visual{border-color:var(--line);background:linear-gradient(180deg,#FBFCFE,#F5F7FA);box-shadow:0 18px 50px rgba(16,24,40,.05)}
+.system-node{border-color:#D8DEE8}
+.system-core{border-color:#AFC0DE;box-shadow:0 14px 32px rgba(49,87,166,.11)}
+.system-control{border-color:#C8D4C8}
+.system-line{background:#C8D0DC}
+.node3d{border-color:#D5DDE8;background:rgba(255,255,255,.96);color:var(--ink-2)}
+.plane{border-color:#D1D9E6;background:linear-gradient(135deg,rgba(255,255,255,.98),rgba(241,245,249,.78));box-shadow:0 35px 70px rgba(15,23,42,.10)}
+.orb{background:radial-gradient(circle at 30% 25%,#fff 0 8%,#A9BDE1 18%,#3157A6 55%,#122B5F 100%);box-shadow:0 18px 45px rgba(49,87,166,.25),inset -12px -16px 30px rgba(5,20,55,.25)}
+.orb:after{border-color:#A9BDE1}
+.plane:before,.plane:after{background:linear-gradient(90deg,transparent 49.5%,#DCE3ED 50%,transparent 50.5%),linear-gradient(transparent 49.5%,#DCE3ED 50%,transparent 50.5%)}
+.contact-preview{background:var(--navy)}
+.contact-preview .cta{background:#fff;color:var(--navy)}
+.site-footer{border-top:1px solid var(--line)}
+.notice{border-color:var(--blue);background:var(--blue-soft)}
+.code-panel{background:#0D1729}
+@media(max-width:700px){.menu{background:transparent}}
