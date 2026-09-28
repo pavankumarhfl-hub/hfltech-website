@@ -192,3 +192,63 @@ form button.cta{border:0;cursor:pointer;display:inline-block}
 @keyframes impactPulse{0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,.25)}50%{box-shadow:0 0 0 5px rgba(37,99,235,0)}}
 @media(max-width:700px){.impact-showcase-head{align-items:flex-start;flex-direction:column;gap:12px}.impact-marquee{margin:0 -16px;padding-left:16px;padding-right:16px}.impact-card{flex-basis:270px;min-height:225px}.impact-bottom{flex-direction:column;gap:8px}.impact-bottom span:last-child{display:none}}
 @media(prefers-reduced-motion:reduce){.impact-top i,.impact-line b,.impact-card:before,.impact-card .impact-number{animation:none}.impact-card{transition:none}}
+
+/* Volunteer experience + mobile hardening */
+.impact-panel{position:relative;overflow:hidden}
+.impact-panel:after{content:"";position:absolute;left:-30%;right:-30%;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(37,99,235,.75),transparent);animation:volunteerScan 3.8s linear infinite}
+.impact-stat>b{position:relative;overflow:hidden;transform-origin:left center;animation:volunteerBarPulse 2.6s ease-in-out infinite}
+.impact-stat>b:after{content:"";position:absolute;top:0;bottom:0;width:34%;left:-38%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.65),transparent);animation:volunteerBarSweep 2.2s ease-in-out infinite}
+.impact-stat:nth-of-type(2)>b{animation-delay:.15s}.impact-stat:nth-of-type(3)>b{animation-delay:.3s}.impact-stat:nth-of-type(4)>b{animation-delay:.45s}.impact-stat:nth-of-type(5)>b{animation-delay:.6s}.impact-stat:nth-of-type(6)>b{animation-delay:.75s}.impact-stat:nth-of-type(7)>b{animation-delay:.9s}.impact-stat:nth-of-type(8)>b{animation-delay:1.05s}
+.impact-stat strong{transition:transform .3s ease}.impact-stat:hover strong{transform:translateX(4px)}
+@keyframes volunteerScan{0%{transform:translateX(-20%);opacity:.15}50%{opacity:1}100%{transform:translateX(20%);opacity:.15}}
+@keyframes volunteerBarPulse{0%,100%{filter:saturate(1);transform:scaleX(.98)}50%{filter:saturate(1.18);transform:scaleX(1)}}
+@keyframes volunteerBarSweep{0%{transform:translateX(0);opacity:0}25%{opacity:1}75%{opacity:1}100%{transform:translateX(390%);opacity:0}}
+.application-success{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;padding:24px;border:1px solid #BBF7D0;border-radius:16px;background:linear-gradient(135deg,#F0FDF4,#FFFFFF);box-shadow:0 16px 40px rgba(22,101,52,.08)}
+.application-success[hidden]{display:none}
+.application-success h3{margin:5px 0 5px;font-size:22px;color:#14532D}
+.application-success p{margin:0;color:#4B5563;font-size:14px;line-height:1.55}
+.application-success .eyebrow{color:#15803D;font-size:10px}
+.success-icon{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#16A34A;color:#fff;font-weight:800;font-size:22px;box-shadow:0 0 0 7px #DCFCE7}
+.volunteer-form-card button:disabled{opacity:.65;cursor:wait}
+@media(max-width:700px){
+  .nav{min-height:64px;gap:12px;align-items:center}
+  .brand{font-size:18px;flex:0 0 auto}
+  .menu{display:flex;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;white-space:nowrap;gap:15px;max-width:calc(100vw - 105px);padding:4px 2px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .menu::-webkit-scrollbar{display:none}
+  .menu a{font-size:12px;flex:0 0 auto}
+  .wrap{width:min(94%,1160px)}
+  .hero h1{font-size:clamp(34px,11vw,52px);overflow-wrap:anywhere}
+  .hero .lead{font-size:17px}
+  .section{padding:52px 0}
+  .section h2{font-size:clamp(29px,9vw,40px)}
+  .section-intro{font-size:15px}
+  .grid{gap:14px;margin-top:24px}
+  .card{padding:20px}
+  .two-col,.volunteer-application,.volunteer-impact-grid{grid-template-columns:1fr!important;min-width:0!important;gap:28px}
+  .volunteer-form-intro{position:static}
+  .impact-panel{padding:17px;border-radius:14px}
+  .impact-stat{margin:13px 0}
+  .impact-stat>div{align-items:flex-start;gap:10px}
+  .impact-stat strong{font-size:18px;white-space:nowrap}
+  .impact-stat span{font-size:11px;line-height:1.35;max-width:58%}
+  .impact-flow{margin-top:20px}
+  .impact-flow span{width:auto;flex:1 1 100%;min-width:0}
+  .application-steps>div{grid-template-columns:30px 1fr;gap:10px}
+  .volunteer-form-card{padding:16px}
+  form input,form select,form textarea{font-size:16px;min-height:46px}
+  form textarea{min-height:96px}
+  form .check{font-size:13px}
+  form .check input{min-height:auto}
+  .application-success{grid-template-columns:auto 1fr;gap:14px;padding:20px}
+  .application-success .cta{grid-column:1/-1;margin-left:0;width:100%;text-align:center}
+  .cta{max-width:100%;white-space:normal;text-align:center}
+  .founder-band,.contact-band,.section-head,.footer-top{align-items:flex-start;flex-direction:column;gap:18px}
+  .cta.secondary{margin-left:0}
+  .ecosystem-strip{grid-template-columns:1fr}
+  .ecosystem-strip a{border-right:0!important;border-bottom:1px solid #dfe5ee}
+  .ecosystem-strip a:last-child{border-bottom:0}
+  .footer-links{gap:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  .impact-panel:after,.impact-stat>b,.impact-stat>b:after{animation:none}
+}
