@@ -163,6 +163,16 @@ form button.cta{border:0;cursor:pointer;display:inline-block}
 .impact-track{display:flex;gap:16px;width:max-content;overflow-x:auto;padding:0 0 8px;scroll-snap-type:x proximity;cursor:grab;scrollbar-width:none;touch-action:pan-y}
 .impact-track::-webkit-scrollbar{display:none}
 .impact-track.dragging{cursor:grabbing;scroll-snap-type:none}
+.impact-track{will-change:scroll-position}
+.impact-card{isolation:isolate}
+.impact-card:before{content:"";position:absolute;inset:-40% -15%;z-index:-1;background:linear-gradient(115deg,transparent 38%,rgba(37,99,235,.055) 48%,transparent 58%);transform:translateX(-55%);animation:impactLightSweep 4.8s ease-in-out infinite}
+.impact-card:nth-child(2):before{animation-delay:.5s}.impact-card:nth-child(3):before{animation-delay:1s}.impact-card:nth-child(4):before{animation-delay:1.5s}.impact-card:nth-child(5):before{animation-delay:2s}.impact-card:nth-child(6):before{animation-delay:2.5s}.impact-card:nth-child(7):before{animation-delay:3s}
+.impact-card .impact-number{animation:impactNumberFloat 3.4s ease-in-out infinite}
+.impact-card:nth-child(2) .impact-number{animation-delay:.25s}.impact-card:nth-child(3) .impact-number{animation-delay:.5s}.impact-card:nth-child(4) .impact-number{animation-delay:.75s}.impact-card:nth-child(5) .impact-number{animation-delay:1s}.impact-card:nth-child(6) .impact-number{animation-delay:1.25s}.impact-card:nth-child(7) .impact-number{animation-delay:1.5s}
+.impact-card .impact-line b{transform-origin:left center}
+@keyframes impactLightSweep{0%{transform:translateX(-60%) rotate(8deg)}55%,100%{transform:translateX(60%) rotate(8deg)}}
+@keyframes impactNumberFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+
 .impact-card{position:relative;flex:0 0 292px;min-height:235px;padding:23px 22px 20px;border:1px solid #DDE4EE;border-radius:17px;background:rgba(255,255,255,.94);box-shadow:0 14px 36px rgba(16,24,40,.055);scroll-snap-align:start;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
 .impact-card:hover{transform:translateY(-6px);border-color:#B9C9E4;box-shadow:0 22px 48px rgba(16,24,40,.10)}
 .impact-card:after{content:"";position:absolute;right:-45px;top:-55px;width:130px;height:130px;border:1px solid rgba(37,99,235,.10);border-radius:50%;box-shadow:0 0 0 22px rgba(37,99,235,.025),0 0 0 44px rgba(37,99,235,.018)}
@@ -181,4 +191,4 @@ form button.cta{border:0;cursor:pointer;display:inline-block}
 @keyframes impactSweep{0%{transform:translateX(-20%);opacity:.65}100%{transform:translateX(90%);opacity:1}}
 @keyframes impactPulse{0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,.25)}50%{box-shadow:0 0 0 5px rgba(37,99,235,0)}}
 @media(max-width:700px){.impact-showcase-head{align-items:flex-start;flex-direction:column;gap:12px}.impact-marquee{margin:0 -16px;padding-left:16px;padding-right:16px}.impact-card{flex-basis:270px;min-height:225px}.impact-bottom{flex-direction:column;gap:8px}.impact-bottom span:last-child{display:none}}
-@media(prefers-reduced-motion:reduce){.impact-top i,.impact-line b{animation:none}.impact-card{transition:none}}
+@media(prefers-reduced-motion:reduce){.impact-top i,.impact-line b,.impact-card:before,.impact-card .impact-number{animation:none}.impact-card{transition:none}}
