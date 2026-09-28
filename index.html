@@ -78,6 +78,18 @@
   </div>
 </section>
 
+<section class="section">
+<div class="wrap">
+<div class="section-head"><div><div class="eyebrow">03 / Technology lab</div><h2>Interact with the ideas.</h2><p class="section-intro">Small browser-based demonstrations make the architecture tangible. These are product concepts and simulations, not claims of production infrastructure.</p></div><a class="text-link" href="developers.html">Developer area →</a></div>
+<div class="lab-grid">
+<article class="lab-card"><span class="lab-badge">AGENT SYSTEM</span><h3>Task planner</h3><p>Turn a goal into a simple executable sequence.</p><div class="lab-control"><select class="lab-select" id="plannerGoal"><option>Research a topic</option><option>Build a software feature</option><option>Automate a workflow</option></select><button class="lab-button" id="plannerRun">Generate plan →</button><div class="lab-output" id="plannerOut">Waiting for an objective.</div></div></article>
+<article class="lab-card"><span class="lab-badge">SECURITY</span><h3>Risk model</h3><p>Illustrative control flow for an action request.</p><div class="lab-control"><select class="lab-select" id="riskAction"><option>Read public data</option><option>Call an external API</option><option>Modify system state</option></select><button class="lab-button" id="riskRun">Evaluate controls →</button><div class="lab-output" id="riskOut">No evaluation run yet.</div></div></article>
+<article class="lab-card"><span class="lab-badge">AUTOMATION</span><h3>Workflow state</h3><p>See how a workflow moves from trigger to completion.</p><div class="lab-control"><button class="lab-button" id="flowRun">Run workflow →</button><div class="lab-meter"><i id="flowBar"></i></div><div class="lab-status"><span id="flowStatus">IDLE</span><span id="flowPct">0%</span></div><div class="lab-output" id="flowOut">Trigger → validate → execute → review.</div></div></article>
+</div>
+<div class="lab-note"><strong>Demo boundary:</strong> these browser interactions are functional front-end demonstrations. They do not represent a live AgentMesh backend, customer environment, benchmark, or production deployment.</div>
+</div>
+</section>
+
 <section class="section product-section">
   <div class="wrap product-layout">
     <div>
@@ -119,7 +131,16 @@
     <a class="cta" href="contact.html">Contact HFL Tech →</a>
   </div>
 </section>
-</main>
+<script>
+(function(){
+const p=document.getElementById('plannerRun'),po=document.getElementById('plannerOut');
+p&&p.addEventListener('click',()=>{const g=document.getElementById('plannerGoal').value;po.textContent='Goal → context → plan → authorised tools → execution → evaluation';});
+const r=document.getElementById('riskRun'),ro=document.getElementById('riskOut');
+r&&r.addEventListener('click',()=>{const a=document.getElementById('riskAction').value;const safe=a==='Read public data';ro.textContent=a+' → '+(safe?'LOWER RISK: read-only action; apply normal validation.':'CONTROL REQUIRED: authorisation, credential isolation, validation and audit logging.');});
+const f=document.getElementById('flowRun'),bar=document.getElementById('flowBar'),fs=document.getElementById('flowStatus'),fp=document.getElementById('flowPct'),fo=document.getElementById('flowOut');
+f&&f.addEventListener('click',()=>{let i=0;f.disabled=true;const labels=['TRIGGER','VALIDATE','EXECUTE','REVIEW','COMPLETE'];const t=setInterval(()=>{i++;bar.style.width=(i*20)+'%';fp.textContent=(i*20)+'%';fs.textContent=labels[i-1];fo.textContent=labels.slice(0,i).join(' → ');if(i===5){clearInterval(t);f.disabled=false;}},360);});
+})();
+</script></main>
 
 <footer class="site-footer">
 <div class="wrap">
