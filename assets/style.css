@@ -328,3 +328,18 @@ input,select,textarea{max-width:100%}
 @media(prefers-reduced-motion:reduce){
  .trust-card{transition:none}
 }
+
+@media(max-width:700px){
+ .impact-marquee{margin:0;padding:0}
+ .impact-track{display:grid;width:auto;overflow:visible;scroll-snap-type:none;gap:12px;cursor:default}
+ .impact-card{width:100%;min-height:0;flex:none}
+ .impact-bottom span:last-child{display:none}
+ .comparison-grid{overflow:visible}
+ .comparison-head,.comparison-row{min-width:0}
+ .comparison-head{display:none}
+ .comparison-row{display:grid;grid-template-columns:1fr;gap:5px;padding:16px 0}
+ .comparison-row strong{font-size:15px}
+ .comparison-row span{font-size:12px}
+ .system-visual{overflow:visible}
+ .system-line{min-width:0}
+}
