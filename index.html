@@ -146,7 +146,7 @@ f&&f.addEventListener('click',()=>{let i=0;f.disabled=true;const labels=['TRIGGE
   const cards=[...document.querySelectorAll('.impact-card')];
   const format=(n,type)=>{
     if(type==='lakh'){
-      return n>=100000 ? ((n/100000)%1===0?(n/100000).toFixed(0):(n/100000).toFixed(1)).replace('.0','')+'L+' : n.toLocaleString('en-IN')+'+';
+      return n>=100000 ? ((n/100000)%1===0?(n/100000).toFixed(0):(n/100000).toFixed(1)).replace('.0','')+' lakh+' : n.toLocaleString('en-IN')+'+';
     }
     return n.toLocaleString('en-IN')+'+';
   };
@@ -183,13 +183,13 @@ f&&f.addEventListener('click',()=>{let i=0;f.disabled=true;const labels=['TRIGGE
   </div>
   <div class="impact-marquee" aria-label="HFL reported impact figures">
     <div class="impact-track">
-      <article class="impact-card" data-value="500000" data-format="lakh"><div class="impact-top"><span>01</span><i></i><small>FOUNDATION</small></div><strong class="impact-number">5L+</strong><h3>People connected</h3><p>Through HFL Foundation</p><div class="impact-line"><b></b></div></article>
+      <article class="impact-card" data-value="500000" data-format="lakh"><div class="impact-top"><span>01</span><i></i><small>FOUNDATION</small></div><strong class="impact-number">5 lakh+</strong><h3>People connected</h3><p>Through HFL Foundation</p><div class="impact-line"><b></b></div></article>
       <article class="impact-card" data-value="50" data-format="plus"><div class="impact-top"><span>02</span><i></i><small>FOUNDATION</small></div><strong class="impact-number">50+</strong><h3>Orphan schools / homes</h3><p>Connected with HFL</p><div class="impact-line"><b></b></div></article>
       <article class="impact-card" data-value="5000" data-format="plus"><div class="impact-top"><span>03</span><i></i><small>FOUNDATION</small></div><strong class="impact-number">5,000+</strong><h3>Beneficiaries supported</h3><p>Each month</p><div class="impact-line"><b></b></div></article>
       <article class="impact-card" data-value="500" data-format="plus"><div class="impact-top"><span>04</span><i></i><small>EDUCATION</small></div><strong class="impact-number">500+</strong><h3>Student beneficiaries</h3><p>Each year through HFL Education</p><div class="impact-line"><b></b></div></article>
       <article class="impact-card" data-value="15" data-format="plus"><div class="impact-top"><span>05</span><i></i><small>EDUCATION</small></div><strong class="impact-number">15+</strong><h3>Government schools</h3><p>Connected</p><div class="impact-line"><b></b></div></article>
-      <article class="impact-card" data-value="400000" data-format="lakh"><div class="impact-top"><span>06</span><i></i><small>CYBER TEAM</small></div><strong class="impact-number">4L+</strong><h3>Cyber cases received</h3><p>Reported to the HFL Cyber Team</p><div class="impact-line"><b></b></div></article>
-      <article class="impact-card" data-value="320000" data-format="lakh"><div class="impact-top"><span>07</span><i></i><small>CYBER TEAM</small></div><strong class="impact-number">3.2L+</strong><h3>Cyber cases reported solved</h3><p>As reported by HFL</p><div class="impact-line"><b></b></div></article>
+      <article class="impact-card" data-value="400000" data-format="lakh"><div class="impact-top"><span>06</span><i></i><small>CYBER TEAM</small></div><strong class="impact-number">4 lakh+</strong><h3>Cyber cases received</h3><p>Reported to the HFL Cyber Team</p><div class="impact-line"><b></b></div></article>
+      <article class="impact-card" data-value="320000" data-format="lakh"><div class="impact-top"><span>07</span><i></i><small>CYBER TEAM</small></div><strong class="impact-number">3.2 lakh+</strong><h3>Cyber cases reported solved</h3><p>As reported by HFL</p><div class="impact-line"><b></b></div></article>
     </div>
   </div>
   <div class="impact-bottom"><span><b></b> HFL-reported organisational statistics</span><span>Scroll / drag to explore</span></div>
