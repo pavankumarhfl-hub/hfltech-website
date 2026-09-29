@@ -477,3 +477,23 @@ p,li{color:#b3bcc6}
   }
 }
 .site-header.is-scrolled{background:rgba(3,4,6,.94)!important;box-shadow:0 14px 44px rgba(0,0,0,.42)!important}
+
+/* High-contrast treatment for legacy information components */
+.stat-card,.impact-stat,.impact-panel,.application-success,.timeline article{
+  background:linear-gradient(145deg,#12171d,#080b0f)!important;
+  color:var(--hfl-copy)!important;
+  border:1px solid var(--hfl-line)!important;
+  box-shadow:0 24px 75px rgba(0,0,0,.32)!important;
+}
+.stat-card strong,.impact-stat strong,.impact-number{
+  color:#f4f6f8!important;
+  text-shadow:0 0 34px rgba(255,255,255,.08)!important;
+}
+.stat-card span,.impact-stat span,.impact-stat small{color:#98a2ad!important}
+.stat-card:before,.impact-stat:before{
+  background:radial-gradient(280px 160px at var(--mx,50%) var(--my,0%),rgba(255,255,255,.055),transparent 70%)!important;
+}
+.timeline article p{color:#9ca6b1!important}
+.timeline article strong{color:#edf1f4!important}
+.impact-track{scrollbar-color:#4d5661 transparent!important}
+.impact-card{background:linear-gradient(145deg,#12171d,#080b0f)!important}
