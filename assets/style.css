@@ -510,3 +510,5 @@ h2,h3,strong{color:var(--text)}
  .trust-card{padding:20px}
  .ecosystem-architecture a{padding:18px}
 }
+
+.breadcrumb{width:min(1160px,92%);margin:22px auto 0;display:flex;gap:9px;align-items:center;font:500 12px/1.4 "IBM Plex Mono",monospace;color:#667085}.breadcrumb a{color:#344054;text-decoration:none}.breadcrumb a:hover{text-decoration:underline}.breadcrumb span:last-child{color:#98A2B3}@media(max-width:700px){.breadcrumb{width:94%;margin-top:14px;font-size:11px}}
