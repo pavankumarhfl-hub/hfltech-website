@@ -461,3 +461,24 @@ h2,h3,strong{color:var(--text)}
 @media(prefers-reduced-motion:reduce){
   .scene,.orb,.impact-card:before,.impact-card .impact-number,.impact-panel:after,.impact-stat>b,.impact-stat>b:after{animation:none!important}
 }
+
+/* Shared navigation + restrained reveal system */
+.mobile-menu-toggle{display:none;border:1px solid #344154;background:#101722;color:#E7EDF7;width:42px;height:40px;border-radius:9px;padding:9px;cursor:pointer}
+.mobile-menu-toggle span{display:block;height:1.5px;background:#E7EDF7;margin:5px 0;transition:transform .2s,opacity .2s}
+.reveal-item{opacity:1;transform:none}
+@media(min-width:701px){.reveal-item{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}.reveal-item.is-visible{opacity:1;transform:none}}
+@media(max-width:700px){
+  .mobile-menu-toggle{display:block;flex:0 0 auto}
+  .site-header .menu{position:absolute;left:12px;right:12px;top:calc(100% + 8px);display:flex;flex-direction:column;align-items:stretch;gap:0;max-width:none;max-height:0;overflow:hidden;padding:0;border:1px solid transparent;border-radius:14px;background:#0F151E;box-shadow:0 22px 55px rgba(0,0,0,.42);opacity:0;transform:translateY(-6px);transition:max-height .25s ease,opacity .2s ease,transform .2s ease,border-color .2s}
+  .site-header .menu a{display:block;padding:14px 16px;border-bottom:1px solid #242D3A;font-size:14px;color:#D7DEE9}
+  .site-header .menu a:last-child{border-bottom:0}
+  .site-header.mobile-nav-open .menu{max-height:70vh;opacity:1;transform:none;border-color:#2D3747;overflow:auto}
+  .site-header.mobile-nav-open .mobile-menu-toggle span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+  .site-header.mobile-nav-open .mobile-menu-toggle span:nth-child(2){opacity:0}
+  .site-header.mobile-nav-open .mobile-menu-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+  .site-header .nav{position:relative}
+}
+@media(prefers-reduced-motion:reduce){
+  .reveal-item{transition:none!important}
+  .site-header .menu,.mobile-menu-toggle span{transition:none!important}
+}
