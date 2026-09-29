@@ -1,70 +1,10 @@
-(function(){
-  document.addEventListener('DOMContentLoaded',function(){
-    const header=document.querySelector('.site-header');
-    const nav=document.querySelector('.nav');
-    const menu=document.querySelector('.menu');
-    const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if(header&&nav&&menu){
-      const toggle=document.createElement('button');
-      toggle.className='mobile-menu-toggle';
-      toggle.type='button';
-      toggle.setAttribute('aria-label','Open navigation');
-      toggle.setAttribute('aria-expanded','false');
-      toggle.innerHTML='<span></span><span></span><span></span>';
-      nav.appendChild(toggle);
-      toggle.addEventListener('click',function(){
-        const open=header.classList.toggle('mobile-nav-open');
-        toggle.setAttribute('aria-expanded',String(open));
-        toggle.setAttribute('aria-label',open?'Close navigation':'Open navigation');
-      });
-      menu.addEventListener('click',function(e){
-        if(e.target.closest('a')){
-          header.classList.remove('mobile-nav-open');
-          toggle.setAttribute('aria-expanded','false');
-        }
-      });
-      document.addEventListener('click',function(e){
-        if(!header.contains(e.target)){
-          header.classList.remove('mobile-nav-open');
-          toggle.setAttribute('aria-expanded','false');
-        }
-      });
-    }
-
-    const reveal=document.querySelectorAll('.card,.status-card,.trust-card,.feature-card,.project-row,.lab-card,.section-head,.system-node,.ecosystem-strip a,.tech-layer-list a,.timeline article,.comparison-row,.investor-card');
-    if(!reduce && 'IntersectionObserver' in window){
-      const io=new IntersectionObserver(function(entries){
-        entries.forEach(function(entry){
-          if(entry.isIntersecting){
-            entry.target.classList.add('is-visible');
-            io.unobserve(entry.target);
-          }
-        });
-      },{threshold:.08,rootMargin:'0px 0px -40px'});
-      reveal.forEach(function(el){el.classList.add('reveal-item');io.observe(el);});
-    }else{
-      reveal.forEach(function(el){el.classList.add('is-visible');});
-    }
-
-    if(!reduce){
-      const fields=document.querySelectorAll('.hero,.section,.proof-strip,.product-section,.trust-section,.founder-preview,.contact-preview');
-      let ticking=false;
-      function update(){
-        const y=window.scrollY||0;
-        fields.forEach(function(el){
-          const r=el.getBoundingClientRect();
-          if(r.bottom>0 && r.top<window.innerHeight){
-            const delta=(window.innerHeight/2-(r.top+r.height/2))*0.035;
-            el.style.setProperty('--hfl-scroll',delta.toFixed(1)+'px');
-          }
-        });
-        ticking=false;
-      }
-      window.addEventListener('scroll',function(){
-        if(!ticking){window.requestAnimationFrame(update);ticking=true;}
-      },{passive:true});
-      update();
-    }
-  });
-})();
+(function(){document.addEventListener('DOMContentLoaded',function(){
+const header=document.querySelector('.site-header'),nav=document.querySelector('.nav'),menu=document.querySelector('.menu'),reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(header&&nav&&menu){const t=document.createElement('button');t.className='mobile-menu-toggle';t.type='button';t.setAttribute('aria-label','Open navigation');t.setAttribute('aria-expanded','false');t.innerHTML='<span></span><span></span><span></span>';nav.appendChild(t);const close=()=>{header.classList.remove('mobile-nav-open');t.setAttribute('aria-expanded','false');t.setAttribute('aria-label','Open navigation')};t.onclick=()=>{const o=header.classList.toggle('mobile-nav-open');t.setAttribute('aria-expanded',o);t.setAttribute('aria-label',o?'Close navigation':'Open navigation')};menu.onclick=e=>{if(e.target.closest('a'))close()};document.addEventListener('click',e=>{if(!header.contains(e.target))close()});document.addEventListener('keydown',e=>{if(e.key==='Escape')close()})}
+const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();document.querySelectorAll('.menu a').forEach(a=>{const h=(a.getAttribute('href')||'').split('/').pop().split('#')[0].toLowerCase();if(h===current||(current===''&&h==='index.html'))a.classList.add('is-current')});
+const reveal=document.querySelectorAll('.card,.status-card,.trust-card,.feature-card,.project-row,.lab-card,.section-head,.system-node,.ecosystem-strip a,.tech-layer-list a,.timeline article,.comparison-row,.investor-card,.impact-card');
+if(!reduce&&'IntersectionObserver'in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -45px'});reveal.forEach(el=>{el.classList.add('reveal-item');io.observe(el)})}else reveal.forEach(el=>el.classList.add('is-visible'));
+if(!reduce){let ticking=false;const fields=document.querySelectorAll('.hero,.section,.proof-strip,.product-section,.impact-showcase,.trust-section,.ecosystem-preview,.founder-preview,.contact-preview');const update=()=>{fields.forEach(el=>{const r=el.getBoundingClientRect();if(r.bottom>0&&r.top<innerHeight){el.style.setProperty('--hfl-scroll',((innerHeight/2-(r.top+r.height/2))*.045).toFixed(1)+'px')}});ticking=false};addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(update);ticking=true}},{passive:true});update()}
+document.querySelectorAll('.card,.status-card,.trust-card,.lab-card,.impact-card').forEach(c=>c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');c.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%')}));
+const bar=document.createElement('div');bar.className='hfl-scroll-progress';bar.setAttribute('aria-hidden','true');bar.style.cssText='position:fixed;left:0;top:0;width:100%;z-index:1000;pointer-events:none;transform-origin:left center;transform:scaleX(0);background:linear-gradient(90deg,#7f8da2,#eef3f8,#8b9bb1);opacity:.75';document.body.appendChild(bar);if(!reduce){const up=()=>{const m=document.documentElement.scrollHeight-innerHeight;bar.style.transform='scaleX('+(m>0?scrollY/m:0)+')'};addEventListener('scroll',up,{passive:true});up()}else bar.style.display='none';
+});})();
