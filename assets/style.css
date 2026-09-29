@@ -482,3 +482,8 @@ h2,h3,strong{color:var(--text)}
   .reveal-item{transition:none!important}
   .site-header .menu,.mobile-menu-toggle span{transition:none!important}
 }
+
+.hero-text-cta{display:inline-flex;align-items:center;margin:22px 0 0 10px;color:#AFC3EA;text-decoration:none;font-weight:750}
+.hero-text-cta:hover{color:#F4F7FB}
+.status-vision{color:#C7B0E9;border-color:#4A3C63}
+@media(max-width:700px){.hero-text-cta{margin:8px 0 0;width:100%;justify-content:center}.hero-actions{align-items:stretch}}
