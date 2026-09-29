@@ -465,3 +465,15 @@ p,li{color:#b3bcc6}
   body:before,.hero-3d .scene,.system-visual:after,.hero-copy{animation:none!important}
   .reveal-item{opacity:1!important;transform:none!important;transition:none!important}
 }
+
+@media(min-width:901px) and (prefers-reduced-motion:no-preference){
+  .card,.status-card,.trust-card,.lab-card,.investor-card{
+    transform:translate3d(0,0,0) perspective(900px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));
+    transform-style:preserve-3d;
+    transition:transform .22s ease,border-color .25s ease,box-shadow .25s ease;
+  }
+  .card:hover,.status-card:hover,.trust-card:hover,.lab-card:hover,.investor-card:hover{
+    transform:translate3d(0,-4px,0) perspective(900px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg))!important;
+  }
+}
+.site-header.is-scrolled{background:rgba(3,4,6,.94)!important;box-shadow:0 14px 44px rgba(0,0,0,.42)!important}
