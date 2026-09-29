@@ -14,3 +14,35 @@ if(heroScene&&!reduce&&innerWidth>700){
 if(heroScene)heroScene.style.transform='perspective(1100px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg))';
 const bar=document.createElement('div');bar.className='hfl-scroll-progress';bar.setAttribute('aria-hidden','true');bar.style.cssText='position:fixed;left:0;top:0;width:100%;z-index:1000;pointer-events:none;transform-origin:left center;transform:scaleX(0);background:linear-gradient(90deg,#7f8da2,#eef3f8,#8b9bb1);opacity:.75';document.body.appendChild(bar);if(!reduce){const up=()=>{const m=document.documentElement.scrollHeight-innerHeight;bar.style.transform='scaleX('+(m>0?scrollY/m:0)+')'};addEventListener('scroll',up,{passive:true});up()}else bar.style.display='none';
 });})();
+/* Final interaction layer */
+(function(){
+  if(document.documentElement.dataset.hflFinalMotion==='1') return;
+  document.documentElement.dataset.hflFinalMotion='1';
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const header=document.querySelector('.site-header');
+  let raf=0;
+  const scrollState=()=>{
+    raf=0;
+    const y=window.scrollY||0;
+    document.documentElement.style.setProperty('--hfl-scroll-y',y+'px');
+    if(header) header.classList.toggle('is-scrolled',y>18);
+  };
+  addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(scrollState)},{passive:true});
+  scrollState();
+
+  if(!reduce && innerWidth>900){
+    document.querySelectorAll('.card,.status-card,.lab-card,.trust-card,.investor-card').forEach(card=>{
+      card.addEventListener('pointermove',e=>{
+        const r=card.getBoundingClientRect();
+        const x=((e.clientX-r.left)/r.width-.5);
+        const y=((e.clientY-r.top)/r.height-.5);
+        card.style.setProperty('--tilt-x',(y*-2.2).toFixed(2)+'deg');
+        card.style.setProperty('--tilt-y',(x*2.2).toFixed(2)+'deg');
+      });
+      card.addEventListener('pointerleave',()=>{
+        card.style.setProperty('--tilt-x','0deg');
+        card.style.setProperty('--tilt-y','0deg');
+      });
+    });
+  }
+})();
