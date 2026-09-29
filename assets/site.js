@@ -1,48 +1,133 @@
-(function(){document.addEventListener('DOMContentLoaded',function(){
-const header=document.querySelector('.site-header'),nav=document.querySelector('.nav'),menu=document.querySelector('.menu'),reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(header&&nav&&menu){const t=document.createElement('button');t.className='mobile-menu-toggle';t.type='button';t.setAttribute('aria-label','Open navigation');t.setAttribute('aria-expanded','false');t.innerHTML='<span></span><span></span><span></span>';nav.appendChild(t);const close=()=>{header.classList.remove('mobile-nav-open');t.setAttribute('aria-expanded','false');t.setAttribute('aria-label','Open navigation')};t.onclick=()=>{const o=header.classList.toggle('mobile-nav-open');t.setAttribute('aria-expanded',o);t.setAttribute('aria-label',o?'Close navigation':'Open navigation')};menu.onclick=e=>{if(e.target.closest('a'))close()};document.addEventListener('click',e=>{if(!header.contains(e.target))close()});document.addEventListener('keydown',e=>{if(e.key==='Escape')close()})}
-const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();document.querySelectorAll('.menu a').forEach(a=>{const h=(a.getAttribute('href')||'').split('/').pop().split('#')[0].toLowerCase();if(h===current||(current===''&&h==='index.html'))a.classList.add('is-current')});
-const reveal=document.querySelectorAll('.card,.status-card,.trust-card,.feature-card,.project-row,.lab-card,.section-head,.system-node,.ecosystem-strip a,.tech-layer-list a,.timeline article,.comparison-row,.investor-card,.impact-card');
-if(!reduce&&'IntersectionObserver'in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -45px'});reveal.forEach(el=>{el.classList.add('reveal-item');io.observe(el)})}else reveal.forEach(el=>el.classList.add('is-visible'));
-if(!reduce){let ticking=false;const fields=document.querySelectorAll('.hero,.section,.proof-strip,.product-section,.impact-showcase,.trust-section,.ecosystem-preview,.founder-preview,.contact-preview');const update=()=>{fields.forEach(el=>{const r=el.getBoundingClientRect();if(r.bottom>0&&r.top<innerHeight){el.style.setProperty('--hfl-scroll',((innerHeight/2-(r.top+r.height/2))*.045).toFixed(1)+'px')}});ticking=false};addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(update);ticking=true}},{passive:true});update()}
-document.querySelectorAll('.card,.status-card,.trust-card,.lab-card,.impact-card').forEach(c=>c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');c.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%')}));
-const heroScene=document.querySelector('.hero-3d .scene');
-if(heroScene&&!reduce&&innerWidth>700){
- const move=e=>{const x=(e.clientX/innerWidth-.5)*2,y=(e.clientY/innerHeight-.5)*2;heroScene.style.setProperty('--tilt-x',(y*-2.5).toFixed(2)+'deg');heroScene.style.setProperty('--tilt-y',(x*3.5).toFixed(2)+'deg');document.body.style.setProperty('--hfl-x',(x*18).toFixed(1)+'px');document.body.style.setProperty('--hfl-y',(y*10).toFixed(1)+'px')};
- addEventListener('pointermove',move,{passive:true});
-}
-if(heroScene)heroScene.style.transform='perspective(1100px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg))';
-const bar=document.createElement('div');bar.className='hfl-scroll-progress';bar.setAttribute('aria-hidden','true');bar.style.cssText='position:fixed;left:0;top:0;width:100%;z-index:1000;pointer-events:none;transform-origin:left center;transform:scaleX(0);background:linear-gradient(90deg,#7f8da2,#eef3f8,#8b9bb1);opacity:.75';document.body.appendChild(bar);if(!reduce){const up=()=>{const m=document.documentElement.scrollHeight-innerHeight;bar.style.transform='scaleX('+(m>0?scrollY/m:0)+')'};addEventListener('scroll',up,{passive:true});up()}else bar.style.display='none';
-});})();
-/* Final interaction layer */
+/* HFL Tech — shared interactions. No libraries. */
 (function(){
-  if(document.documentElement.dataset.hflFinalMotion==='1') return;
-  document.documentElement.dataset.hflFinalMotion='1';
-  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const header=document.querySelector('.site-header');
-  let raf=0;
-  const scrollState=()=>{
-    raf=0;
-    const y=window.scrollY||0;
-    document.documentElement.style.setProperty('--hfl-scroll-y',y+'px');
-    if(header) header.classList.toggle('is-scrolled',y>18);
-  };
-  addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(scrollState)},{passive:true});
-  scrollState();
+  function ready(fn){ if(document.readyState!=="loading") fn(); else document.addEventListener("DOMContentLoaded",fn); }
+  ready(function(){
+    const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const header=document.querySelector(".site-header");
+    const nav=document.querySelector(".nav");
+    const menu=document.querySelector(".menu");
 
-  if(!reduce && innerWidth>900){
-    document.querySelectorAll('.card,.status-card,.lab-card,.trust-card,.investor-card').forEach(card=>{
-      card.addEventListener('pointermove',e=>{
-        const r=card.getBoundingClientRect();
-        const x=((e.clientX-r.left)/r.width-.5);
-        const y=((e.clientY-r.top)/r.height-.5);
-        card.style.setProperty('--tilt-x',(y*-2.2).toFixed(2)+'deg');
-        card.style.setProperty('--tilt-y',(x*2.2).toFixed(2)+'deg');
+    /* Accessible mobile navigation */
+    if(header&&nav&&menu&&!nav.querySelector(".mobile-menu-toggle")){
+      const t=document.createElement("button");
+      t.className="mobile-menu-toggle";
+      t.type="button";
+      t.setAttribute("aria-label","Open navigation");
+      t.setAttribute("aria-expanded","false");
+      t.setAttribute("aria-controls","hfl-mobile-menu");
+      menu.id="hfl-mobile-menu";
+      t.innerHTML="<span></span><span></span><span></span>";
+      nav.appendChild(t);
+      const close=()=>{
+        header.classList.remove("mobile-nav-open");
+        t.setAttribute("aria-expanded","false");
+        t.setAttribute("aria-label","Open navigation");
+      };
+      t.addEventListener("click",()=>{
+        const open=header.classList.toggle("mobile-nav-open");
+        t.setAttribute("aria-expanded",String(open));
+        t.setAttribute("aria-label",open?"Close navigation":"Open navigation");
       });
-      card.addEventListener('pointerleave',()=>{
-        card.style.setProperty('--tilt-x','0deg');
-        card.style.setProperty('--tilt-y','0deg');
-      });
+      menu.addEventListener("click",e=>{if(e.target.closest("a"))close();});
+      document.addEventListener("click",e=>{if(!header.contains(e.target))close();});
+      document.addEventListener("keydown",e=>{if(e.key==="Escape")close();});
+    }
+
+    /* Current-page state */
+    const current=(location.pathname.split("/").pop()||"index.html").toLowerCase();
+    document.querySelectorAll(".menu a").forEach(a=>{
+      const href=(a.getAttribute("href")||"").split("/").pop().split("#")[0].toLowerCase();
+      if(href===current||(current===""&&href==="index.html")) a.classList.add("is-current");
+      if(a.classList.contains("is-current")) a.setAttribute("aria-current","page");
     });
-  }
+
+    /* Scroll reveal */
+    const reveal=document.querySelectorAll(
+      ".card,.status-card,.trust-card,.feature-card,.project-row,.lab-card,.section-head,"+
+      ".system-node,.ecosystem-strip a,.tech-layer-list a,.timeline article,.comparison-row,"+
+      ".investor-card,.impact-card,.stat-card,.resource-card,.roadmap-card,.tech-card,.research-card"
+    );
+    if(!reduce&&"IntersectionObserver" in window){
+      const io=new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            entry.target.classList.add("is-visible");
+            io.unobserve(entry.target);
+          }
+        });
+      },{threshold:.08,rootMargin:"0px 0px -48px"});
+      reveal.forEach(el=>{el.classList.add("reveal-item");io.observe(el);});
+    }else{
+      reveal.forEach(el=>el.classList.add("is-visible"));
+    }
+
+    /* Scroll-driven cinematic background + progress */
+    let ticking=false;
+    const scrollUpdate=()=>{
+      ticking=false;
+      const y=Math.max(0,window.scrollY||0);
+      const max=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
+      const progress=Math.min(1,y/max);
+      document.documentElement.style.setProperty("--hfl-scroll-y",y+"px");
+      document.documentElement.style.setProperty("--hfl-progress",progress.toFixed(4));
+      if(header) header.classList.toggle("is-scrolled",y>18);
+    };
+    addEventListener("scroll",()=>{if(!ticking){requestAnimationFrame(scrollUpdate);ticking=true;}},{passive:true});
+    scrollUpdate();
+
+    /* Pointer lighting is subtle and disabled on touch-only layouts */
+    if(!reduce&&window.matchMedia("(pointer:fine)").matches){
+      addEventListener("pointermove",e=>{
+        const x=(e.clientX/window.innerWidth-.5)*18;
+        const y=(e.clientY/window.innerHeight-.5)*12;
+        document.documentElement.style.setProperty("--hfl-pointer-x",x.toFixed(1)+"px");
+        document.documentElement.style.setProperty("--hfl-pointer-y",y.toFixed(1)+"px");
+      },{passive:true});
+      document.querySelectorAll(".card,.status-card,.trust-card,.lab-card,.impact-card,.investor-card").forEach(card=>{
+        card.addEventListener("pointermove",e=>{
+          const r=card.getBoundingClientRect();
+          card.style.setProperty("--mx",((e.clientX-r.left)/r.width*100).toFixed(1)+"%");
+          card.style.setProperty("--my",((e.clientY-r.top)/r.height*100).toFixed(1)+"%");
+          if(window.innerWidth>900){
+            const x=(e.clientX-r.left)/r.width-.5;
+            const y=(e.clientY-r.top)/r.height-.5;
+            card.style.setProperty("--tilt-x",(y*-2.1).toFixed(2)+"deg");
+            card.style.setProperty("--tilt-y",(x*2.1).toFixed(2)+"deg");
+          }
+        });
+        card.addEventListener("pointerleave",()=>{
+          card.style.setProperty("--mx","50%");
+          card.style.setProperty("--my","0%");
+          card.style.setProperty("--tilt-x","0deg");
+          card.style.setProperty("--tilt-y","0deg");
+        });
+      });
+    }
+
+    /* Hero scene follows pointer + scroll slightly, preserving its CSS animation */
+    const scene=document.querySelector(".hero-3d .scene");
+    if(scene&&!reduce&&window.matchMedia("(pointer:fine)").matches){
+      addEventListener("pointermove",e=>{
+        const x=(e.clientX/window.innerWidth-.5)*2;
+        const y=(e.clientY/window.innerHeight-.5)*2;
+        scene.style.setProperty("--tilt-x",(y*-2.2).toFixed(2)+"deg");
+        scene.style.setProperty("--tilt-y",(x*3.0).toFixed(2)+"deg");
+      },{passive:true});
+    }
+
+    /* Top progress rail */
+    const bar=document.createElement("div");
+    bar.className="hfl-scroll-progress";
+    bar.setAttribute("aria-hidden","true");
+    bar.style.cssText="position:fixed;left:0;top:0;width:100%;z-index:1000;pointer-events:none;transform-origin:left center;transform:scaleX(0)";
+    document.body.appendChild(bar);
+    if(!reduce){
+      const progressUpdate=()=>{
+        const max=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
+        bar.style.transform="scaleX("+Math.min(1,window.scrollY/max)+")";
+      };
+      addEventListener("scroll",progressUpdate,{passive:true});
+      progressUpdate();
+    }else bar.hidden=true;
+  });
 })();
