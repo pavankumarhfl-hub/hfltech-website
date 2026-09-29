@@ -343,3 +343,121 @@ input,select,textarea{max-width:100%}
  .system-visual{overflow:visible}
  .system-line{min-width:0}
 }
+
+/* =========================================================
+   HFL TECH — PREMIUM ENGINEERING SYSTEM
+   Graphite / neutral / restrained blue visual layer
+   ========================================================= */
+:root{
+  --bg:#080B10;--bg2:#0D1118;--surface:#111722;--surface2:#151C28;
+  --text:#F4F7FB;--text2:#B8C1CF;--muted:#8994A5;--line:#242D3A;
+  --accent:#6F8FCF;--accent2:#9EB5E5;--white:#fff;
+}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--text);line-height:1.68}
+.site-header{background:rgba(8,11,16,.82);border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(18px)}
+.brand{color:var(--text)}
+.brand span,.footer-top strong span{color:var(--accent2)}
+.menu a{color:#B9C2D0}.menu a:hover,.text-link{color:#AFC3EA}
+.hero{background:radial-gradient(circle at 78% 20%,rgba(111,143,207,.11),transparent 30%),linear-gradient(180deg,#0B0F15 0%,#080B10 100%);border-bottom:1px solid var(--line)}
+.eyebrow{color:#91A9D8}
+.hero h1{color:var(--text)}
+.lead,.section-intro{color:var(--text2)}
+.section{background:var(--bg);border-bottom:1px solid var(--line)}
+.section:nth-of-type(even){background:#0B0F15}
+h2,h3,strong{color:var(--text)}
+.card,.status-card,.trust-card,.lab-card,.investor-card,.comparison-grid,.impact-panel,.volunteer-form-card{
+  background:linear-gradient(180deg,#121823,#0F151E);border-color:var(--line);color:var(--text);box-shadow:0 18px 55px rgba(0,0,0,.22)
+}
+.card p,.status-card p,.trust-card small,.lab-card p,.impact-card p{color:var(--text2)}
+.tag{border-color:#303A4A;color:#AFC3EA;background:#0E141D}
+.cta{background:#F4F7FB;color:#0A0D12;box-shadow:0 10px 28px rgba(0,0,0,.28)}
+.cta.secondary{background:transparent;color:#E7EDF7;border-color:#3A4556}
+.cta:hover{box-shadow:0 16px 34px rgba(0,0,0,.35)}
+.proof-strip{background:#0A0E14;border-color:var(--line)}
+.proof-grid>div{border-color:var(--line)}
+.proof-grid strong{color:var(--text)}
+.proof-grid small,.proof-kicker{color:var(--muted)}
+.system-visual{background:linear-gradient(180deg,#101620,#0C1118);border-color:var(--line);box-shadow:0 20px 60px rgba(0,0,0,.24)}
+.system-node{background:#141B26;border-color:#303A4A;box-shadow:none}
+.system-node span,.feature-index,.project-number{color:#91A9D8}
+.system-node small,.feature-card p,.project-row p,.ecosystem-strip small{color:var(--muted)}
+.system-line{background:#394556}.system-line:after{border-left-color:#8EA7D8}
+.system-control{border-color:#3D594B}
+.system-core{border-color:#5871A3;background:#172133}
+.product-section{background:#0B0F15}
+.project-stack{border-color:var(--line)}
+.project-row{border-color:var(--line)}
+.project-row:hover{background:#121923}
+.ecosystem-strip{background:#101620;border-color:var(--line)}
+.ecosystem-strip a{border-color:var(--line)}
+.ecosystem-strip span{color:var(--muted)}
+.founder-preview{background:#0A0E14}
+.contact-preview{background:#121A28;color:var(--text);border-bottom:0}
+.contact-preview .section-intro{color:var(--text2)}
+.contact-preview .cta{background:#F4F7FB;color:#0A0D12}
+.site-footer{background:#070A0F;border-top:1px solid var(--line);color:var(--muted)}
+.site-footer a{color:#B8C1CF}
+.hero-3d{filter:drop-shadow(0 30px 70px rgba(0,0,0,.35))}
+.plane{border-color:#344154;background:linear-gradient(135deg,rgba(23,31,43,.96),rgba(12,17,24,.86));box-shadow:0 35px 80px rgba(0,0,0,.45)}
+.plane:before,.plane:after{background:linear-gradient(90deg,transparent 49.5%,#283444 50%,transparent 50.5%),linear-gradient(transparent 49.5%,#283444 50%,transparent 50.5%);opacity:.7}
+.node3d{border-color:#394658;background:rgba(17,24,34,.94);color:#D8E0EC;box-shadow:0 16px 30px rgba(0,0,0,.3)}
+.orb{background:radial-gradient(circle at 30% 25%,#fff 0 8%,#9EB5E5 18%,#506EA8 55%,#17253E 100%);box-shadow:0 18px 45px rgba(48,73,122,.45),inset -12px -16px 30px rgba(0,0,0,.4)}
+.orb:after{border-color:#718BBE}
+.feature-card{border-top-color:#708CC5}
+.feature-card:hover h3,.project-row:hover strong,.ecosystem-strip a:hover strong{color:#AFC3EA}
+.arrow{color:#AFC3EA}
+.lab-select,.lab-button,.runtime-option,.runtime-run{background:#121A25;color:#E7EDF7;border-color:#344154}
+.lab-output,.runtime-log,.runtime-demo{background:#0D131C;border-color:#2A3442;color:#C6D0DE}
+.lab-note,.runtime-foot{background:#0D131C;border-color:#2A3442;color:#929EAE}
+.status-label{border-color:#394658}
+.status-live{color:#8CC7A4}.status-dev{color:#AFC3EA}.status-research{color:#C3A9E6}
+.code-panel{background:#0B1119!important;border-color:#2A3442!important;color:#C9D3E0!important}
+.impact-showcase{background:#0A0E14;border-color:var(--line)}
+.impact-showcase:before{background:linear-gradient(90deg,rgba(111,143,207,.06),transparent 32%,transparent 68%,rgba(111,143,207,.06))}
+.impact-card{background:linear-gradient(180deg,#141B26,#0F151E);border-color:#2B3544;box-shadow:0 18px 48px rgba(0,0,0,.28)}
+.impact-card:hover{border-color:#536B99;box-shadow:0 24px 58px rgba(0,0,0,.38)}
+.impact-top{color:#8D98A9}.impact-number{color:#F4F7FB}.impact-card h3{color:#F4F7FB}
+.impact-line b{background:linear-gradient(90deg,#607EB9,#9AB2E1)}
+.impact-bottom{color:#7F8B9C}
+.notice{background:#101720;border-color:#5D78B0;color:#C7D1DF}
+.form input,.form select,.form textarea,.volunteer-form-card input,.volunteer-form-card select,.volunteer-form-card textarea{
+  background:#0C121A;color:#F4F7FB;border-color:#344154
+}
+.form label,.volunteer-form-card label{color:#D7DEE9}
+.form-note{color:#8994A5}
+.application-success{background:linear-gradient(135deg,#0D1B14,#0F151E);border-color:#275D40}
+.application-success h3{color:#B7E5C7}.application-success p{color:#AAB7C5}
+.success-icon{background:#247447;box-shadow:0 0 0 7px #153B29}
+@media(max-width:900px){
+  .home-hero-grid,.product-layout{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  body{font-size:15px}
+  .wrap{width:min(92%,1160px)}
+  .site-header{background:rgba(8,11,16,.94)}
+  .nav{min-height:66px}
+  .menu{max-width:calc(100vw - 120px);gap:14px}
+  .menu a{font-size:12px}
+  .hero{padding:64px 0 48px}
+  .hero h1{font-size:clamp(36px,11vw,58px);letter-spacing:-.045em}
+  .lead{font-size:17px;line-height:1.55}
+  .hero-actions{width:100%}
+  .hero-actions .cta{flex:1 1 100%;margin-left:0}
+  .hero-visual .hero-3d{height:235px}
+  .scene{transform:scale(.55) rotateX(58deg) rotateZ(-24deg)}
+  .section{padding:58px 0}
+  .section h2{font-size:clamp(29px,8.8vw,42px)}
+  .system-node{min-height:96px}
+  .grid,.capability-grid{grid-template-columns:1fr}
+  .ecosystem-strip{grid-template-columns:1fr}
+  .ecosystem-strip a{border-right:0!important}
+  .proof-grid{grid-template-columns:1fr}
+  .proof-grid>div{border-right:0;border-bottom:1px solid var(--line)}
+  .proof-grid>div:last-child{border-bottom:0}
+  .impact-card{flex-basis:min(292px,84vw)}
+  .form input,.form select,.form textarea,.volunteer-form-card input,.volunteer-form-card select,.volunteer-form-card textarea{font-size:16px}
+}
+@media(prefers-reduced-motion:reduce){
+  .scene,.orb,.impact-card:before,.impact-card .impact-number,.impact-panel:after,.impact-stat>b,.impact-stat>b:after{animation:none!important}
+}
