@@ -464,3 +464,39 @@ small{color:#9ba6b4}
   .reveal-item{opacity:1!important;transform:none!important;transition:none!important}
   [data-hfl-depth]{transform:none!important}
 }
+
+/* Secondary components that previously carried the light theme */
+.comparison-grid,.proof-grid{
+  background:#080d13!important;border-color:var(--hfl-line)!important;color:var(--hfl-copy)!important;
+}
+.comparison-head{
+  background:#111922!important;color:#eef3f7!important;border-bottom:1px solid var(--hfl-line)!important;
+}
+.comparison-row{
+  background:#0b1118!important;color:#c7d0da!important;border-color:var(--hfl-line)!important;
+}
+.comparison-row strong{color:#eef3f7!important}
+.resource-links a,.tech-layer-list a,.ecosystem-architecture a{
+  background:linear-gradient(145deg,#101720,#090e14)!important;
+  border-color:var(--hfl-line)!important;color:#e6ecf1!important;
+}
+.resource-links a:hover,.tech-layer-list a:hover,.ecosystem-architecture a:hover{
+  background:#121a23!important;border-color:var(--hfl-line-strong)!important;
+}
+.hero-evidence-link{
+  background:transparent!important;color:#d8e1e9!important;
+  border-color:var(--hfl-line-strong)!important;
+}
+.hero-evidence-link:hover{background:rgba(255,255,255,.04)!important}
+.agent-flow-human,.ecosystem-clarity,.volunteer-impact,.impact-showcase{
+  background:linear-gradient(180deg,#0b1118,#070b10)!important;
+  border-color:var(--hfl-line)!important;color:var(--hfl-copy)!important;
+}
+.impact-flow span{
+  background:#0b1118!important;color:#cbd5df!important;border-color:var(--hfl-line)!important;
+}
+.project-status-note{color:#8f9bab!important}
+.status-live,.status-dev,.status-research,.status-vision{
+  color:#ced8e2!important;background:rgba(215,228,239,.045)!important;border-color:var(--hfl-line)!important;
+}
+.success-icon{box-shadow:0 0 0 7px rgba(168,191,174,.10)!important}
