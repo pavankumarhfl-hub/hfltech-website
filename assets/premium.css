@@ -96,3 +96,22 @@ input:focus,textarea:focus,select:focus,button:focus-visible,a:focus-visible{out
  .site-header .menu a:last-child{border-bottom:0}
 }
 @media(prefers-reduced-motion:reduce){.reveal-item{opacity:1;transform:none;transition:none}.hero-3d{transform:none}}
+
+/* Final contrast guardrails + ambient motion */
+body:after{animation:hflGridDrift 26s linear infinite}
+@keyframes hflGridDrift{from{background-position:0 0,0 0}to{background-position:72px 72px,-72px 36px}}
+.contact-preview{background:linear-gradient(135deg,#071b3a,#122f61)!important;color:#fff!important}
+.contact-preview h2,.contact-preview p,.contact-preview .section-intro{color:#fff!important}
+.contact-preview .eyebrow{color:#bcd0ff!important}
+.contact-preview .cta{background:#fff!important;color:#071b3a!important}
+.runtime-log,.code-panel{color:#dce7f7}
+.runtime-log strong,.code-panel strong{color:#f7fbff}
+.runtime-log small,.code-panel small{color:#9fb0c7}
+@media(min-width:701px) and (max-width:1120px){
+ .nav{gap:14px}.menu{gap:11px;font-size:13px}.brand{font-size:19px}.wrap{width:min(1160px,94%)}
+}
+@media(max-width:700px){
+ .nav{min-height:68px}.mobile-menu-toggle{margin-left:auto}
+ .hero h1,.hero-copy h1{max-width:100%}
+ .cta,.cta.secondary{max-width:100%}
+}
