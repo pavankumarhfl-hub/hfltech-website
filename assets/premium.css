@@ -585,3 +585,40 @@ body:after{
 .lab-button,.runtime-run{background:#efefea!important;color:#050505!important;border-color:#efefea!important}
 .notice{border-left-color:#d1d1cb!important}
 .site-footer{background:#010202!important}
+
+
+/* FINAL POLISH — high-contrast cinematic depth + scroll storytelling */
+:root{--hfl-accent:#f2f2ed;--hfl-accent-dim:rgba(242,242,237,.12)}
+html,body{min-height:100%;background:#030405!important}
+body{font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+.hero-copy h1{max-width:900px}
+.hero-copy .lead{max-width:720px;color:#e0e0db!important}
+.section-head h2{max-width:920px}
+.section-head .section-intro{max-width:760px;color:#c9cac5!important}
+.card p,.status-card p,.trust-card small,.lab-card p,.project-row p,.feature-card p,.ecosystem-strip small,.proof-grid small,.form-note,.timeline article p,.resource-card p,.roadmap-card p,.tech-card p,.research-card p{color:#aeb0aa!important}
+.eyebrow,.proof-kicker,.feature-index,.project-number{color:#c9c9c3!important}
+.tag,.status-label,.lab-badge,.india-badge{color:#deded8!important;background:rgba(255,255,255,.055)!important;border-color:rgba(255,255,255,.17)!important}
+.hero-meta span{color:#deded8!important;background:rgba(5,6,7,.76)!important;border-color:rgba(255,255,255,.15)!important}
+.feature-card,.project-row,.resource-links a,.tech-layer-list a{transition:transform .35s cubic-bezier(.2,.7,.2,1),background .35s ease,border-color .35s ease,box-shadow .35s ease!important}
+.feature-card:hover{transform:translateY(-5px)!important;box-shadow:0 24px 70px rgba(0,0,0,.30)!important}
+.project-row:hover,.resource-links a:hover,.tech-layer-list a:hover{transform:translateX(6px)!important}
+.hero-visual{will-change:transform;transform:translate3d(0,calc(var(--hfl-scroll-y,0px)*-.018),0);transition:transform .12s linear}
+.system-visual{will-change:transform;transform:translate3d(0,calc(var(--hfl-scroll-y,0px)*-.008),0)}
+.system-node{transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .3s ease,box-shadow .3s ease!important}
+.system-node:hover{transform:translateY(-5px) scale(1.015)!important;border-color:rgba(255,255,255,.32)!important}
+.section-head:after{content:"";position:absolute;right:0;bottom:-12px;width:80px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.26));opacity:.8}
+.runtime-status,.runtime-status i{color:#e7e7e1!important}
+.runtime-status i{background:#d6d6cf!important;box-shadow:0 0 16px rgba(255,255,255,.28)!important}
+.runtime-step.on .runtime-step-dot{background:#eee!important;box-shadow:0 0 18px rgba(255,255,255,.22)!important}
+/* Avoid pale text disappearing on any legacy light component. */
+[class*="impact"] h1,[class*="impact"] h2,[class*="impact"] h3,[class*="impact"] strong,[class*="impact"] b,[class*="impact"] .impact-number{color:#f5f5f0!important}
+[class*="impact"] p,[class*="impact"] small,[class*="impact"] span{color:#aeb0aa!important}
+@media(max-width:700px){
+  .hero-visual{transform:none}
+  .system-visual{transform:none}
+  .section-head:after{display:none}
+  .hero-copy .lead{font-size:16px!important;color:#d5d6d1!important}
+  .section-head .section-intro{color:#c4c6c1!important}
+  .card p,.status-card p,.trust-card small,.lab-card p,.project-row p,.feature-card p{color:#a9aba6!important}
+}
+@media(prefers-reduced-motion:reduce){.hero-visual,.system-visual{transform:none!important}.feature-card,.project-row,.resource-links a,.tech-layer-list a{transition:none!important}}
