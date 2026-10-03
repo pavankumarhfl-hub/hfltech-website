@@ -1,4 +1,4 @@
-/* HFL Tech lightweight WebGL cinematic scene. No external library. */
+/* HFL Global Tech lightweight WebGL cinematic scene. No external library. */
 (function(){
   const canvas=document.querySelector('.cx-canvas');
   if(!canvas) return;
