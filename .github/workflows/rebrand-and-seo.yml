@@ -1,4 +1,4 @@
-name: Rebrand and SEO
+name: Restore HFL Tech Branding
 
 on:
   push:
@@ -8,67 +8,47 @@ permissions:
   contents: write
 
 jobs:
-  rebrand:
+  restore:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Apply global brand identity and SEO metadata
+      - name: Restore HFL Tech identity
         shell: bash
         run: |
           python3 <<'PY'
           from pathlib import Path
           import re
-          from datetime import date
-
-          root = Path('.')
-          skip = {'.git', '.github'}
-          exts = {'.html','.htm','.css','.js','.json','.xml','.txt','.md','.svg','.webmanifest'}
-
+          root=Path('.')
+          exts={'.html','.htm','.css','.js','.json','.xml','.txt','.md','.svg','.webmanifest'}
           for p in root.rglob('*'):
-              if not p.is_file() or any(part in skip for part in p.parts) or p.suffix.lower() not in exts:
-                  continue
-              try:
-                  s = p.read_text(encoding='utf-8')
-              except Exception:
-                  continue
-              old = s
-              s = s.replace('HFL<span>TECH</span>', 'HFL<span>GLOBAL TECH</span>')
-              s = s.replace('HFL TECH', 'HFL GLOBAL TECH')
-              s = s.replace('HFL Tech', 'HFL Global Tech')
-              s = s.replace('HFL Global Tech Private Limited', 'HFL Global Technologies Private Limited')
-              s = s.replace('HFLTECH', 'HFLGLOBALTECH')
-              if p.name == 'index.html':
-                  s = s.replace('HFL Global Tech — AI Systems, Agent Infrastructure & Software Engineering', 'HFL Global Tech — Super Intelligence, Software Engineering & Cybersecurity')
-                  s = s.replace('HFL Global Tech — AI, Software & Cybersecurity', 'HFL Global Tech — Super Intelligence, Software & Cybersecurity')
-                  s = s.replace('HFL Global Tech builds AI systems, software, cybersecurity and digital technology within the wider HFL ecosystem.', 'HFL Global Tech, legally HFL Global Technologies Private Limited, develops super-intelligence systems, software engineering, automation and cybersecurity technology within the HFL ecosystem.')
-                  s = re.sub(r'(<meta name="description" content=")[^"]*(")', r'\1HFL Global Tech (HFL Global Technologies Private Limited) develops super-intelligence systems, AgentMesh, software engineering, automation and cybersecurity technology.\2', s, count=1)
-                  s = s.replace('"name":"HFL Global Tech","url":"https://hfltech.in/","founder"', '"name":"HFL Global Tech","legalName":"HFL Global Technologies Private Limited","alternateName":["HFL Global Tech","HFL Tech"],"url":"https://hfltech.in/","founder"')
-                  s = s.replace('"publisher":{"@type":"Organization","name":"HFL Global Tech"}', '"publisher":{"@type":"Organization","name":"HFL Global Tech","legalName":"HFL Global Technologies Private Limited","alternateName":["HFL Global Tech","HFL Tech"]}')
-                  if 'name="author"' not in s:
-                      s = s.replace('<meta name="robots"', '<meta name="author" content="HFL Global Technologies Private Limited"><meta name="robots"', 1)
-                  s = s.replace('HFL Global Tech website repository on GitHub.', 'Official HFL Global Tech website repository on GitHub.')
-              if p.name == 'site.webmanifest':
-                  s = s.replace('"name":"HFL Global Tech"', '"name":"HFL Global Tech — HFL Global Technologies Private Limited"')
-                  s = s.replace('"short_name":"HFL Global Tech"', '"short_name":"HFL Global Tech"')
-              if p.name == 'sitemap.xml':
-                  s = re.sub(r'<lastmod>[^<]+</lastmod>', f'<lastmod>{date.today().isoformat()}</lastmod>', s)
-              if s != old:
-                  p.write_text(s, encoding='utf-8')
+              if not p.is_file() or '.git' in p.parts or '.github' in p.parts or p.suffix.lower() not in exts: continue
+              try: s=p.read_text(encoding='utf-8')
+              except: continue
+              old=s
+              s=s.replace('HFL<span>GLOBAL TECH</span>','HFL<span>TECH</span>')
+              s=s.replace('HFL GLOBAL TECH','HFL TECH')
+              s=s.replace('HFL Global Technologies Private Limited','HFL Tech')
+              s=s.replace('HFL Global Tech','HFL Tech')
+              s=s.replace('HFLGLOBALTECH','HFLTECH')
+              if p.name=='index.html':
+                  s=s.replace('HFL Tech — Super Intelligence, Software Engineering & Cybersecurity','HFL Tech — AI Systems, Agent Infrastructure & Software Engineering')
+                  s=s.replace('HFL Tech — AI, Software & Cybersecurity','HFL Tech — AI, Software & Cybersecurity')
+                  s=s.replace('HFL Tech, legally HFL Tech, develops super-intelligence systems, software engineering, automation and cybersecurity technology within the HFL ecosystem.','HFL Tech builds AI systems, software, cybersecurity and digital technology within the wider HFL ecosystem.')
+                  s=s.replace('HFL Tech (HFL Tech) develops super-intelligence systems, AgentMesh, software engineering, automation and cybersecurity technology.','HFL Tech is a technology organisation within the HFL ecosystem, working across AI systems, agent infrastructure, software engineering, automation and cybersecurity.')
+                  s=re.sub(r'"legalName":"HFL Tech",','',s)
+                  s=re.sub(r'"alternateName":\["HFL Tech","HFL Tech"\],','',s)
+                  s=s.replace('<meta name="author" content="HFL Tech">','')
+              if p.name=='site.webmanifest': s=s.replace('HFL Tech — HFL Tech','HFL Tech')
+              if s!=old: p.write_text(s,encoding='utf-8')
           PY
-
-      - name: Commit changes
-        shell: bash
+      - name: Commit restoration
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
-          if git diff --cached --quiet; then
-            echo 'No branding changes required.'
-            exit 0
-          fi
-          git commit -m 'Normalize full HFL Global Tech legal branding'
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Restore HFL Tech branding'
           git push
