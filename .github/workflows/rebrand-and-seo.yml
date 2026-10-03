@@ -36,8 +36,10 @@ jobs:
               except Exception:
                   continue
               old = s
+              s = s.replace('HFL<span>TECH</span>', 'HFL<span>GLOBAL TECH</span>')
               s = s.replace('HFL TECH', 'HFL GLOBAL TECH')
               s = s.replace('HFL Tech', 'HFL Global Tech')
+              s = s.replace('HFL Global Tech Private Limited', 'HFL Global Technologies Private Limited')
               s = s.replace('HFLTECH', 'HFLGLOBALTECH')
               if p.name == 'index.html':
                   s = s.replace('HFL Global Tech — AI Systems, Agent Infrastructure & Software Engineering', 'HFL Global Tech — Super Intelligence, Software Engineering & Cybersecurity')
@@ -68,5 +70,5 @@ jobs:
             echo 'No branding changes required.'
             exit 0
           fi
-          git commit -m 'Rebrand HFL Tech as HFL Global Tech and optimize SEO'
+          git commit -m 'Normalize full HFL Global Tech legal branding'
           git push
