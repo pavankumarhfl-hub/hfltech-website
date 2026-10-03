@@ -1,4 +1,4 @@
-/* HFL Global Tech — AgentMesh reference runtime
+/* HFL Tech — AgentMesh reference runtime
  * Deterministic browser-side reference implementation.
  * No network calls. No hidden services. Designed to make the architecture executable and inspectable.
  */
