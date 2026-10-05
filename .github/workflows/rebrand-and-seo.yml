@@ -1,54 +1,24 @@
-name: Restore HFL Tech Branding
+name: HFL Tech Site QA
 
 on:
   push:
     branches: [main]
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  restore:
-    if: github.actor != 'github-actions[bot]'
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Restore HFL Tech identity
+      - name: Validate required site files
         shell: bash
         run: |
-          python3 <<'PY'
-          from pathlib import Path
-          import re
-          root=Path('.')
-          exts={'.html','.htm','.css','.js','.json','.xml','.txt','.md','.svg','.webmanifest'}
-          for p in root.rglob('*'):
-              if not p.is_file() or '.git' in p.parts or '.github' in p.parts or p.suffix.lower() not in exts: continue
-              try: s=p.read_text(encoding='utf-8')
-              except: continue
-              old=s
-              s=s.replace('HFL<span>GLOBAL TECH</span>','HFL<span>TECH</span>')
-              s=s.replace('HFL GLOBAL TECH','HFL TECH')
-              s=s.replace('HFL Global Technologies Private Limited','HFL Tech')
-              s=s.replace('HFL Global Tech','HFL Tech')
-              s=s.replace('HFLGLOBALTECH','HFLTECH')
-              if p.name=='index.html':
-                  s=s.replace('HFL Tech — Super Intelligence, Software Engineering & Cybersecurity','HFL Tech — AI Systems, Agent Infrastructure & Software Engineering')
-                  s=s.replace('HFL Tech — AI, Software & Cybersecurity','HFL Tech — AI, Software & Cybersecurity')
-                  s=s.replace('HFL Tech, legally HFL Tech, develops super-intelligence systems, software engineering, automation and cybersecurity technology within the HFL ecosystem.','HFL Tech builds AI systems, software, cybersecurity and digital technology within the wider HFL ecosystem.')
-                  s=s.replace('HFL Tech (HFL Tech) develops super-intelligence systems, AgentMesh, software engineering, automation and cybersecurity technology.','HFL Tech is a technology organisation within the HFL ecosystem, working across AI systems, agent infrastructure, software engineering, automation and cybersecurity.')
-                  s=re.sub(r'"legalName":"HFL Tech",','',s)
-                  s=re.sub(r'"alternateName":\["HFL Tech","HFL Tech"\],','',s)
-                  s=s.replace('<meta name="author" content="HFL Tech">','')
-              if p.name=='site.webmanifest': s=s.replace('HFL Tech — HFL Tech','HFL Tech')
-              if s!=old: p.write_text(s,encoding='utf-8')
-          PY
-      - name: Commit restoration
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'Restore HFL Tech branding'
-          git push
+          set -e
+          test -f index.html
+          test -f assets/style.css
+          test -f assets/premium.css
+          test -f data/claims.json
+          test -f content/site-copy.json
+          echo "HFL Tech site structure validated."
