@@ -7,6 +7,8 @@
   const num=id=>Math.max(0,Number(get(id).value)||0);
   const pct=id=>Math.min(100,Math.max(0,num(id)))/100;
   const out={base:root.querySelector('[data-out="base"]'),agent:root.querySelector('[data-out="agent"]'),infra:root.querySelector('[data-out="infra"]'),hours:root.querySelector('[data-out="hours"]'),labor:root.querySelector('[data-out="labor"]'),total:root.querySelector('[data-out="total"]'),rate:root.querySelector('[data-out="rate"]')};
+  const rateLabel=root.querySelector('.cost-highlight span');
+  if(rateLabel) rateLabel.textContent='INFRASTRUCTURE COST REDUCTION';
   const update=()=>{
     const tasks=num('calc-tasks'), basePerK=num('calc-base'), agentPerK=num('calc-agent');
     const coverage=pct('calc-coverage'), minutes=num('calc-minutes'), hourly=num('calc-hourly');
