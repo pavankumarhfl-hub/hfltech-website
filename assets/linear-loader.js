@@ -1,0 +1,1 @@
+(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='/assets/linear-inspired.css';document.head.appendChild(l);var s=document.createElement('script');s.src='/assets/linear-inspired.js';s.defer=true;document.body.appendChild(s);})();
