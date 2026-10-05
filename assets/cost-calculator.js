@@ -12,7 +12,7 @@
     const coverage=pct('calc-coverage'), minutes=num('calc-minutes'), hourly=num('calc-hourly');
     const base=tasks/1000*basePerK, agent=tasks/1000*agentPerK;
     const infra=Math.max(0,base-agent), hours=tasks*coverage*minutes/60, labor=hours*hourly, total=infra+labor;
-    const rate=base>0?Math.max(0,Math.min(100,(total/base)*100)):0;
+    const rate=base>0?Math.max(0,Math.min(100,((base-agent)/base)*100)):0;
     out.base.textContent=fmt.format(base); out.agent.textContent=fmt.format(agent); out.infra.textContent=fmt.format(infra);
     out.hours.textContent=hours.toFixed(1)+' h'; out.labor.textContent=fmt.format(labor); out.total.textContent=fmt.format(total); out.rate.textContent=rate.toFixed(0)+'%';
   };
