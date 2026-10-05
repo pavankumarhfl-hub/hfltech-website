@@ -1,0 +1,40 @@
+{
+  "brand": {
+    "name": "HFL Global Tech",
+    "legalName": "HFL Global Technologies Private Limited",
+    "tagline": "Technology built for real-world use.",
+    "stage": "Building in public."
+  },
+  "home": {
+    "announcement": "AgentMesh reference runtime is live. Inspect the evidence.",
+    "hero": {
+      "headline": "Super Intelligence. Built for the real world.",
+      "subline": "Agent systems, software engineering and automation designed around evidence, control and practical execution.",
+      "primaryCta": "Explore AgentMesh",
+      "secondaryCta": "Technical Evidence"
+    },
+    "why": [
+      {"title": "Cost", "body": "Build toward measurable efficiency. Comparative pricing stays visible only when verified."},
+      {"title": "Performance", "body": "Measure the system against defined tasks instead of relying on broad marketing claims."},
+      {"title": "Control", "body": "Keep evaluation, authorisation and human control inside the execution model."}
+    ],
+    "status": [
+      {"label": "DEMONSTRATED", "title": "AgentMesh reference runtime"},
+      {"label": "IN DEVELOPMENT", "title": "AgentMesh system direction"},
+      {"label": "LONG-TERM RESEARCH", "title": "Flux AI"}
+    ],
+    "finalCta": "See what is real. Then build with us."
+  },
+  "faq": [
+    "How is AgentMesh different from a conventional AI application?",
+    "Where can I inspect the evidence?",
+    "Is AgentMesh production-ready?",
+    "How is data handled?",
+    "What does HFL Global Tech charge?",
+    "What integrations are planned?",
+    "Is AgentMesh open source?",
+    "What support is available?",
+    "What is on the roadmap?",
+    "How is security handled?"
+  ]
+}
