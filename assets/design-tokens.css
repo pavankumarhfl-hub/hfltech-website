@@ -1,0 +1,9 @@
+:root{
+  --bg:#05070a;--surface:#0b0f17;--glass:rgba(255,255,255,.04);--text:#f5f7fa;--muted:#9aa4b2;
+  --cyan:#22d3ee;--blue:#3b82f6;--violet:#8b5cf6;--magenta:#ec4899;--orange:#fb923c;--success:#34d399;
+  --gradient-signature:linear-gradient(110deg,#8b5cf6 0%,#ec4899 52%,#fb923c 100%);
+  --gradient-tech:linear-gradient(110deg,#22d3ee 0%,#3b82f6 100%);
+  --font-display:"Space Grotesk",Inter,system-ui,sans-serif;--font-body:Inter,system-ui,sans-serif;--font-mono:"JetBrains Mono",ui-monospace,monospace;
+  --radius-sm:12px;--radius-md:20px;--radius-lg:28px;--max-width:1280px;--grid:8px;
+  --shadow-glow:0 0 60px rgba(139,92,246,.16);--shadow-card:0 24px 80px rgba(0,0,0,.28);
+}
