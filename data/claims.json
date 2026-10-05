@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "policy": "Only claims with status=verified may be presented as measured claims.",
+  "claims": [
+    {
+      "id": "agentmesh-runtime-checks",
+      "headline": "6/6 deterministic reference-runtime checks passing",
+      "scope": "AgentMesh browser reference runtime",
+      "evidence": "https://hfltech.in/evidence.html",
+      "measured_on": "2026-10-06",
+      "status": "verified"
+    },
+    {
+      "id": "cost-comparison",
+      "headline": "Benchmark in progress",
+      "scope": "Comparative cost against external frontier and open models",
+      "evidence": "",
+      "measured_on": "",
+      "status": "pending"
+    },
+    {
+      "id": "performance-comparison",
+      "headline": "Benchmark in progress",
+      "scope": "Reasoning, coding, math, agentic tasks and latency",
+      "evidence": "",
+      "measured_on": "",
+      "status": "pending"
+    },
+    {
+      "id": "customer-proof",
+      "headline": "Design-partner evidence in progress",
+      "scope": "Verified customers and testimonials",
+      "evidence": "",
+      "measured_on": "",
+      "status": "pending"
+    }
+  ]
+}
