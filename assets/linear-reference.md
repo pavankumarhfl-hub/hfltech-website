@@ -1,0 +1,1 @@
+HFL Tech homepage direction: take reference from Linear's clarity, product-led storytelling, restrained dark palette, precise typography, progressive product demonstrations, strong information hierarchy, and workflow-first narrative. Do not copy Linear's visual assets or wording. The HFL identity remains independent and centered on AgentMesh and super-intelligence.
