@@ -1,14 +1,24 @@
 {
-  "version": 1,
+  "version": 2,
   "policy": "Only claims with status=verified may be presented as measured claims.",
   "claims": [
     {
       "id": "agentmesh-runtime-checks",
-      "headline": "6/6 deterministic reference-runtime checks passing",
+      "headline": "100% reference-runtime pass rate",
       "scope": "AgentMesh browser reference runtime",
+      "detail": "6 of 6 defined deterministic checks passing",
       "evidence": "https://hfltech.in/evidence.html",
       "measured_on": "2026-10-06",
       "status": "verified"
+    },
+    {
+      "id": "india-no1-positioning",
+      "headline": "India's No.1 Super Intelligence",
+      "scope": "HFL Tech brand positioning",
+      "detail": "Aspirational positioning; not an independently verified market-ranking claim.",
+      "evidence": "",
+      "measured_on": "",
+      "status": "positioning"
     },
     {
       "id": "cost-comparison",
