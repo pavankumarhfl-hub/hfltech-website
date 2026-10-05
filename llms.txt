@@ -1,0 +1,24 @@
+# HFL Global Tech
+
+HFL Global Tech is the technology organisation within the HFL ecosystem. Legal name: HFL Global Technologies Private Limited.
+
+Tagline: Technology built for real-world use.
+
+Focus: Super Intelligence, AI agents, software engineering, automation, cybersecurity and digital innovation.
+
+Flagship: AgentMesh — an agent orchestration system organised around Context, Tools, Evaluation and Human Control. The public browser reference runtime currently reports 6/6 deterministic self-tests passing.
+
+Status: Building in public.
+
+Status labels: DEMONSTRATED, IN DEVELOPMENT, LONG-TERM RESEARCH.
+
+Long-term direction: Flux AI, focused on coding, reasoning and automation research.
+
+Evidence policy: HFL Global Tech separates demonstrated implementations from development and research. Comparative performance, cost, customer and market-leadership claims are shown only when supported by verified evidence.
+
+Primary website: https://hfltech.in/
+Evidence: https://hfltech.in/evidence.html
+Benchmarks: https://hfltech.in/benchmarks.html
+AgentMesh: https://hfltech.in/agentmesh.html
+Technology: https://hfltech.in/technology.html
+Contact: https://hfltech.in/contact.html
