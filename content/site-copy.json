@@ -1,40 +1,34 @@
 {
   "brand": {
-    "name": "HFL Global Tech",
-    "legalName": "HFL Global Technologies Private Limited",
+    "name": "HFL Tech",
     "tagline": "Technology built for real-world use.",
     "stage": "Building in public."
   },
   "home": {
-    "announcement": "AgentMesh reference runtime is live. Inspect the evidence.",
+    "announcement": "AgentMesh reference runtime is live. Inspect the implementation.",
     "hero": {
-      "headline": "Super Intelligence. Built for the real world.",
-      "subline": "Agent systems, software engineering and automation designed around evidence, control and practical execution.",
+      "headline": "Agent systems built for real-world work.",
+      "subline": "HFL Tech builds agent infrastructure, software systems and automation around execution, evaluation and human control.",
       "primaryCta": "Explore AgentMesh",
-      "secondaryCta": "Technical Evidence"
+      "secondaryCta": "Inspect Technical Evidence"
     },
     "why": [
-      {"title": "Cost", "body": "Build toward measurable efficiency. Comparative pricing stays visible only when verified."},
-      {"title": "Performance", "body": "Measure the system against defined tasks instead of relying on broad marketing claims."},
-      {"title": "Control", "body": "Keep evaluation, authorisation and human control inside the execution model."}
+      {"title": "Execution", "body": "Turn a defined objective into context, planning, authorised tool use and evaluated output."},
+      {"title": "Engineering", "body": "Build software around explicit system boundaries, observable workflows and testable behaviour."},
+      {"title": "Control", "body": "Keep validation, authorisation and human oversight in the execution path."}
     ],
     "status": [
-      {"label": "DEMONSTRATED", "title": "AgentMesh reference runtime"},
-      {"label": "IN DEVELOPMENT", "title": "AgentMesh system direction"},
-      {"label": "LONG-TERM RESEARCH", "title": "Flux AI"}
+      {"label": "DEMONSTRATED", "title": "AgentMesh browser reference runtime"}
     ],
-    "finalCta": "See what is real. Then build with us."
+    "finalCta": "Inspect the work. Then build with us."
   },
   "faq": [
-    "How is AgentMesh different from a conventional AI application?",
-    "Where can I inspect the evidence?",
-    "Is AgentMesh production-ready?",
-    "How is data handled?",
-    "What does HFL Global Tech charge?",
-    "What integrations are planned?",
-    "Is AgentMesh open source?",
-    "What support is available?",
-    "What is on the roadmap?",
-    "How is security handled?"
+    "What is AgentMesh?",
+    "What can I inspect today?",
+    "Is AgentMesh a production system?",
+    "How does the reference runtime work?",
+    "How are agent actions controlled?",
+    "How is security handled?",
+    "What is HFL Tech building next?"
   ]
 }
