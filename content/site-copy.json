@@ -2,33 +2,28 @@
   "brand": {
     "name": "HFL Tech",
     "tagline": "Technology built for real-world use.",
-    "stage": "Building in public."
+    "stage": "Building AgentMesh."
   },
   "home": {
-    "announcement": "AgentMesh reference runtime is live. Inspect the implementation.",
+    "announcement": "AgentMesh — India's first super intelligent system.",
     "hero": {
-      "headline": "Agent systems built for real-world work.",
-      "subline": "HFL Tech builds agent infrastructure, software systems and automation around execution, evaluation and human control.",
+      "headline": "India's first super intelligent system.",
+      "subline": "AgentMesh by HFL Tech brings context, reasoning, tools and execution together in one focused system.",
       "primaryCta": "Explore AgentMesh",
-      "secondaryCta": "Inspect Technical Evidence"
+      "secondaryCta": "Learn more"
     },
     "why": [
-      {"title": "Execution", "body": "Turn a defined objective into context, planning, authorised tool use and evaluated output."},
-      {"title": "Engineering", "body": "Build software around explicit system boundaries, observable workflows and testable behaviour."},
-      {"title": "Control", "body": "Keep validation, authorisation and human oversight in the execution path."}
+      {"title": "Context", "body": "Bring the objective, information and constraints into one system."},
+      {"title": "Execution", "body": "Move from reasoning into authorised tools and useful action."},
+      {"title": "Control", "body": "Keep important actions observable, reviewable and bounded."}
     ],
-    "status": [
-      {"label": "DEMONSTRATED", "title": "AgentMesh browser reference runtime"}
-    ],
-    "finalCta": "Inspect the work. Then build with us."
-  },
-  "faq": [
-    "What is AgentMesh?",
-    "What can I inspect today?",
-    "Is AgentMesh a production system?",
-    "How does the reference runtime work?",
-    "How are agent actions controlled?",
-    "How is security handled?",
-    "What is HFL Tech building next?"
-  ]
+    "positioning": {
+      "category": "Super Intelligence",
+      "claim": "India's first super intelligent system",
+      "product": "AgentMesh",
+      "company": "HFL Tech"
+    },
+    "costPositioning": "98% cheaper",
+    "finalCta": "Explore AgentMesh by HFL Tech."
+  }
 }
