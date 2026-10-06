@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import hmac
+import json
 import os
 import re
 import secrets
@@ -10,6 +11,8 @@ import uuid
 from collections import deque
 from threading import Lock
 from typing import Any
+from urllib.parse import urlencode
+from urllib.request import Request as UrlRequest, urlopen
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -26,12 +29,13 @@ APP_NAME = "AgentMesh API"
 ALLOWED_ORIGINS = [x.strip() for x in os.getenv("AGENTMESH_ALLOWED_ORIGINS", "https://hfltech.in,https://www.hfltech.in").split(",") if x.strip()]
 MODEL = os.getenv("AGENTMESH_MODEL", "gpt-5.6-luna")
 BASE_URL = os.getenv("AGENTMESH_BASE_URL", "https://api.openai.com/v1")
+GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID", "").strip()
 SYSTEM_PROMPT = os.getenv(
     "AGENTMESH_SYSTEM_PROMPT",
     "You are Flush, the primary AI agent of AgentMesh by HFL Tech. Be accurate, direct, useful and transparent about uncertainty. Do not claim to have performed actions or accessed information you did not actually access.",
 )
 
-app = FastAPI(title=APP_NAME, version="0.2.0")
+app = FastAPI(title=APP_NAME, version="0.3.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=ALLOWED_ORIGINS,
@@ -71,6 +75,10 @@ class LoginRequest(BaseModel):
 
 class ResetRequest(BaseModel):
     email: str = Field(min_length=5, max_length=254)
+
+
+class GoogleCredentialRequest(BaseModel):
+    credential: str = Field(min_length=20, max_length=20000)
 
 
 def _check_rate_limit(client_id: str) -> None:
@@ -152,9 +160,71 @@ def _account_from_request(request: Request) -> dict[str, Any] | None:
         return _accounts.get(email) if email else None
 
 
+def _google_profile(credential: str) -> dict[str, Any]:
+    if not GOOGLE_CLIENT_ID:
+        raise HTTPException(status_code=503, detail="Google sign-in is not configured yet. Add the HFL Tech Google client ID in the production API settings.")
+    try:
+        req = UrlRequest(
+            "https://oauth2.googleapis.com/tokeninfo?" + urlencode({"id_token": credential}),
+            headers={"Accept": "application/json", "User-Agent": "HFL-Tech-AgentMesh/1.0"},
+        )
+        with urlopen(req, timeout=8) as response:
+            data = json.loads(response.read().decode("utf-8"))
+    except Exception as exc:
+        raise HTTPException(status_code=401, detail="Google could not verify this sign-in. Please try again.") from exc
+    if data.get("aud") != GOOGLE_CLIENT_ID:
+        raise HTTPException(status_code=401, detail="This Google sign-in was issued for a different application.")
+    if data.get("iss") not in {"accounts.google.com", "https://accounts.google.com"}:
+        raise HTTPException(status_code=401, detail="Invalid Google identity issuer.")
+    if data.get("email_verified") not in {"true", True}:
+        raise HTTPException(status_code=401, detail="Your Google email address could not be verified.")
+    try:
+        if int(data.get("exp", "0")) <= int(time.time()):
+            raise HTTPException(status_code=401, detail="This Google sign-in has expired. Please try again.")
+    except (TypeError, ValueError):
+        raise HTTPException(status_code=401, detail="Invalid Google identity token.")
+    email = _normalize_email(str(data.get("email", "")))
+    name = str(data.get("name") or data.get("given_name") or email.split("@", 1)[0]).strip()[:120]
+    return {"email": email, "name": name, "google_sub": str(data.get("sub", "")), "picture": data.get("picture", "")}
+
+
 @app.get("/health")
 def health() -> dict[str, Any]:
-    return {"ok": True, "service": APP_NAME, "model": MODEL, "auth": True}
+    return {"ok": True, "service": APP_NAME, "model": MODEL, "auth": True, "google_sign_in": bool(GOOGLE_CLIENT_ID)}
+
+
+@app.get("/auth/google/config")
+def auth_google_config() -> dict[str, Any]:
+    return {"enabled": bool(GOOGLE_CLIENT_ID), "client_id": GOOGLE_CLIENT_ID if GOOGLE_CLIENT_ID else None}
+
+
+@app.post("/auth/google/verify")
+def auth_google_verify(payload: GoogleCredentialRequest, request: Request) -> dict[str, Any]:
+    _check_rate_limit(request.client.host if request.client else "unknown")
+    profile = _google_profile(payload.credential)
+    email = profile["email"]
+    with _accounts_lock:
+        account = _accounts.get(email)
+        if account:
+            account["google_sub"] = profile["google_sub"]
+            account["auth_provider"] = "google"
+            account["picture"] = profile["picture"]
+            if not account.get("name"):
+                account["name"] = profile["name"]
+        else:
+            account = {
+                "id": uuid.uuid4().hex,
+                "name": profile["name"],
+                "email": email,
+                "password": _hash_password(secrets.token_urlsafe(32)),
+                "created_at": int(time.time()),
+                "auth_provider": "google",
+                "google_sub": profile["google_sub"],
+                "picture": profile["picture"],
+            }
+            _accounts[email] = account
+    token = _new_account_session(email)
+    return {"authenticated": True, "token": token, "redirect": "account.html", "name": account["name"]}
 
 
 @app.post("/auth/signup")
@@ -167,7 +237,7 @@ def auth_signup(payload: SignupRequest, request: Request) -> dict[str, Any]:
     with _accounts_lock:
         if email in _accounts:
             raise HTTPException(status_code=409, detail="An account already exists for this email.")
-        _accounts[email] = {"id": uuid.uuid4().hex, "name": name, "email": email, "password": _hash_password(payload.password), "created_at": int(time.time())}
+        _accounts[email] = {"id": uuid.uuid4().hex, "name": name, "email": email, "password": _hash_password(payload.password), "created_at": int(time.time()), "auth_provider": "password"}
     token = _new_account_session(email)
     return {"authenticated": True, "token": token, "redirect": "account.html"}
 
@@ -189,8 +259,6 @@ def auth_login(payload: LoginRequest, request: Request) -> dict[str, Any]:
 def auth_reset(payload: ResetRequest, request: Request) -> dict[str, Any]:
     _check_rate_limit(request.client.host if request.client else "unknown")
     _normalize_email(payload.email)
-    # Do not reveal whether an address exists. Email delivery can be attached to
-    # the same endpoint when HFL Tech's transactional mail provider is configured.
     return {"accepted": True}
 
 
@@ -199,7 +267,7 @@ def auth_me(request: Request) -> dict[str, Any]:
     account = _account_from_request(request)
     if not account:
         return {"authenticated": False}
-    return {"authenticated": True, "id": account["id"], "name": account["name"], "email": account["email"]}
+    return {"authenticated": True, "id": account["id"], "name": account["name"], "email": account["email"], "picture": account.get("picture", ""), "auth_provider": account.get("auth_provider", "password")}
 
 
 @app.post("/auth/logout")
