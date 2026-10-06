@@ -9,3 +9,6 @@ if(mobileBtn&&mobileNav){mobileBtn.addEventListener('click',()=>{mobileNav.hidde
 document.addEventListener('click',e=>{if(!e.target.closest('.lh-nav')){Object.values(menus).forEach(el=>el.hidden=true);if(mobileNav)mobileNav.hidden=true;if(mobileBtn)mobileBtn.setAttribute('aria-expanded','false')}});
 document.querySelectorAll('.mobile-nav-pop a').forEach(a=>a.addEventListener('click',()=>{if(mobileNav)mobileNav.hidden=true;if(mobileBtn)mobileBtn.setAttribute('aria-expanded','false')}));
 document.querySelectorAll('img').forEach(img=>img.addEventListener('error',()=>img.style.visibility='hidden'));
+// Keep authentication entry points consistent across the site.
+document.querySelectorAll('.lh-actions a').forEach(a=>{if(a.textContent.trim().toLowerCase()==='log in'){a.href='auth.html?mode=login';a.textContent='Log in';}if(a.textContent.trim().toLowerCase()==='get started'){a.href='auth.html?mode=signup';a.textContent='Get started';}});
+document.querySelectorAll('a').forEach(a=>{const t=a.textContent.trim().toLowerCase();if(t==='sign up'||t==='create account')a.href='auth.html?mode=signup';});
