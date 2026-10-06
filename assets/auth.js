@@ -51,25 +51,62 @@ form.onsubmit = async e => {
     }
     sessionStorage.setItem("hfltech_session", data.token);
     location.href = data.redirect || "account.html";
-  } catch (err) {
-    showError(err.message);
-  } finally { submit.disabled = false; }
+  } catch (err) { showError(err.message); }
+  finally { submit.disabled = false; }
 };
 
-google.onclick = async () => {
+function loadGoogleScript() {
+  return new Promise((resolve, reject) => {
+    if (window.google?.accounts?.id) return resolve();
+    const script = document.createElement("script");
+    script.src = "https://accounts.google.com/gsi/client";
+    script.async = true;
+    script.onload = resolve;
+    script.onerror = () => reject(new Error("Google sign-in could not be loaded. Check your connection and try again."));
+    document.head.appendChild(script);
+  });
+}
+
+async function googleSignIn() {
   clearError();
   google.disabled = true;
   google.textContent = "Connecting to Google…";
   try {
-    const r = await fetch(API + "/auth/google/start", { method: "GET", headers: { Accept: "application/json" } });
-    const data = await r.json().catch(() => ({}));
-    if (!r.ok || !data.url) throw new Error(data.detail || "Google sign-in is not configured on HFL Tech yet.");
-    location.href = data.url;
+    const configResponse = await fetch(API + "/auth/google/config", { headers: { Accept: "application/json" } });
+    const config = await configResponse.json().catch(() => ({}));
+    if (!configResponse.ok || !config.enabled || !config.client_id) throw new Error("Google sign-in is not configured on HFL Tech yet.");
+    await loadGoogleScript();
+    window.google.accounts.id.initialize({
+      client_id: config.client_id,
+      callback: async response => {
+        try {
+          const data = await request("/auth/google/verify", { credential: response.credential });
+          sessionStorage.setItem("hfltech_session", data.token);
+          location.href = data.redirect || "account.html";
+        } catch (err) {
+          showError(err.message);
+          google.disabled = false;
+          google.textContent = "Continue with Google";
+        }
+      },
+      auto_select: false,
+      cancel_on_tap_outside: true,
+      use_fedcm_for_button: true
+    });
+    google.textContent = "Choose your Google account";
+    window.google.accounts.id.prompt(notification => {
+      if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+        showError("Google account selection was unavailable. Please try again or use email and password.");
+        google.disabled = false;
+        google.textContent = "Continue with Google";
+      }
+    });
   } catch (err) {
     showError(err.message);
     google.disabled = false;
     google.textContent = "Continue with Google";
   }
-};
+}
 
+google.onclick = googleSignIn;
 render();
