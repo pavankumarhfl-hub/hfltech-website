@@ -1,6 +1,10 @@
 from __future__ import annotations
 
+import hashlib
+import hmac
 import os
+import re
+import secrets
 import time
 import uuid
 from collections import deque
@@ -27,13 +31,13 @@ SYSTEM_PROMPT = os.getenv(
     "You are Flush, the primary AI agent of AgentMesh by HFL Tech. Be accurate, direct, useful and transparent about uncertainty. Do not claim to have performed actions or accessed information you did not actually access.",
 )
 
-app = FastAPI(title=APP_NAME, version="0.1.0")
+app = FastAPI(title=APP_NAME, version="0.2.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=ALLOWED_ORIGINS,
     allow_credentials=False,
     allow_methods=["GET", "POST", "OPTIONS"],
-    allow_headers=["Content-Type", "X-Session-ID"],
+    allow_headers=["Content-Type", "X-Session-ID", "Authorization"],
 )
 
 _sessions: dict[str, InMemoryMemory] = {}
@@ -41,9 +45,32 @@ _sessions_lock = Lock()
 _rate: dict[str, deque[float]] = {}
 _rate_lock = Lock()
 
+# HFL account layer. Passwords are never stored in plaintext. This lightweight
+# store is intentionally isolated from the volunteer database; production
+# persistence should be connected through a managed identity database before
+# opening public registration at scale.
+_accounts: dict[str, dict[str, Any]] = {}
+_account_sessions: dict[str, str] = {}
+_accounts_lock = Lock()
+
 
 class ChatRequest(BaseModel):
     message: str = Field(min_length=1, max_length=12000)
+
+
+class SignupRequest(BaseModel):
+    name: str = Field(min_length=1, max_length=120)
+    email: str = Field(min_length=5, max_length=254)
+    password: str = Field(min_length=8, max_length=128)
+
+
+class LoginRequest(BaseModel):
+    email: str = Field(min_length=5, max_length=254)
+    password: str = Field(min_length=8, max_length=128)
+
+
+class ResetRequest(BaseModel):
+    email: str = Field(min_length=5, max_length=254)
 
 
 def _check_rate_limit(client_id: str) -> None:
@@ -84,9 +111,106 @@ def _agent(session_id: str) -> Agent:
     )
 
 
+def _normalize_email(email: str) -> str:
+    value = email.strip().lower()
+    if not re.fullmatch(r"[^@\s]+@[^@\s]+\.[^@\s]+", value):
+        raise HTTPException(status_code=400, detail="Enter a valid email address.")
+    return value
+
+
+def _hash_password(password: str, salt: bytes | None = None) -> str:
+    salt = salt or secrets.token_bytes(16)
+    digest = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 210_000)
+    return salt.hex() + ":" + digest.hex()
+
+
+def _verify_password(password: str, stored: str) -> bool:
+    try:
+        salt_hex, digest_hex = stored.split(":", 1)
+        salt = bytes.fromhex(salt_hex)
+        candidate = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 210_000).hex()
+        return hmac.compare_digest(candidate, digest_hex)
+    except (ValueError, TypeError):
+        return False
+
+
+def _new_account_session(email: str) -> str:
+    token = secrets.token_urlsafe(32)
+    with _accounts_lock:
+        _account_sessions[token] = email
+    return token
+
+
+def _account_from_request(request: Request) -> dict[str, Any] | None:
+    token = request.headers.get("Authorization", "")
+    if token.lower().startswith("bearer "):
+        token = token[7:].strip()
+    if not token:
+        return None
+    with _accounts_lock:
+        email = _account_sessions.get(token)
+        return _accounts.get(email) if email else None
+
+
 @app.get("/health")
 def health() -> dict[str, Any]:
-    return {"ok": True, "service": APP_NAME, "model": MODEL}
+    return {"ok": True, "service": APP_NAME, "model": MODEL, "auth": True}
+
+
+@app.post("/auth/signup")
+def auth_signup(payload: SignupRequest, request: Request) -> dict[str, Any]:
+    _check_rate_limit(request.client.host if request.client else "unknown")
+    email = _normalize_email(payload.email)
+    name = payload.name.strip()
+    if len(name) < 2:
+        raise HTTPException(status_code=400, detail="Enter your full name.")
+    with _accounts_lock:
+        if email in _accounts:
+            raise HTTPException(status_code=409, detail="An account already exists for this email.")
+        _accounts[email] = {"id": uuid.uuid4().hex, "name": name, "email": email, "password": _hash_password(payload.password), "created_at": int(time.time())}
+    token = _new_account_session(email)
+    return {"authenticated": True, "token": token, "redirect": "account.html"}
+
+
+@app.post("/auth/login")
+def auth_login(payload: LoginRequest, request: Request) -> dict[str, Any]:
+    _check_rate_limit(request.client.host if request.client else "unknown")
+    email = _normalize_email(payload.email)
+    with _accounts_lock:
+        account = _accounts.get(email)
+        valid = bool(account and _verify_password(payload.password, account["password"]))
+    if not valid:
+        raise HTTPException(status_code=401, detail="Email or password is incorrect.")
+    token = _new_account_session(email)
+    return {"authenticated": True, "token": token, "redirect": "account.html", "name": account["name"]}
+
+
+@app.post("/auth/reset")
+def auth_reset(payload: ResetRequest, request: Request) -> dict[str, Any]:
+    _check_rate_limit(request.client.host if request.client else "unknown")
+    _normalize_email(payload.email)
+    # Do not reveal whether an address exists. Email delivery can be attached to
+    # the same endpoint when HFL Tech's transactional mail provider is configured.
+    return {"accepted": True}
+
+
+@app.get("/auth/me")
+def auth_me(request: Request) -> dict[str, Any]:
+    account = _account_from_request(request)
+    if not account:
+        return {"authenticated": False}
+    return {"authenticated": True, "id": account["id"], "name": account["name"], "email": account["email"]}
+
+
+@app.post("/auth/logout")
+def auth_logout(request: Request) -> dict[str, Any]:
+    token = request.headers.get("Authorization", "")
+    if token.lower().startswith("bearer "):
+        token = token[7:].strip()
+    if token:
+        with _accounts_lock:
+            _account_sessions.pop(token, None)
+    return {"authenticated": False}
 
 
 @app.post("/v1/chat")
@@ -95,12 +219,7 @@ def chat(payload: ChatRequest, request: Request) -> dict[str, Any]:
     _check_rate_limit(client_id)
     session_id = request.headers.get("X-Session-ID") or uuid.uuid4().hex
     result = _agent(session_id).run(payload.message)
-    return {
-        "session_id": session_id,
-        "run_id": result.run_id,
-        "content": result.content,
-        "steps": result.steps,
-    }
+    return {"session_id": session_id, "run_id": result.run_id, "content": result.content, "steps": result.steps}
 
 
 @app.post("/v1/chat/stream")
@@ -108,10 +227,6 @@ def chat_stream(payload: ChatRequest, request: Request) -> StreamingResponse:
     client_id = request.client.host if request.client else "unknown"
     _check_rate_limit(client_id)
     session_id = request.headers.get("X-Session-ID") or uuid.uuid4().hex
-
-    # AgentMesh performs the actual model run first. The response is then emitted
-    # as SSE chunks so the browser can render progressively without exposing the
-    # model provider key. This is intentionally not described as token streaming.
     result = _agent(session_id).run(payload.message)
 
     def events():
