@@ -32,7 +32,7 @@ BASE_URL = os.getenv("AGENTMESH_BASE_URL", "https://api.openai.com/v1")
 GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID", "").strip()
 SYSTEM_PROMPT = os.getenv(
     "AGENTMESH_SYSTEM_PROMPT",
-    "You are Flush, the primary AI agent of AgentMesh by HFL Tech. Be accurate, direct, useful and transparent about uncertainty. Do not claim to have performed actions or accessed information you did not actually access.",
+    "You are AgentMesh, the primary AI agent platform of HFL Tech. Be accurate, direct, useful and transparent about uncertainty. Do not claim to have performed actions or accessed information you did not actually access.",
 )
 
 app = FastAPI(title=APP_NAME, version="0.3.0")
@@ -75,6 +75,15 @@ class LoginRequest(BaseModel):
 
 class ResetRequest(BaseModel):
     email: str = Field(min_length=5, max_length=254)
+
+
+class ContactRequest(BaseModel):
+    name: str = Field(min_length=2, max_length=120)
+    email: str = Field(min_length=5, max_length=254)
+    topic: str = Field(min_length=2, max_length=60)
+    company: str = Field(default="", max_length=160)
+    message: str = Field(min_length=5, max_length=6000)
+    website: str = Field(default="", max_length=200)
 
 
 class GoogleCredentialRequest(BaseModel):
@@ -186,6 +195,38 @@ def _google_profile(credential: str) -> dict[str, Any]:
     email = _normalize_email(str(data.get("email", "")))
     name = str(data.get("name") or data.get("given_name") or email.split("@", 1)[0]).strip()[:120]
     return {"email": email, "name": name, "google_sub": str(data.get("sub", "")), "picture": data.get("picture", "")}
+
+
+@app.post("/contact")
+def contact(payload: ContactRequest, request: Request) -> dict[str, Any]:
+    client_id = request.client.host if request.client else "unknown"
+    _check_rate_limit(client_id)
+    if payload.website.strip():
+        return {"accepted": True}
+    email = _normalize_email(payload.email)
+    topic = payload.topic.strip()
+    allowed_topics = {"early access", "partnership", "security", "press", "careers", "other"}
+    if topic.lower() not in allowed_topics:
+        raise HTTPException(status_code=400, detail="Choose a valid enquiry topic.")
+    api_key = os.getenv("RESEND_API_KEY", "").strip()
+    recipient = os.getenv("CONTACT_TO_EMAIL", "HFLFOUNDER@GMAIL.COM").strip()
+    if not api_key:
+        raise HTTPException(status_code=503, detail="Contact email delivery is not configured yet. Please email HFLFOUNDER@GMAIL.COM directly.")
+    body = {
+        "from": os.getenv("CONTACT_FROM_EMAIL", "HFL Tech <onboarding@resend.dev>"),
+        "to": [recipient],
+        "reply_to": [email],
+        "subject": f"HFL Tech contact: {topic}",
+        "text": f"Name: {payload.name.strip()}\nEmail: {email}\nTopic: {topic}\nCompany: {payload.company.strip() or '-'}\n\n{payload.message.strip()}",
+    }
+    try:
+        req = UrlRequest("https://api.resend.com/emails", data=json.dumps(body).encode("utf-8"), headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json", "Accept": "application/json"}, method="POST")
+        with urlopen(req, timeout=10) as response:
+            if response.status >= 300:
+                raise RuntimeError("email delivery failed")
+    except Exception as exc:
+        raise HTTPException(status_code=502, detail="We could not deliver the message. Please email HFLFOUNDER@GMAIL.COM directly.") from exc
+    return {"accepted": True, "message": "Your message has been sent."}
 
 
 @app.get("/health")
