@@ -74,6 +74,10 @@
   if(location.pathname==='/'||location.pathname.endsWith('/index.html')){
     const hero=document.querySelector('.hero .wrap'),pill=document.querySelector('.hero .pill');
     if(hero&&!hero.querySelector('.india-brand')){const b=document.createElement('div');b.className='india-brand';b.innerHTML='<strong>India’s first super intelligent model</strong><span>Made in India</span>';hero.insertBefore(b,pill||hero.firstChild);const s=document.createElement('style');s.textContent='.india-brand{display:inline-flex;align-items:center;gap:10px;margin-bottom:18px;padding:7px 11px;border:1px solid rgba(255,255,255,.1);border-radius:999px;background:rgba(255,255,255,.025);color:#9aa0aa;font:500 12px/1.2 Inter,system-ui,sans-serif}.india-brand strong{color:#f7f8f8;font-weight:600}.india-brand span{padding-left:10px;border-left:1px solid rgba(255,255,255,.1);color:#8a8f98}@media(max-width:600px){.india-brand{max-width:100%;flex-wrap:wrap;gap:7px}}';document.head.appendChild(s)}
+    /* Keep the homepage product-first. Company, founder, careers and editorial detail live on their own pages. */
+    const homeOnlySelectors=['#about-hfl','.founder-strip','.home-roles','.career-cta','.logo-row'];
+    document.querySelectorAll(homeOnlySelectors.join(',')).forEach(el=>{const section=el.closest('section');if(section)section.remove();else el.remove()});
+    document.querySelectorAll('section.section').forEach(section=>{const text=(section.innerText||'').trim();if(/^(NOW|BUILDING IN PUBLIC)\b/i.test(text))section.remove()});
   }
 })();
 
