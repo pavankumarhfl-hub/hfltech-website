@@ -1,1 +1,1 @@
-from .runtime import Agent, AgentConfig, RunResult, Event\n
+from .runtime import Agent, AgentConfig, RunResult, Event
