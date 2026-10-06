@@ -1,0 +1,4 @@
+Contact: mailto:hflfounder@gmail.com
+Canonical: https://hfltech.in/.well-known/security.txt
+Policy: https://hfltech.in/security.html
+Preferred-Languages: en
