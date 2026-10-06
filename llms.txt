@@ -1,24 +1,38 @@
-# HFL Global Tech
+# HFL Tech
 
-HFL Global Tech is the technology organisation within the HFL ecosystem. Legal name: HFL Global Technologies Private Limited.
+> HFL Tech is an India-based technology company building intelligent software systems. AgentMesh is its flagship super intelligence product.
 
-Tagline: Technology built for real-world use.
+## Core pages
+- [HFL Tech](https://hfltech.in/): Company and flagship product overview.
+- [About HFL Tech](https://hfltech.in/company.html): What HFL Tech is building and why.
+- [Founder](https://hfltech.in/founder.html): Pavan Kumar BN, Founder of HFL Tech.
+- [AgentMesh](https://hfltech.in/agentmesh.html): Product overview.
+- [Pricing](https://hfltech.in/pricing.html): Public AgentMesh pricing.
+- [Technical Evidence](https://hfltech.in/evidence.html): Reference implementation and evidence boundaries.
+- [Research](https://hfltech.in/research.html): Research and technical direction.
+- [Security](https://hfltech.in/security.html): Security principles and reporting.
+- [Trust Center](https://hfltech.in/trust-center.html): Security, privacy and operational trust information.
+- [Ecosystem](https://hfltech.in/ecosystem.html): HFL Foundation, Education, Community, Cyber Team and technology initiatives.
 
-Focus: Super Intelligence, AI agents, software engineering, automation, cybersecurity and digital innovation.
+## AgentMesh
 
-Flagship: AgentMesh — an agent orchestration system organised around Context, Tools, Evaluation and Human Control. The public browser reference runtime currently reports 6/6 deterministic self-tests passing.
+AgentMesh is designed around the complete task rather than a single prompt. Its product model combines context, reasoning, authorised tools, execution, evaluation and human control.
 
-Status: Building in public.
+HFL Tech presents AgentMesh as India's first super intelligent system and as a Made in India product built for a global market. These are company positioning statements; technical capability and comparative performance should be evaluated from the product documentation and evidence published by HFL Tech.
 
-Status labels: DEMONSTRATED, IN DEVELOPMENT, LONG-TERM RESEARCH.
+The public browser reference runtime is a demonstrable implementation and currently reports 6/6 deterministic self-tests passing. This does not by itself establish production scale, customer usage or benchmark superiority.
 
-Long-term direction: Flux AI, focused on coding, reasoning and automation research.
+## Company
 
-Evidence policy: HFL Global Tech separates demonstrated implementations from development and research. Comparative performance, cost, customer and market-leadership claims are shown only when supported by verified evidence.
+Legal name: HFL Tech Private Limited
+Founder: Pavan Kumar BN
+Flagship product: AgentMesh
+Founder location: Mysuru, Karnataka, India
 
-Primary website: https://hfltech.in/
-Evidence: https://hfltech.in/evidence.html
-Benchmarks: https://hfltech.in/benchmarks.html
-AgentMesh: https://hfltech.in/agentmesh.html
-Technology: https://hfltech.in/technology.html
-Contact: https://hfltech.in/contact.html
+## HFL ecosystem
+
+HFL Tech is part of a wider HFL ecosystem that includes HFL Foundation, HFL Education Trust, HFL Community and HFL Cyber Team. AgentMesh is the flagship HFL Tech product; Flux AI and other initiatives have separate product/project surfaces.
+
+## Pricing
+
+Public AgentMesh plans are presented in USD: Basic from $1, Pro from $3 and Pro Max from $10. Pricing and availability may change; the live pricing page is authoritative.
