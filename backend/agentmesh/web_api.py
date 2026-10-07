@@ -6,6 +6,7 @@ import json
 import os
 import re
 import secrets
+import smtplib
 import time
 import uuid
 from collections import deque
@@ -13,6 +14,7 @@ from threading import Lock
 from typing import Any
 from urllib.parse import urlencode
 from urllib.request import Request as UrlRequest, urlopen
+from email.message import EmailMessage
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -85,6 +87,17 @@ class ContactRequest(BaseModel):
     message: str = Field(min_length=5, max_length=6000)
     website: str = Field(default="", max_length=200)
 
+
+
+
+class ContactRequest(BaseModel):
+    name: str = Field(min_length=2, max_length=120)
+    email: str = Field(min_length=5, max_length=254)
+    topic: str = Field(min_length=2, max_length=80)
+    company: str = Field(default="", max_length=160)
+    message: str = Field(min_length=5, max_length=6000)
+    website: str = Field(default="", max_length=200)
+    agree: bool = False
 
 class GoogleCredentialRequest(BaseModel):
     credential: str = Field(min_length=20, max_length=20000)
@@ -320,6 +333,38 @@ def auth_logout(request: Request) -> dict[str, Any]:
         with _accounts_lock:
             _account_sessions.pop(token, None)
     return {"authenticated": False}
+
+
+@app.post("/contact")
+def contact(payload: ContactRequest, request: Request) -> dict[str, Any]:
+    _check_rate_limit(request.client.host if request.client else "unknown")
+    if payload.website:
+        return {"accepted": True}
+    if not payload.agree:
+        raise HTTPException(status_code=400, detail="Privacy and Terms consent is required.")
+    email = _normalize_email(payload.email)
+    to_email = os.getenv("CONTACT_TO_EMAIL", "HFLFOUNDER@GMAIL.COM").strip()
+    smtp_host = os.getenv("SMTP_HOST", "").strip()
+    smtp_user = os.getenv("SMTP_USER", "").strip()
+    smtp_password = os.getenv("SMTP_PASSWORD", "")
+    smtp_port = int(os.getenv("SMTP_PORT", "587"))
+    from_email = os.getenv("SMTP_FROM_EMAIL", smtp_user or to_email).strip()
+    if not smtp_host or not smtp_user or not smtp_password:
+        raise HTTPException(status_code=503, detail="Contact delivery is not configured yet. Please email HFLFOUNDER@GMAIL.COM directly.")
+    msg = EmailMessage()
+    msg["Subject"] = f"HFL Tech contact · {payload.topic}"
+    msg["From"] = from_email
+    msg["To"] = to_email
+    msg["Reply-To"] = email
+    msg.set_content(f"Name: {payload.name}\nEmail: {email}\nTopic: {payload.topic}\nCompany: {payload.company or '—'}\n\n{payload.message}")
+    try:
+        with smtplib.SMTP(smtp_host, smtp_port, timeout=15) as server:
+            server.starttls()
+            server.login(smtp_user, smtp_password)
+            server.send_message(msg)
+    except Exception as exc:
+        raise HTTPException(status_code=502, detail="The message could not be delivered right now. Please email HFLFOUNDER@GMAIL.COM directly.") from exc
+    return {"accepted": True}
 
 
 @app.post("/v1/chat")
