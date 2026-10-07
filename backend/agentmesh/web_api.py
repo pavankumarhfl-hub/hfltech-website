@@ -6,7 +6,6 @@ import json
 import os
 import re
 import secrets
-import smtplib
 import time
 import uuid
 from collections import deque
@@ -14,7 +13,6 @@ from threading import Lock
 from typing import Any
 from urllib.parse import urlencode
 from urllib.request import Request as UrlRequest, urlopen
-from email.message import EmailMessage
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -77,19 +75,6 @@ class LoginRequest(BaseModel):
 
 class ResetRequest(BaseModel):
     email: str = Field(min_length=5, max_length=254)
-
-
-class ContactRequest(BaseModel):
-    name: str = Field(min_length=2, max_length=120)
-    email: str = Field(min_length=5, max_length=254)
-    topic: str = Field(min_length=2, max_length=60)
-    company: str = Field(default="", max_length=160)
-    message: str = Field(min_length=5, max_length=6000)
-    website: str = Field(default="", max_length=200)
-
-
-
-
 class ContactRequest(BaseModel):
     name: str = Field(min_length=2, max_length=120)
     email: str = Field(min_length=5, max_length=254)
