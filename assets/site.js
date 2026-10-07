@@ -3,74 +3,7 @@
     header.innerHTML=`<div class="wrap nav-in"><a class="brand" href="/" aria-label="HFL Tech home"><span class="brand-mark" aria-hidden="true"></span><span>HFL Tech</span></a><nav class="links" aria-label="Primary"><button class="menu" data-dropdown="product-menu">Product⌄</button><button class="menu" data-dropdown="company-menu">Company⌄</button><a href="evidence.html">Evidence</a><a href="docs.html">Docs</a><a href="pricing.html">Pricing</a><button class="menu" data-dropdown="resources-menu">Resources⌄</button></nav><div class="actions"><a class="ghost" href="auth.html?mode=login">Log in</a><a class="button" href="auth.html?mode=signup">Request early access</a><button class="mobile-btn" aria-label="Open navigation" aria-expanded="false">☰</button></div></div><div class="dropdown" id="product-menu" hidden><a href="agentmesh.html"><b>AgentMesh</b><span>AI agent platform</span></a><a href="agentmesh-context.html"><b>Context</b><span>Understand the whole task</span></a><a href="agentmesh-control.html"><b>Control</b><span>Human approval boundaries</span></a></div><div class="dropdown" id="company-menu" hidden><a href="company.html"><b>About HFL Tech</b><span>Company and mission</span></a><a href="founder.html"><b>Founder</b><span>Pavan Kumar BN</span></a><a href="careers.html"><b>Careers</b><span>Open roles and hiring</span></a><a href="trust-center.html"><b>Trust Center</b><span>Security, privacy and reliability</span></a><a href="contact.html"><b>Contact</b><span>Professional enquiries</span></a></div><div class="dropdown" id="resources-menu" hidden><a href="research.html"><b>Research</b><span>Engineering and system notes</span></a><a href="changelog.html"><b>Changelog</b><span>Product updates</span></a><a href="status.html"><b>Status</b><span>Service status</span></a><a href="press.html"><b>Press</b><span>Official company information</span></a></div><div class="mobile-pop" hidden><a href="agentmesh.html">AgentMesh</a><a href="evidence.html">Evidence</a><a href="docs.html">Docs</a><a href="pricing.html">Pricing</a><a href="company.html">Company</a><a href="founder.html">Founder</a><a href="careers.html">Careers</a><a href="trust-center.html">Trust Center</a><a href="contact.html">Contact</a></div>`;
   });
 
-  document.querySelectorAll('[data-dropdown]').forEach(btn=>{
-    btn.setAttribute('aria-haspopup','true');
-    btn.setAttribute('aria-expanded','false');
-  });
-})();
-
-(()=>{
-  const nav=document.querySelector('.nav');
-  const mobile=document.querySelector('.mobile-btn');
-  const pop=document.querySelector('.mobile-pop');
-  const hotfix=document.createElement('style');
-  hotfix.textContent=`
-    html,body{max-width:100%;overflow-x:hidden}
-    .brand-mark{display:none!important}
-    .brand{min-width:auto!important;white-space:nowrap}
-    .brand span:not(.brand-mark){display:inline!important}
-    @media(max-width:1100px){
-      .nav-in{gap:14px}
-      .links{display:none!important}
-      .actions .ghost{display:none!important}
-      .mobile-btn{display:grid!important;place-items:center}
-      .hero{padding-top:128px}
-      .hero h1{font-size:clamp(42px,10vw,64px);max-width:900px}
-      .product-window{width:100%;overflow:hidden}
-      .app{grid-template-columns:160px minmax(0,1fr)!important}
-      .detail{display:none!important}
-    }
-    @media(max-width:640px){
-      .wrap{width:min(calc(100% - 28px),1160px)}
-      .nav{height:60px}
-      .nav-in{height:60px}
-      .hero{padding:112px 0 55px}
-      .hero h1{font-size:clamp(39px,11.5vw,54px);line-height:.98;letter-spacing:-.055em}
-      .hero p{font-size:15px;line-height:1.55}
-      .hero-actions{flex-direction:column;align-items:stretch}
-      .hero-actions .button,.hero-actions .link{justify-content:center}
-      .product-window{margin-top:44px;border-radius:11px;transform:none!important}
-      .app{grid-template-columns:1fr!important;min-height:0!important}
-      .sidebar{display:none!important}
-      .center{padding:16px!important;min-width:0}
-      .center-head{gap:12px}
-      .mini{white-space:nowrap}
-      .run-head,.run{grid-template-columns:7px minmax(0,1fr) 44px;gap:8px}
-      .run strong{font-size:10.5px;line-height:1.35}
-      .run code{font-size:8px}
-      .timeline{grid-template-columns:1fr!important}
-      .timeline div{border-right:0!important;border-bottom:1px solid var(--line)}
-      .timeline div:last-child{border-bottom:0}
-      .feature,.feature.reverse{grid-template-columns:1fr!important;gap:32px;padding:86px 0}
-      .feature.reverse .copy,.feature.reverse .visual{grid-column:auto!important;grid-row:auto!important}
-      .demo{padding:19px}
-      .demo-row{grid-template-columns:minmax(0,1fr) 60px 50px;gap:7px;font-size:11px}
-      .section{padding:92px 0}
-      .section h2{font-size:clamp(36px,10vw,50px)}
-      .grid3,.updates{grid-template-columns:1fr!important}
-      .logo-row{grid-template-columns:1fr 1fr!important}
-      .footer-grid{grid-template-columns:1fr 1fr!important}
-      .footer-brand{grid-column:1/-1}
-      .mobile-pop{top:60px!important}
-    }
-  `;
-  document.head.appendChild(hotfix);
-  window.addEventListener('scroll',()=>nav?.classList.toggle('scrolled',scrollY>8),{passive:true});
-  document.querySelectorAll('[data-dropdown]').forEach(btn=>btn.addEventListener('click',e=>{
-    e.stopPropagation();const id=btn.dataset.dropdown;
-    document.querySelectorAll('.dropdown').forEach(x=>{if(x.id!==id)x.hidden=true});
-    const el=document.getElementById(id);if(el)el.hidden=!el.hidden;
-  }));
+  document.querySelectorAll('[data-dropdown]').forEach(btn=>{btn.addEventListener('click',e=>{e.stopPropagation();const id=btn.dataset.dropdown;document.querySelectorAll('.dropdown').forEach(x=>{if(x.id!==id)x.hidden=true});const el=document.getElementById(id);if(el){el.hidden=!el.hidden;btn.setAttribute('aria-expanded',String(!el.hidden));}})});
   document.addEventListener('click',()=>document.querySelectorAll('.dropdown').forEach(x=>x.hidden=true));
   mobile?.addEventListener('click',()=>{if(!pop)return;pop.hidden=!pop.hidden;mobile.setAttribute('aria-expanded',String(!pop.hidden));});
   document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();document.querySelector('[data-command]')?.focus()}});
