@@ -6,6 +6,7 @@ import json
 import os
 import re
 import secrets
+import smtplib
 import time
 import uuid
 from collections import deque
@@ -13,6 +14,7 @@ from threading import Lock
 from typing import Any
 from urllib.parse import urlencode
 from urllib.request import Request as UrlRequest, urlopen
+from email.message import EmailMessage
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
