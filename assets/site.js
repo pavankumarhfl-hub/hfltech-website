@@ -43,7 +43,6 @@
     finally{send.disabled=false;status.textContent='';input.focus()}
   });
 })();
-(()=>{document.querySelectorAll('footer.footer, footer.site-footer').forEach(footer=>{footer.innerHTML=`<div class="wrap"><div class="footer-grid"><div class="footer-brand"><div class="brand"><span class="brand-mark" aria-hidden="true"></span><span>HFL Tech</span></div><p>Software and systems for intelligent work.</p></div><div><h4>Product</h4><a href="agentmesh.html">AgentMesh</a><a href="evidence.html">Evidence</a><a href="docs.html">Docs</a><a href="pricing.html">Pricing</a></div><div><h4>Company</h4><a href="company.html">About</a><a href="founder.html">Founder</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></div><div><h4>Trust</h4><a href="security.html">Security</a><a href="status.html">Status</a><a href="trust-center.html">Trust Center</a><a href="privacy.html">Privacy</a></div><div><h4>Legal</h4><a href="terms.html">Terms</a><a href="legal/cookies.html">Cookies</a><a href="legal/acceptable-use.html">Acceptable use</a></div><div><h4>HFL ecosystem</h4><a href="ecosystem.html">Explore ecosystem</a></div></div><div class="legal"><span>© 2026 HFL Tech Private Limited</span><div><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div></div>`})})();
 
 
 
