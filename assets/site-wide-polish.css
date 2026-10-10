@@ -111,3 +111,104 @@ html{scroll-padding-top:80px!important}
   html body header.nav .brand{max-width:none!important}
   html body header.nav .actions{display:flex!important}
 }
+
+
+/* Linear-inspired product marketing system — HFL Tech content remains original. */
+:root{
+  --hfl-ink:#08090b;--hfl-panel:#0c0d10;--hfl-panel-raised:#111318;
+  --hfl-white:#f7f7f8;--hfl-copy:#c4c5cb;--hfl-muted:#92949d;
+  --hfl-line:rgba(255,255,255,.085);--hfl-line-strong:rgba(255,255,255,.15);
+  --hfl-blue:#c5c8ff;--hfl-violet:#a7a9ff;--hfl-radius:10px;--hfl-content:1180px;
+}
+html{background:#08090b;color-scheme:dark;scroll-padding-top:76px}
+body{background:#08090b;color:#f7f7f8;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:-.015em}
+.wrap{width:min(calc(100% - 56px),1180px);margin-inline:auto}
+main{overflow:clip}
+main h1,main h2,main h3{font-weight:560;text-wrap:balance;letter-spacing:-.055em}
+main p{color:#a5a6ae;line-height:1.72}
+header.nav{height:64px!important;min-height:64px!important;background:rgba(8,9,11,.82)!important;border-bottom:1px solid rgba(255,255,255,.075)!important;backdrop-filter:blur(18px) saturate(130%)!important}
+header.nav .nav-in{height:64px!important;min-height:64px!important;max-width:1240px!important;gap:24px!important}
+header.nav .brand{font-size:14px!important;font-weight:650!important;letter-spacing:-.04em!important;max-width:none!important}
+header.nav .links{gap:20px!important}
+header.nav .links a,header.nav .links button{font-size:12px!important;color:#a3a4ad!important;font-weight:450!important;transition:color .18s ease}
+header.nav .links a:hover,header.nav .links button:hover{color:#fff!important}
+header.nav .actions .button{background:#f4f4f5!important;color:#111114!important;border:1px solid #f4f4f5!important;box-shadow:none!important;border-radius:7px!important;min-height:34px!important;padding:0 12px!important;font-size:11px!important;font-weight:600!important;white-space:nowrap!important}
+header.nav .dropdown,header.nav .mobile-pop{background:rgba(15,16,20,.98)!important;border:1px solid rgba(255,255,255,.11)!important;border-radius:10px!important;box-shadow:0 24px 80px rgba(0,0,0,.48)!important;backdrop-filter:blur(24px)}
+header.nav .dropdown a:hover,header.nav .mobile-pop a:hover{background:rgba(255,255,255,.055)!important}
+header.nav .mobile-btn{border:1px solid rgba(255,255,255,.14)!important;background:#111216!important;border-radius:7px!important}
+.page-hero{padding:clamp(108px,11vw,142px) 0 64px!important;background:radial-gradient(ellipse at 50% 0%,rgba(129,132,255,.09),transparent 56%)!important}
+.page-hero h1,.hero h1{max-width:900px!important;font-size:clamp(42px,6.3vw,76px)!important;line-height:1.02!important;letter-spacing:-.075em!important;font-weight:570!important}
+.page-hero p,.hero p,.lead{max-width:680px;color:#a5a6ae!important;font-size:clamp(15px,1.35vw,17px)!important;line-height:1.75!important}
+.section{padding:clamp(56px,7vw,88px) 0!important}
+.feature,.feature.reverse{padding:clamp(56px,7vw,88px) 0!important;gap:clamp(28px,5vw,64px)!important}
+.section h2,.copy h2{font-size:clamp(30px,4vw,48px)!important;line-height:1.08!important;letter-spacing:-.065em!important}
+.grid3,.page-grid,.grid{gap:12px!important}
+.grid3 .card,.page-grid .card,.grid .card,.card{background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.012))!important;border:1px solid rgba(255,255,255,.09)!important;border-radius:10px!important;box-shadow:none!important;padding:24px!important}
+.grid3 .card:hover,.page-grid .card:hover,.grid .card:hover,.card:hover{transform:translateY(-2px)!important;border-color:rgba(185,188,255,.28)!important;box-shadow:0 12px 35px rgba(0,0,0,.18)!important}
+.card h3{margin:18px 0 8px!important;font-size:18px!important;line-height:1.25!important;letter-spacing:-.035em!important}
+.card p{font-size:13px!important;line-height:1.7!important;color:#999ba5!important}
+.button{border-radius:7px!important;min-height:42px!important;box-shadow:none!important;font-weight:550!important}
+.button:hover{transform:translateY(-1px)!important;box-shadow:0 5px 20px rgba(255,255,255,.07)!important}
+.footer{padding:52px 0 24px!important;border-top:1px solid rgba(255,255,255,.075)!important;background:#08090b!important}
+.hfl-ecosystem-footer{background:#08090b!important;border-top:1px solid rgba(255,255,255,.075)!important}
+.home-hero-3d{min-height:0!important;padding:clamp(52px,7vw,82px) 0 48px!important;display:block!important}
+.home-hero-layout{margin:0 auto!important;min-height:0!important;gap:clamp(26px,4vw,54px)!important}
+.home-hero-copy{padding-top:0!important}
+.home-hero-copy h1{font-size:clamp(42px,6vw,72px)!important;line-height:1.01!important;letter-spacing:-.075em!important;font-weight:570!important}
+.home-hero-copy>p{font-size:clamp(15px,1.35vw,17px)!important;line-height:1.75!important;max-width:540px!important;color:#a5a6ae!important}
+.home-eyebrow,.eyebrow{letter-spacing:.09em!important;color:#a8aab4!important}
+.hero-scene-wrap{min-width:0}
+.hero-scene{border:1px solid rgba(255,255,255,.09)!important;border-radius:12px!important;background:#0c0d11!important;box-shadow:0 20px 70px rgba(0,0,0,.18)!important}
+.home-product{padding:22px 0 64px!important}
+.home-product-frame{border:1px solid rgba(255,255,255,.1)!important;border-radius:10px!important;background:#0b0c0f!important;box-shadow:none!important;overflow:hidden}
+.home-product-bar{background:#101115!important;border-bottom:1px solid rgba(255,255,255,.075)!important}
+.home-principles,.home-workflow,.home-control,.home-usecases,.home-evidence,.home-final{padding-block:clamp(56px,7vw,84px)!important}
+.home-principles-head,.home-section-intro{margin-bottom:28px!important}
+.home-principles-head h2,.home-section-intro h2,.home-final h2{font-size:clamp(32px,4.2vw,50px)!important;line-height:1.05!important;letter-spacing:-.065em!important}
+.home-principle-grid,.home-workflow-grid,.home-usecase-grid{gap:12px!important}
+.home-principle,.home-workflow-grid article,.home-usecase-grid>a{border-color:rgba(255,255,255,.09)!important;background:rgba(255,255,255,.018)!important;border-radius:10px!important}
+.home-usecase-grid>a:hover{border-color:rgba(185,188,255,.3)!important}
+.home-evidence-inner{border:1px solid rgba(255,255,255,.09)!important;border-radius:10px!important;background:#0e0f13!important;padding:clamp(24px,4vw,42px)!important}
+.home-final .wrap{border:1px solid rgba(255,255,255,.09)!important;border-radius:12px!important;background:radial-gradient(ellipse at 50% 0%,rgba(130,133,255,.08),transparent 60%),#0c0d10!important;padding:clamp(30px,5vw,60px)!important}
+@media(max-width:960px){
+ html body header.nav{position:sticky!important;top:0!important;inset:auto!important;height:64px!important;min-height:64px!important;max-height:64px!important;z-index:9990!important}
+ html body header.nav .nav-in{width:100%!important;height:64px!important;min-height:64px!important;padding:0 16px!important;margin:0 auto!important;display:flex!important;flex-flow:row nowrap!important;align-items:center!important;justify-content:space-between!important;gap:10px!important}
+ html body header.nav .brand{display:inline-flex!important;flex:0 0 auto!important;min-width:0!important;width:auto!important;max-width:none!important;overflow:visible!important;white-space:nowrap!important;font-size:14px!important}
+ html body header.nav .links{display:none!important}
+ html body header.nav .actions{display:flex!important;flex:0 0 auto!important;flex-flow:row nowrap!important;align-items:center!important;gap:8px!important;min-width:0!important;margin:0!important}
+ html body header.nav .actions .button{display:inline-flex!important;flex:0 1 auto!important;width:auto!important;max-width:none!important;min-width:0!important;min-height:34px!important;padding:0 10px!important;font-size:11px!important;line-height:1.1!important;white-space:nowrap!important}
+ html body header.nav .mobile-btn{display:inline-flex!important;flex:0 0 38px!important;align-items:center!important;justify-content:center!important;width:38px!important;height:38px!important;min-width:38px!important;margin:0!important;padding:0!important}
+ html body header.nav .mobile-pop{position:absolute!important;top:64px!important;left:12px!important;right:12px!important;z-index:9992!important;max-height:calc(100dvh - 78px)!important;overflow:auto!important}
+ html body main{padding-top:0!important}
+ html body .page-hero,html body .hero,html body .home-hero,html body .home-hero-3d{scroll-margin-top:72px!important}
+}
+@media(max-width:640px){
+ .wrap{width:calc(100% - 32px)!important}
+ .page-hero{padding:52px 0 42px!important;background:radial-gradient(ellipse at 50% 0%,rgba(129,132,255,.075),transparent 60%)!important}
+ .page-hero h1,.hero h1{font-size:clamp(38px,10.5vw,52px)!important;line-height:1.03!important}
+ .section,.feature,.feature.reverse{padding:48px 0!important}
+ .grid3,.page-grid,.grid{grid-template-columns:1fr!important}
+ .home-hero-3d{padding:42px 0 30px!important}
+ .home-hero-layout{gap:28px!important}
+ .home-hero-copy h1{font-size:clamp(40px,11vw,54px)!important;line-height:1.02!important}
+ .home-hero-copy>p{font-size:15px!important}
+ .home-product{padding:12px 0 42px!important}
+ .home-product-body{grid-template-columns:1fr!important}
+ .home-product-side{display:none!important}
+ .home-principles,.home-workflow,.home-control,.home-usecases,.home-evidence,.home-final{padding-block:46px!important}
+ .home-principles-head{display:block!important}
+ .home-principles-head h2,.home-section-intro h2,.home-final h2{font-size:clamp(31px,8.5vw,42px)!important}
+ .home-principle-grid,.home-workflow-grid,.home-usecase-grid{grid-template-columns:1fr!important}
+ .home-evidence-inner{gap:18px!important}
+ .footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .hfl-footer-top{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:24px 16px!important}
+ .hfl-footer-brand{grid-column:1/-1!important}
+ .hfl-footer-bottom{align-items:flex-start!important;flex-direction:column!important;gap:8px!important}
+}
+@media(max-width:380px){
+ html body header.nav .nav-in{padding-inline:10px!important;gap:6px!important}
+ html body header.nav .actions{gap:5px!important}
+ html body header.nav .actions .button{padding-inline:7px!important;font-size:10px!important}
+ html body header.nav .mobile-btn{flex-basis:36px!important;width:36px!important;min-width:36px!important;height:36px!important}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
