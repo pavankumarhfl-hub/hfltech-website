@@ -6,10 +6,25 @@
   document.querySelectorAll('[data-dropdown]').forEach(btn=>{btn.addEventListener('click',e=>{e.stopPropagation();const id=btn.dataset.dropdown;document.querySelectorAll('.dropdown').forEach(x=>{if(x.id!==id)x.hidden=true});const el=document.getElementById(id);if(el){el.hidden=!el.hidden;btn.setAttribute('aria-expanded',String(!el.hidden));}})});
   document.addEventListener('click',()=>document.querySelectorAll('.dropdown').forEach(x=>{x.hidden=true;const b=document.querySelector('[data-dropdown="'+x.id+'"]');if(b)b.setAttribute('aria-expanded','false')}));
   const mobile=document.querySelector('.mobile-btn'),pop=document.querySelector('.mobile-pop'); mobile?.addEventListener('click',()=>{if(!pop)return;pop.hidden=!pop.hidden;mobile.setAttribute('aria-expanded',String(!pop.hidden));});
+  // Reveal content as it enters the viewport; preserve visibility for reduced motion and older browsers.
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window){
+    const revealTargets=[...document.querySelectorAll('main section, main .card, main .feature, main .grid3 > *, main .page-grid > *, main .home-principle, main .home-workflow-grid > *, main .home-usecase-grid > *, main .control-list > div, main .home-product-frame, main .home-evidence-inner, main .home-final .wrap')];
+    revealTargets.forEach(el=>{
+      if(el.closest('header,footer') || el.hasAttribute('data-no-reveal') || el.dataset.scrollReveal) return;
+      el.dataset.scrollReveal='up';
+      const siblings=el.parentElement?[...el.parentElement.children].filter(node=>node.matches('article,.card,.home-principle,.home-usecase-grid>a,.home-workflow-grid>article,.control-list>div')):[];
+      if(siblings.length>1) el.style.setProperty('--reveal-delay',Math.min(Math.max(siblings.indexOf(el),0),4)*70+'ms');
+    });
+    document.documentElement.classList.add('js-scroll-motion');
+    const revealObserver=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-in-view');revealObserver.unobserve(entry.target)}});
+    },{threshold:0.12,rootMargin:'0px 0px -32px 0px'});
+    revealTargets.forEach(el=>{if(el.dataset.scrollReveal)revealObserver.observe(el)});
+  }
   document.querySelectorAll('.pill-btn').forEach(b=>b.addEventListener('click',()=>document.getElementById(b.dataset.target)?.classList.toggle('open')));
   if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');io.unobserve(e.target)}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(x=>io.observe(x));}else document.querySelectorAll('.reveal').forEach(x=>x.classList.add('revealed'));
   document.querySelectorAll('form[data-demo-form]').forEach(form=>form.addEventListener('submit',e=>{e.preventDefault();form.hidden=true;document.querySelector(form.dataset.demoForm)?.removeAttribute('hidden')}));
-  document.querySelectorAll('.brand').forEach(el=>{el.replaceChildren(document.createTextNode('HFL Tech'));el.setAttribute('aria-label','HFL Tech home');});if(!document.querySelector('link[data-hfl-site-polish]')){const polish=document.createElement('link');polish.rel='stylesheet';polish.href='/assets/site-wide-polish.css?v=20261010-v7';polish.dataset.hflSitePolish='true';document.head.appendChild(polish);}
+  document.querySelectorAll('.brand').forEach(el=>{el.replaceChildren(document.createTextNode('HFL Tech'));el.setAttribute('aria-label','HFL Tech home');});if(!document.querySelector('link[data-hfl-site-polish]')){const polish=document.createElement('link');polish.rel='stylesheet';polish.href='/assets/site-wide-polish.css?v=20261010-v8';polish.dataset.hflSitePolish='true';document.head.appendChild(polish);}
 })();
 
 (function(){
