@@ -212,3 +212,23 @@ header.nav .mobile-btn{border:1px solid rgba(255,255,255,.14)!important;backgrou
  html body header.nav .mobile-btn{flex-basis:36px!important;width:36px!important;min-width:36px!important;height:36px!important}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+
+/* Scroll-reveal motion: restrained, staggered, and disabled for reduced-motion users. */
+html.js-scroll-motion [data-scroll-reveal]{
+  opacity:0;
+  transform:translate3d(0,22px,0);
+  transition:opacity .72s cubic-bezier(.2,.7,.2,1),transform .72s cubic-bezier(.2,.7,.2,1);
+  transition-delay:var(--reveal-delay,0ms);
+  will-change:opacity,transform;
+}
+html.js-scroll-motion [data-scroll-reveal].is-in-view{opacity:1;transform:translate3d(0,0,0)}
+html.js-scroll-motion [data-scroll-reveal="left"]{transform:translate3d(-24px,0,0)}
+html.js-scroll-motion [data-scroll-reveal="right"]{transform:translate3d(24px,0,0)}
+html.js-scroll-motion [data-scroll-reveal="scale"]{transform:translate3d(0,14px,0) scale(.985)}
+html.js-scroll-motion [data-scroll-reveal="left"].is-in-view,
+html.js-scroll-motion [data-scroll-reveal="right"].is-in-view,
+html.js-scroll-motion [data-scroll-reveal="scale"].is-in-view{transform:translate3d(0,0,0) scale(1)}
+@media(prefers-reduced-motion:reduce){
+ html.js-scroll-motion [data-scroll-reveal],html.js-scroll-motion [data-scroll-reveal].is-in-view{opacity:1!important;transform:none!important;transition:none!important;will-change:auto!important}
+}
