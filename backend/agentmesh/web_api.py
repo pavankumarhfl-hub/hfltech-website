@@ -40,6 +40,17 @@ SYSTEM_PROMPT = os.getenv(
 )
 
 app = FastAPI(title=APP_NAME, version="0.3.0", docs_url=None, redoc_url=None, openapi_url=None)
+
+
+@app.get("/")
+def api_root() -> dict[str, Any]:
+    return {"service": APP_NAME, "status": "ok", "version": "0.3.0", "docs": "disabled"}
+
+
+@app.get("/health")
+def health() -> dict[str, str]:
+    return {"status": "ok"}
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=ALLOWED_ORIGINS,
