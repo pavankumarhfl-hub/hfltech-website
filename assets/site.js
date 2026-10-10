@@ -63,3 +63,27 @@ nodes.forEach((b,i)=>b.addEventListener('click',()=>select(i)));tabs.forEach((b,
 const run=document.getElementById('mesh-run');run.addEventListener('click',()=>{if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){select(5);return}scene.classList.remove('is-running');void scene.offsetWidth;scene.classList.add('is-running');let n=0;select(0);run.disabled=true;run.textContent='Sequence running…';const tick=()=>{n++;if(n<stages.length){select(n);setTimeout(tick,520)}else{run.disabled=false;run.innerHTML='Run again <span>↗</span>';setTimeout(()=>scene.classList.remove('is-running'),800)}};setTimeout(tick,520)});
 select(0);
 })();
+
+
+(()=> {
+  const footer=document.querySelector('footer.footer, footer.site-footer, footer');
+  if(!footer || footer.dataset.compactFooter==='true') return;
+  footer.dataset.compactFooter='true';
+  footer.innerHTML=`<div class="wrap compact-footer">
+    <div class="compact-footer-main">
+      <a class="brand" href="/" aria-label="HFL Tech home"><span class="brand-mark" aria-hidden="true"></span><span>HFL Tech</span></a>
+      <nav class="compact-footer-links" aria-label="Footer navigation">
+        <a href="agentmesh.html">AgentMesh</a>
+        <a href="evidence.html">Evidence</a>
+        <a href="docs.html">Docs</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
+        <a href="ecosystem.html">HFL ecosystem <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+    <div class="compact-footer-bottom"><span>© 2026 HFL Tech Private Limited</span><span><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></span></div>
+  </div>`;
+  const style=document.createElement('style');
+  style.textContent=`.compact-footer{padding-top:28px;padding-bottom:20px}.compact-footer-main{display:flex;align-items:flex-start;justify-content:space-between;gap:28px;flex-wrap:wrap}.compact-footer .brand{display:inline-flex;align-items:center;gap:9px;color:var(--text,#eceff3);text-decoration:none;font-weight:650}.compact-footer-links{display:flex;gap:10px 22px;align-items:center;justify-content:flex-end;flex-wrap:wrap}.compact-footer-links a,.compact-footer-bottom a{color:var(--muted,#9aa4b2);text-decoration:none;font-size:13px;line-height:1.5}.compact-footer-links a:hover,.compact-footer-bottom a:hover{color:var(--text,#eceff3)}.compact-footer-bottom{margin-top:22px;padding-top:14px;border-top:1px solid var(--border,#232a33);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--muted,#9aa4b2);font-size:12px}.compact-footer-bottom span:last-child{display:flex;gap:18px}@media(max-width:640px){.compact-footer{padding-top:22px}.compact-footer-main{display:block}.compact-footer-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px;margin-top:22px;justify-content:stretch}.compact-footer-links a{font-size:14px;min-height:32px;display:flex;align-items:center}.compact-footer-bottom{margin-top:16px}.compact-footer-bottom span:first-child{width:100%}}`;
+  document.head.appendChild(style);
+})();
