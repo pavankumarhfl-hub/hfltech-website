@@ -77,6 +77,8 @@ class LoginRequest(BaseModel):
 
 class ResetRequest(BaseModel):
     email: str = Field(min_length=5, max_length=254)
+
+
 class ContactRequest(BaseModel):
     name: str = Field(min_length=2, max_length=120)
     email: str = Field(min_length=5, max_length=254)
