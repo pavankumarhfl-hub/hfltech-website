@@ -83,3 +83,31 @@ html{scroll-padding-top:80px!important}
  header.nav .actions .button{max-width:118px!important;font-size:10px!important;padding-inline:7px!important}
  header.nav .mobile-btn{width:36px!important;height:36px!important}
 }
+
+
+/* HFL Tech mobile header: deterministic single-row layout; no wrapping under translated or enlarged text. */
+@media(max-width:960px){
+  html body header.nav{position:fixed!important;inset:0 0 auto!important;height:68px!important;min-height:68px!important;max-height:68px!important;z-index:9990!important;overflow:visible!important}
+  html body header.nav .nav-in{box-sizing:border-box!important;width:100%!important;height:68px!important;min-height:68px!important;padding:0 16px!important;margin:0!important;display:flex!important;flex-flow:row nowrap!important;align-items:center!important;justify-content:space-between!important;gap:10px!important}
+  html body header.nav .brand{display:flex!important;flex:0 1 auto!important;min-width:0!important;width:auto!important;max-width:35%!important;overflow:hidden!important;white-space:nowrap!important;font-size:14px!important}
+  html body header.nav .links{display:none!important}
+  html body header.nav .actions{display:flex!important;flex:0 0 auto!important;flex-flow:row nowrap!important;align-items:center!important;justify-content:flex-end!important;gap:8px!important;min-width:0!important;margin:0!important}
+  html body header.nav .actions .button{display:inline-flex!important;flex:0 1 auto!important;align-items:center!important;justify-content:center!important;width:auto!important;min-width:0!important;max-width:min(42vw,168px)!important;min-height:40px!important;padding:6px 10px!important;font-size:clamp(10px,2.8vw,12px)!important;line-height:1.1!important;white-space:normal!important;text-align:center!important}
+  html body header.nav .mobile-btn{display:inline-flex!important;flex:0 0 40px!important;align-items:center!important;justify-content:center!important;width:40px!important;height:40px!important;min-width:40px!important;margin:0!important;padding:0!important}
+  html body header.nav .mobile-pop{position:absolute!important;top:68px!important;left:12px!important;right:12px!important;z-index:9992!important;max-height:calc(100dvh - 84px)!important;overflow:auto!important}
+  html body main{padding-top:0!important}
+  html body .page-hero,html body .hero,html body .home-hero,html body .home-hero-3d{scroll-margin-top:76px!important}
+  html{scroll-padding-top:76px!important}
+}
+@media(max-width:360px){
+  html body header.nav .nav-in{padding-inline:10px!important;gap:6px!important}
+  html body header.nav .brand{max-width:31%!important;font-size:12px!important}
+  html body header.nav .actions{gap:5px!important}
+  html body header.nav .actions .button{max-width:39vw!important;padding-inline:7px!important;font-size:10px!important}
+  html body header.nav .mobile-btn{flex-basis:36px!important;width:36px!important;min-width:36px!important;height:36px!important}
+}
+@media(min-width:961px){
+  html body header.nav .nav-in{display:flex!important;flex-flow:row nowrap!important}
+  html body header.nav .brand{max-width:none!important}
+  html body header.nav .actions{display:flex!important}
+}
