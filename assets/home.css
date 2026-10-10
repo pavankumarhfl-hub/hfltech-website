@@ -13,3 +13,12 @@ header.nav .actions .button{white-space:nowrap!important;min-height:40px!importa
 header.nav .mobile-pop{z-index:1002!important;max-height:calc(100dvh - 84px);overflow:auto}
 @media(max-width:960px){header.nav .links{display:none!important}header.nav .mobile-btn{display:inline-grid!important;place-items:center!important;flex:0 0 40px!important}header.nav .actions .ghost{display:none!important}header.nav .actions .button{min-height:38px!important;padding:0 10px!important;font-size:11px!important}header.nav .nav-in{gap:10px!important}header.nav .brand{min-width:0!important;flex:1 1 auto!important}}
 @media(max-width:480px){header.nav .actions{gap:8px!important}header.nav .actions .button{max-width:126px!important;white-space:normal!important;line-height:1.15!important;text-align:center!important;padding:5px 8px!important}header.nav .mobile-btn{width:38px!important;height:38px!important}}
+
+/* Launch-readiness polish: consistent keyboard focus, less motion when requested, and clearer product-state labels. */
+:where(a,button,input,textarea,select,[tabindex]):focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:4px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+.home-eyebrow{letter-spacing:.015em}
+.home-hero p{max-width:690px}
+.home-product-bar span:last-child{font-size:10px}
+.home-final .home-actions{gap:14px}
+@media(max-width:640px){.home-product-bar{align-items:flex-start;flex-direction:column;gap:5px}.home-product-bar span:last-child{line-height:1.5}.home-final .home-actions{flex-direction:column;align-items:stretch}.home-final .home-actions>*{width:100%;max-width:320px;margin-inline:auto}}
