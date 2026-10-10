@@ -51,3 +51,10 @@ header.nav .dropdown a:hover,header.nav .mobile-pop a:hover{background:rgba(145,
 @media(max-width:960px){header.nav .links{display:none!important}header.nav .mobile-btn{display:inline-grid!important;place-items:center!important}header.nav .actions .ghost{display:none!important}header.nav .brand{min-width:max-content!important}}
 @media(max-width:640px){.wrap{width:min(calc(100% - 30px),var(--hfl-content))!important}header.nav{height:64px!important}header.nav .nav-in{gap:10px!important}.brand-logo{width:29px;height:29px;flex-basis:29px}.brand{font-size:13px!important}.page-hero{padding-top:112px!important;padding-bottom:56px!important}.page-hero h1,.hero h1{font-size:clamp(39px,11vw,54px)!important;line-height:1.02!important}.section{padding:58px 0!important}.feature,.feature.reverse{padding:58px 0!important}.grid3,.page-grid,.grid{grid-template-columns:1fr!important;gap:12px!important}.footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:22px 16px!important}.footer-brand{grid-column:1/-1}.legal{gap:10px}.home-hero-3d{min-height:auto}.home-hero-layout{gap:32px!important}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+/* Homepage spacing correction: keep the first meaningful content near the navigation. */
+.home-hero-3d{min-height:0!important;align-items:center!important;padding-block:clamp(52px,6.5vw,88px)!important}
+.home-hero-layout{margin-top:0!important;margin-bottom:0!important}
+.home-hero-3d .wrap,.home-hero-3d .home-hero-layout{min-height:0!important}
+@media(min-width:961px){.home-hero-3d{padding-block:clamp(56px,6vw,84px)!important}}
+@media(max-width:640px){.home-hero-3d{padding-block:42px 54px!important}.home-hero-layout{gap:28px!important}}
