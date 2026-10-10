@@ -9,7 +9,7 @@
   document.querySelectorAll('.pill-btn').forEach(b=>b.addEventListener('click',()=>document.getElementById(b.dataset.target)?.classList.toggle('open')));
   if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');io.unobserve(e.target)}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(x=>io.observe(x));}else document.querySelectorAll('.reveal').forEach(x=>x.classList.add('revealed'));
   document.querySelectorAll('form[data-demo-form]').forEach(form=>form.addEventListener('submit',e=>{e.preventDefault();form.hidden=true;document.querySelector(form.dataset.demoForm)?.removeAttribute('hidden')}));
-  document.querySelectorAll('.brand').forEach(el=>{el.replaceChildren(document.createTextNode('HFL Tech'));el.setAttribute('aria-label','HFL Tech home');});if(!document.querySelector('link[data-hfl-site-polish]')){const polish=document.createElement('link');polish.rel='stylesheet';polish.href='/assets/site-wide-polish.css?v=20261010-v6';polish.dataset.hflSitePolish='true';document.head.appendChild(polish);}
+  document.querySelectorAll('.brand').forEach(el=>{el.replaceChildren(document.createTextNode('HFL Tech'));el.setAttribute('aria-label','HFL Tech home');});if(!document.querySelector('link[data-hfl-site-polish]')){const polish=document.createElement('link');polish.rel='stylesheet';polish.href='/assets/site-wide-polish.css?v=20261010-v7';polish.dataset.hflSitePolish='true';document.head.appendChild(polish);}
 })();
 
 (function(){
