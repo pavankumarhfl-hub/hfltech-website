@@ -196,6 +196,83 @@ def _google_profile(credential: str) -> dict[str, Any]:
     name = str(data.get("name") or data.get("given_name") or email.split("@", 1)[0]).strip()[:120]
     return {"email": email, "name": name, "google_sub": str(data.get("sub", "")), "picture": data.get("picture", "")}
 
+@app.get("/auth/google/config")
+def google_config() -> dict[str, Any]:
+    return {"enabled": bool(GOOGLE_CLIENT_ID), "client_id": GOOGLE_CLIENT_ID if GOOGLE_CLIENT_ID else None}
+
+
+@app.post("/auth/signup")
+def signup(payload: SignupRequest, request: Request) -> dict[str, Any]:
+    _check_rate_limit(request.client.host if request.client else "unknown")
+    email = _normalize_email(payload.email)
+    name = payload.name.strip()
+    if len(name) < 2:
+        raise HTTPException(status_code=400, detail="Enter your full name.")
+    with _accounts_lock:
+        if email in _accounts:
+            raise HTTPException(status_code=409, detail="An account with this email already exists.")
+        _accounts[email] = {"email": email, "name": name[:120], "password_hash": _hash_password(payload.password), "created_at": int(time.time()), "auth_provider": "password"}
+    token = _new_account_session(email)
+    return {"token": token, "redirect": "account.html", "name": name, "email": email}
+
+
+@app.post("/auth/login")
+def login(payload: LoginRequest, request: Request) -> dict[str, Any]:
+    _check_rate_limit(request.client.host if request.client else "unknown")
+    email = _normalize_email(payload.email)
+    with _accounts_lock:
+        account = _accounts.get(email)
+        stored = account.get("password_hash", "") if account else ""
+    if not account or not _verify_password(payload.password, stored):
+        raise HTTPException(status_code=401, detail="Email or password is incorrect.")
+    token = _new_account_session(email)
+    return {"token": token, "redirect": "account.html", "name": account.get("name", ""), "email": email}
+
+
+@app.post("/auth/reset")
+def reset_password(payload: ResetRequest, request: Request) -> dict[str, Any]:
+    _check_rate_limit(request.client.host if request.client else "unknown")
+    _normalize_email(payload.email)
+    # Email delivery and secure, expiring reset tokens must be configured before
+    # password resets can be activated. Always return a generic acknowledgement.
+    return {"accepted": True, "message": "If an account exists, recovery instructions will be provided when email delivery is enabled."}
+
+
+@app.get("/auth/me")
+def auth_me(request: Request) -> dict[str, Any]:
+    account = _account_from_request(request)
+    if not account:
+        return {"authenticated": False}
+    return {"authenticated": True, "name": account.get("name", ""), "email": account.get("email", "")}
+
+
+@app.post("/auth/logout")
+def logout(request: Request) -> dict[str, Any]:
+    token = request.headers.get("Authorization", "")
+    if token.lower().startswith("bearer "):
+        token = token[7:].strip()
+    if token:
+        with _accounts_lock:
+            _account_sessions.pop(token, None)
+    return {"ok": True}
+
+
+@app.post("/auth/google/verify")
+def google_verify(payload: GoogleCredentialRequest, request: Request) -> dict[str, Any]:
+    _check_rate_limit(request.client.host if request.client else "unknown")
+    profile = _google_profile(payload.credential)
+    email = profile["email"]
+    with _accounts_lock:
+        account = _accounts.get(email)
+        if account and account.get("google_sub") and account["google_sub"] != profile["google_sub"]:
+            raise HTTPException(status_code=409, detail="This account is linked to a different Google identity.")
+        if not account:
+            account = {"email": email, "name": profile["name"], "created_at": int(time.time()), "auth_provider": "google"}
+            _accounts[email] = account
+        account["google_sub"] = profile["google_sub"]
+    token = _new_account_session(email)
+    return {"token": token, "redirect": "account.html", "name": profile["name"], "email": email}
+
 
 @app.post("/contact")
 def contact(payload: ContactRequest, request: Request) -> dict[str, Any]:
