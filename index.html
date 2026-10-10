@@ -41,11 +41,30 @@
 <a class="skip" href="#content">Skip to content</a>
 <header class="nav"></header>
 <main id="content">
-<section class="home-hero"><div class="wrap">
-<div class="home-eyebrow"><i></i> AgentMesh · Early access</div>
-<h1>AI workflows with purpose.<br><span>People stay in control.</span></h1>
-<p>We’re building AgentMesh around a practical idea: give AI workflows the right context, connect only authorised tools, and keep consequential actions reviewable by people.</p>
-<div class="home-actions"><a class="button" href="contact.html?topic=early-access">Request early access <span aria-hidden="true">→</span></a><a class="link" href="evidence.html">See the current product <span aria-hidden="true">↗</span></a></div>
+<section class="home-hero home-hero-3d"><div class="wrap home-hero-layout">
+<div class="home-hero-copy">
+<div class="home-eyebrow"><i></i> AgentMesh <span class="hero-eyebrow-divider">/</span> Early access</div>
+<h1>Make AI work<br><span>feel extraordinary.</span></h1>
+<p>Build workflows with context, connected tools and human control. AgentMesh is HFL Tech’s early-stage vision for AI that does more than chat.</p>
+<div class="home-actions"><a class="button" href="contact.html?topic=early-access">Explore early access <span aria-hidden="true">→</span></a><a class="link" href="evidence.html">See what exists today <span aria-hidden="true">↗</span></a></div>
+<div class="hero-trustline"><span><i></i> Human-directed</span><span><i></i> Tool-aware</span><span><i></i> Built for clarity</span></div>
+</div>
+<div class="hero-scene-wrap">
+<div class="hero-scene-label"><span>AGENTMESH / SYSTEM VIEW</span><span class="hero-scene-live"><i></i> CONCEPT PREVIEW</span></div>
+<div class="hero-scene" id="hero-scene" aria-label="Interactive illustration of an AI agent network" role="group">
+<div class="hero-scene-grid"></div><div class="hero-scene-glow"></div>
+<div class="hero-scene-orbit hero-orbit-1"></div><div class="hero-scene-orbit hero-orbit-2"></div><div class="hero-scene-orbit hero-orbit-3"></div>
+<svg class="hero-scene-wires" viewBox="0 0 600 540" aria-hidden="true"><path d="M300 270 L150 150 M300 270 L450 145 M300 270 L480 320 M300 270 L385 435 M300 270 L150 390 M300 270 L110 275"/><path class="hero-wire-dash" d="M150 150 L450 145 L480 320 L385 435 L150 390 L110 275 Z"/><circle cx="300" cy="270" r="5"/><circle cx="150" cy="150" r="3"/><circle cx="450" cy="145" r="3"/><circle cx="480" cy="320" r="3"/><circle cx="385" cy="435" r="3"/><circle cx="150" cy="390" r="3"/><circle cx="110" cy="275" r="3"/></svg>
+<div class="hero-core"><div class="hero-core-ring"></div><div class="hero-core-ring ring-two"></div><div class="hero-core-face"><span class="hero-core-mark">A<span>·</span>M</span><small>AGENTMESH</small></div></div>
+<button class="hero-node hero-node-context" type="button" data-node="context" aria-pressed="true"><span class="hero-node-icon">◈</span><span><small>01 / INPUT</small><b>Context</b><em>Goals &amp; sources</em></span></button>
+<button class="hero-node hero-node-tools" type="button" data-node="tools" aria-pressed="false"><span class="hero-node-icon">⌘</span><span><small>02 / CONNECT</small><b>Tools</b><em>Scoped access</em></span></button>
+<button class="hero-node hero-node-review" type="button" data-node="review" aria-pressed="false"><span class="hero-node-icon">✓</span><span><small>03 / CONTROL</small><b>Human review</b><em>Approval gates</em></span></button>
+<button class="hero-node hero-node-plan" type="button" data-node="plan" aria-pressed="false"><span class="hero-node-icon">↗</span><span><small>04 / ORCHESTRATE</small><b>Plan</b><em>Steps &amp; trace</em></span></button>
+<div class="hero-scene-caption" aria-live="polite"><span class="hero-caption-dot"></span><span id="hero-node-caption">Context comes first. Define the task before taking action.</span></div>
+<div class="hero-scene-index">01 <span>/</span> 04</div>
+</div>
+<div class="hero-scene-foot"><span>INTERACTIVE SYSTEM MAP</span><span>SELECT A NODE TO EXPLORE</span></div>
+</div>
 </div></section>
 <section class="home-product" aria-label="Illustrative AgentMesh interface"><div class="wrap">
 <div class="home-product-frame"><div class="home-product-bar"><span>AgentMesh / Workspace</span><span>Illustrative interface · Not a benchmark</span></div>
@@ -79,4 +98,6 @@
 <div class="hfl-footer-col"><h3>Trust & legal</h3><a href="trust-center.html">Trust Center</a><a href="security.html">Security</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="legal/cookies.html">Cookies</a><a href="legal/acceptable-use.html">Acceptable use</a></div>
 </div>
 <div class="hfl-footer-bottom"><span>© 2026 HFL Tech Private Limited</span><span>Built in India. For work that matters.</span><a href="ecosystem.html">Explore the HFL ecosystem ↗</a></div>
-</div></footer><script src="assets/site.js" defer></script></body>
+</div></footer><script>
+(()=>{const scene=document.getElementById('hero-scene');if(!scene)return;const copy={context:'Context comes first. Define the task before taking action.',tools:'Connect only the tools and permissions the workflow needs.',review:'Keep consequential actions visible and reviewable by people.',plan:'Turn the objective into steps that can be inspected.'};const caption=document.getElementById('hero-node-caption');const nodes=[...scene.querySelectorAll('[data-node]')];nodes.forEach(node=>node.addEventListener('click',()=>{nodes.forEach(n=>{const active=n===node;n.classList.toggle('is-selected',active);n.setAttribute('aria-pressed',String(active));});caption.textContent=copy[node.dataset.node]||copy.context;}));if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches&&window.matchMedia('(pointer:fine)').matches){scene.addEventListener('pointermove',e=>{const r=scene.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;scene.style.setProperty('--pointer-x',(x*12).toFixed(2)+'deg');scene.style.setProperty('--pointer-y',(-y*10).toFixed(2)+'deg');});scene.addEventListener('pointerleave',()=>{scene.style.setProperty('--pointer-x','0deg');scene.style.setProperty('--pointer-y','0deg');});}})();
+</script><script src="assets/site.js" defer></script></body>
