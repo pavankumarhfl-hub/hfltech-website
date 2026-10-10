@@ -1,4 +1,5 @@
 const API = window.HFL_AUTH_API || "https://agentmesh-hfltech-api.onrender.com";
+const PUBLIC_ACCOUNT_ACCESS_ENABLED = false;
 const qs = new URLSearchParams(location.search);
 let mode = qs.get("mode") || "login";
 const $ = id => document.getElementById(id);
@@ -17,6 +18,17 @@ function render() {
   submit.innerHTML = (signup ? "Create account" : reset ? "Send reset link" : "Sign in") + ' <span>→</span>';
   switcher.innerHTML = reset ? 'Remember your password? <a href="?mode=login">Sign in</a>' : signup ? 'Already have an account? <a href="?mode=login">Sign in</a>' : 'New to HFL Tech? <a href="?mode=signup">Create an account</a>';
   document.title = (signup ? "Create account" : reset ? "Reset password" : "Sign in") + " — HFL Tech";
+  if (!PUBLIC_ACCOUNT_ACCESS_ENABLED) {
+    form.hidden = true;
+    google.hidden = true;
+    document.querySelector(".divider").hidden = true;
+    title.textContent = "Early access is invite-only";
+    subtitle.textContent = "Public account creation and sign-in will open after persistent account storage and recovery are production-ready.";
+    eyebrow.textContent = "EARLY ACCESS";
+    switcher.hidden = false;
+    switcher.innerHTML = 'Request early access through <a href="contact.html?topic=early-access">HFL Tech contact</a>.';
+    document.title = "Request Early Access — HFL Tech";
+  }
 }
 
 function showError(msg) { error.textContent = msg; error.hidden = false; }
