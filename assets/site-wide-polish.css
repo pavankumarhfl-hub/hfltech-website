@@ -58,3 +58,28 @@ header.nav .dropdown a:hover,header.nav .mobile-pop a:hover{background:rgba(145,
 .home-hero-3d .wrap,.home-hero-3d .home-hero-layout{min-height:0!important}
 @media(min-width:961px){.home-hero-3d{padding-block:clamp(56px,6vw,84px)!important}}
 @media(max-width:640px){.home-hero-3d{padding-block:42px 54px!important}.home-hero-layout{gap:28px!important}}
+
+
+/* Mobile header repair: keep the fixed navigation on one row and reserve space below it. */
+header.nav{position:fixed!important;top:0!important;left:0!important;right:0!important;height:64px!important;min-height:64px!important;z-index:9990!important}
+header.nav .nav-in{height:64px!important;min-height:64px!important;display:grid!important;grid-template-columns:minmax(0,1fr) auto auto!important;align-items:center!important;gap:10px!important;padding-block:0!important}
+header.nav .brand{display:inline-flex!important;grid-column:1!important;grid-row:1!important;min-width:0!important;width:max-content!important;max-width:100%!important;white-space:nowrap!important;overflow:hidden!important}
+header.nav .actions{display:contents!important}
+header.nav .actions .button{grid-column:2!important;grid-row:1!important;justify-self:end!important;display:inline-flex!important;width:auto!important;max-width:148px!important;min-width:0!important;min-height:38px!important;padding:0 10px!important;font-size:11px!important;white-space:normal!important;text-align:center!important;line-height:1.15!important}
+header.nav .mobile-btn{grid-column:3!important;grid-row:1!important;display:inline-grid!important;place-items:center!important;width:40px!important;height:40px!important;margin:0!important}
+header.nav .links{display:none!important}
+header.nav .mobile-pop{position:absolute!important;top:64px!important;left:12px!important;right:12px!important;z-index:9992!important;max-height:calc(100dvh - 80px)!important;overflow:auto!important}
+html{scroll-padding-top:80px!important}
+@media(min-width:961px){
+ header.nav{height:64px!important;min-height:64px!important}
+ header.nav .nav-in{display:flex!important;height:64px!important}
+ header.nav .actions{display:flex!important}
+ header.nav .actions .button{max-width:none!important;min-height:40px!important;padding-inline:15px!important;font-size:12px!important}
+ header.nav .mobile-btn{display:none!important}
+ header.nav .links{display:flex!important}
+}
+@media(max-width:380px){
+ header.nav .nav-in{grid-template-columns:minmax(0,1fr) auto auto!important;gap:6px!important}
+ header.nav .actions .button{max-width:118px!important;font-size:10px!important;padding-inline:7px!important}
+ header.nav .mobile-btn{width:36px!important;height:36px!important}
+}
