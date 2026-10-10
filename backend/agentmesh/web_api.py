@@ -249,7 +249,7 @@ def chat_stream(payload: ChatRequest, request: Request) -> StreamingResponse:
         chunk_size = 48
         for i in range(0, len(result.content), chunk_size):
             chunk = result.content[i:i + chunk_size].replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n")
-            yield f'data: {{"type":"delta","text":"{chunk}"}}\\n\\n'
-        yield f'data: {{"type":"done","session_id":"{session_id}","run_id":"{result.run_id}"}}\\n\\n'
+            yield f'data: {{"type":"delta","text":"{chunk}"}}\n\n'
+        yield f'data: {{"type":"done","session_id":"{session_id}","run_id":"{result.run_id}"}}\n\n'
 
     return StreamingResponse(events(), media_type="text/event-stream", headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
