@@ -28,6 +28,8 @@ from .runtime import Agent, AgentConfig
 from .tools import ToolRegistry
 
 APP_NAME = "AgentMesh API"
+# Public accounts stay disabled until durable database-backed identity is deployed.
+ACCOUNT_STORAGE_READY = False
 ALLOWED_ORIGINS = [x.strip() for x in os.getenv("AGENTMESH_ALLOWED_ORIGINS", "https://hfltech.in,https://www.hfltech.in").split(",") if x.strip()]
 MODEL = os.getenv("AGENTMESH_MODEL", "gpt-5.6-luna")
 BASE_URL = os.getenv("AGENTMESH_BASE_URL", "https://api.openai.com/v1")
@@ -90,6 +92,11 @@ class ContactRequest(BaseModel):
 
 class GoogleCredentialRequest(BaseModel):
     credential: str = Field(min_length=20, max_length=20000)
+
+
+def _require_account_storage() -> None:
+    if not ACCOUNT_STORAGE_READY:
+        raise HTTPException(status_code=503, detail="Public account access is not enabled while persistent storage is being configured. Please request early access through the HFL Tech contact page.")
 
 
 def _check_rate_limit(client_id: str) -> None:
@@ -205,6 +212,7 @@ def google_config() -> dict[str, Any]:
 
 @app.post("/auth/signup")
 def signup(payload: SignupRequest, request: Request) -> dict[str, Any]:
+    _require_account_storage()
     _check_rate_limit(request.client.host if request.client else "unknown")
     email = _normalize_email(payload.email)
     name = payload.name.strip()
@@ -220,6 +228,7 @@ def signup(payload: SignupRequest, request: Request) -> dict[str, Any]:
 
 @app.post("/auth/login")
 def login(payload: LoginRequest, request: Request) -> dict[str, Any]:
+    _require_account_storage()
     _check_rate_limit(request.client.host if request.client else "unknown")
     email = _normalize_email(payload.email)
     with _accounts_lock:
@@ -233,6 +242,7 @@ def login(payload: LoginRequest, request: Request) -> dict[str, Any]:
 
 @app.post("/auth/reset")
 def reset_password(payload: ResetRequest, request: Request) -> dict[str, Any]:
+    _require_account_storage()
     _check_rate_limit(request.client.host if request.client else "unknown")
     _normalize_email(payload.email)
     # Email delivery and secure, expiring reset tokens must be configured before
@@ -242,6 +252,7 @@ def reset_password(payload: ResetRequest, request: Request) -> dict[str, Any]:
 
 @app.get("/auth/me")
 def auth_me(request: Request) -> dict[str, Any]:
+    _require_account_storage()
     account = _account_from_request(request)
     if not account:
         return {"authenticated": False}
@@ -250,6 +261,7 @@ def auth_me(request: Request) -> dict[str, Any]:
 
 @app.post("/auth/logout")
 def logout(request: Request) -> dict[str, Any]:
+    _require_account_storage()
     token = request.headers.get("Authorization", "")
     if token.lower().startswith("bearer "):
         token = token[7:].strip()
@@ -261,6 +273,7 @@ def logout(request: Request) -> dict[str, Any]:
 
 @app.post("/auth/google/verify")
 def google_verify(payload: GoogleCredentialRequest, request: Request) -> dict[str, Any]:
+    _require_account_storage()
     _check_rate_limit(request.client.host if request.client else "unknown")
     profile = _google_profile(payload.credential)
     email = profile["email"]
