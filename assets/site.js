@@ -9,7 +9,7 @@
   document.querySelectorAll('.pill-btn').forEach(b=>b.addEventListener('click',()=>document.getElementById(b.dataset.target)?.classList.toggle('open')));
   if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');io.unobserve(e.target)}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(x=>io.observe(x));}else document.querySelectorAll('.reveal').forEach(x=>x.classList.add('revealed'));
   document.querySelectorAll('form[data-demo-form]').forEach(form=>form.addEventListener('submit',e=>{e.preventDefault();form.hidden=true;document.querySelector(form.dataset.demoForm)?.removeAttribute('hidden')}));
-  document.querySelectorAll('.brand').forEach(el=>{const mark=el.querySelector('.brand-mark');const word=el.querySelector('span:not(.brand-mark)');if(mark&&word){mark.textContent='';mark.setAttribute('aria-hidden','true');word.textContent='HFL Tech'}});
+  document.querySelectorAll('.brand').forEach(el=>{if(!el.querySelector('.brand-logo')){const mark=document.createElement('img');mark.className='brand-logo';mark.src='/assets/hfl-mark.svg';mark.alt='';mark.width=32;mark.height=32;mark.decoding='async';const word=document.createElement('span');word.className='brand-name';word.textContent='HFL Tech';el.replaceChildren(mark,word);el.setAttribute('aria-label','HFL Tech home');}});if(!document.querySelector('link[data-hfl-site-polish]')){const polish=document.createElement('link');polish.rel='stylesheet';polish.href='/assets/site-wide-polish.css';polish.dataset.hflSitePolish='true';document.head.appendChild(polish);}
 })();
 
 (function(){
