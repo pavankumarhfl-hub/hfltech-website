@@ -102,3 +102,25 @@ select(0);
   style.textContent=`.compact-footer{padding-top:28px;padding-bottom:20px}.compact-footer-main{display:flex;align-items:flex-start;justify-content:space-between;gap:28px;flex-wrap:wrap}.compact-footer .brand{display:inline-flex;align-items:center;gap:9px;color:var(--text,#eceff3);text-decoration:none;font-weight:650}.compact-footer-links{display:flex;gap:10px 22px;align-items:center;justify-content:flex-end;flex-wrap:wrap}.compact-footer-links a,.compact-footer-bottom a{color:var(--muted,#9aa4b2);text-decoration:none;font-size:13px;line-height:1.5}.compact-footer-links a:hover,.compact-footer-bottom a:hover{color:var(--text,#eceff3)}.compact-footer-bottom{margin-top:22px;padding-top:14px;border-top:1px solid var(--border,#232a33);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--muted,#9aa4b2);font-size:12px}.compact-footer-bottom span:last-child{display:flex;gap:18px}@media(max-width:640px){.compact-footer{padding-top:22px}.compact-footer-main{display:block}.compact-footer-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px;margin-top:22px;justify-content:stretch}.compact-footer-links a{font-size:14px;min-height:32px;display:flex;align-items:center}.compact-footer-bottom{margin-top:16px}.compact-footer-bottom span:first-child{width:100%}}`;
   document.head.appendChild(style);
 })();
+
+/* Global usability helpers: mobile navigation for legacy headers, current year, and favicon. */
+(()=> {
+  if(!document.querySelector('link[rel="icon"]')){
+    const icon=document.createElement('link');icon.rel='icon';icon.type='image/svg+xml';icon.href='/favicon.svg';document.head.appendChild(icon);
+  }
+  document.querySelectorAll('footer').forEach(footer=>{
+    footer.querySelectorAll('*').forEach(el=>{
+      if(el.children.length===0 && /©\\s*20\\d{2}/.test(el.textContent)) el.textContent=el.textContent.replace(/©\\s*20\\d{2}/,'© '+new Date().getFullYear());
+    });
+  });
+  document.querySelectorAll('header.site-header, header:not(.nav)').forEach(header=>{
+    const nav=header.querySelector('nav');if(!nav||header.querySelector('.mobile-btn'))return;
+    const button=document.createElement('button');button.type='button';button.className='mobile-btn';button.setAttribute('aria-label','Open navigation');button.setAttribute('aria-expanded','false');button.textContent='☰';
+    const pop=document.createElement('nav');pop.className='mobile-pop';pop.hidden=true;pop.setAttribute('aria-label','Mobile navigation');
+    [...nav.querySelectorAll('a[href]')].forEach(a=>{const clone=a.cloneNode(true);pop.appendChild(clone)});
+    const parent=nav.parentElement||header;parent.appendChild(button);header.appendChild(pop);
+    button.addEventListener('click',()=>{pop.hidden=!pop.hidden;button.setAttribute('aria-expanded',String(!pop.hidden));button.setAttribute('aria-label',pop.hidden?'Open navigation':'Close navigation');button.textContent=pop.hidden?'☰':'×'});
+    pop.addEventListener('click',e=>{if(e.target.closest('a')){pop.hidden=true;button.setAttribute('aria-expanded','false');button.setAttribute('aria-label','Open navigation');button.textContent='☰'}});
+  });
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.mobile-pop').forEach(p=>p.hidden=true);document.querySelectorAll('.mobile-btn').forEach(b=>{b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','Open navigation');b.textContent='☰'});document.querySelectorAll('.dropdown').forEach(p=>p.hidden=true)}});
+})();
