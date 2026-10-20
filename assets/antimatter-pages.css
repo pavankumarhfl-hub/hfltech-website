@@ -339,3 +339,16 @@ body.cine-ready .robotics-scene-hero,body.cine-ready .robotics-hero{overflow:hid
 .cine-scene-wipe.is-entering{transform:scaleY(0);transform-origin:top}
 @media(max-width:760px){.cine-launch-fx{opacity:.42;mask-image:linear-gradient(180deg,transparent 10%,#000 65%)}.cine-launch-fx:before{right:12%;height:45%;width:110px}.cine-launch-fx:after{right:calc(12% + 20px);height:32%}.cine-smoke{right:3%;height:35%;opacity:.28}.cine-robotics-fx{opacity:.32}.cine-robotics-fx:before{right:-20%;top:18%;width:220px}.cine-robotics-fx .cine-hud{right:2%;top:25%;width:120px;height:200px}.cine-scene-wipe{transition-duration:450ms}}
 @media(prefers-reduced-motion:reduce){.cine-launch-fx:before,.cine-launch-fx:after,.cine-smoke i,.cine-robotics-fx:before,.cine-robotics-fx:after,.cine-scene-wipe{animation:none!important;transition:none!important}.cine-launch-fx,.cine-smoke,.cine-robotics-fx{opacity:.12}}
+
+
+/* Shared final polish for product and editorial subpages */
+:root{--hfl-reading-width:74ch}
+html{scroll-padding-top:88px}
+main p{max-width:var(--hfl-reading-width);line-height:1.85}
+main h1,main h2,main h3{overflow-wrap:break-word;text-wrap:balance}
+main h1{line-height:1.04;letter-spacing:-.055em}
+main h2{line-height:1.12;letter-spacing:-.04em}
+main h3{line-height:1.22;letter-spacing:-.025em}
+main .lead,main .section-intro{max-width:68ch;line-height:1.85}
+main img,main video{max-width:100%}
+@media(max-width:760px){main p{line-height:1.82}main h1{letter-spacing:-.045em}}
