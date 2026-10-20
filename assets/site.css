@@ -107,3 +107,29 @@ main .hero h1,main .page-hero h1,main .robotics-hero h1,main .founder-hero h1,ma
 .compact-footer-bottom a{color:var(--muted,#9aa4b2);text-decoration:none}
 .compact-footer-bottom span:last-child{display:flex;gap:18px;flex-wrap:wrap}
 @media(max-width:640px){.compact-footer{padding-top:22px}.compact-footer-categories{grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 20px}.compact-footer-categories a{font-size:14px;padding:14px 0}.compact-footer-bottom{margin-top:16px}.compact-footer-bottom span:first-child{width:100%}}
+
+/* Mobile QA pass: prevent footer legal links and page layouts from colliding. */
+html{width:100%;max-width:100%;overflow-x:clip}
+body{width:100%;max-width:100%;overflow-x:clip}
+img,video,canvas,svg,iframe{max-width:100%}
+@media(max-width:640px){
+ .wrap,.container,.shell{width:min(100% - 32px, var(--max,1160px));max-width:100%}
+ .compact-footer{width:100%;min-width:0;padding:22px 0 18px}
+ .compact-footer-categories{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 20px}
+ .compact-footer-categories>a{min-width:0;overflow-wrap:anywhere;padding:14px 0;font-size:14px}
+ .compact-footer-bottom{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;min-width:0}
+ .compact-footer-bottom>span{min-width:0;width:100%}
+ .compact-footer-bottom>span:last-child{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px;align-items:start}
+ .compact-footer-bottom a{display:block;min-width:0;white-space:normal;overflow-wrap:anywhere;line-height:1.55;font-size:12px}
+ .footer-bottom,.footer-legal{min-width:0}
+ .footer-legal{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px!important;align-items:start}
+ .footer-legal a{min-width:0;white-space:normal;overflow-wrap:anywhere;line-height:1.55}
+ .footer-top{min-width:0}
+ .footer-col,.footer-brand{min-width:0;overflow-wrap:anywhere}
+ .footer-bottom{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+}
+@media(max-width:380px){
+ .wrap,.container,.shell{width:calc(100% - 28px)}
+ .compact-footer-categories{column-gap:14px}
+ .compact-footer-bottom>span:last-child,.footer-legal{column-gap:12px!important}
+}
