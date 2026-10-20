@@ -35,3 +35,49 @@
 .topbar.scroll-hidden,header.nav.scroll-hidden,.site-header.scroll-hidden{transform:translateY(-110%)!important}
 @media(prefers-reduced-motion:reduce){.topbar,header.nav,.site-header{transition:none!important}.topbar.scroll-hidden,header.nav.scroll-hidden,.site-header.scroll-hidden{transform:none!important}}
 .story-hero{padding:112px 0 74px;background:radial-gradient(ellipse at 80% 30%,rgba(99,102,241,.12),transparent 45%),#07090c;border-bottom:1px solid var(--line)}.story-hero h1{max-width:850px;font-size:clamp(42px,6vw,72px);line-height:1.02;letter-spacing:-.06em;margin:22px 0}.story-hero .lead{max-width:700px}.story-body{max-width:760px}.story-body h2{font-size:clamp(25px,3.2vw,36px);letter-spacing:-.04em;margin:42px 0 12px}.story-body p{font-size:16px;line-height:1.9;color:var(--muted)}.story-next{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px}@media(max-width:760px){.story-hero{padding:78px 0 52px}.story-body p{font-size:15px}}
+/* HFL editorial storytelling system — replace repeated cards with spacious, scroll-led chapters. */
+:root{--story-rule:rgba(255,255,255,.13);--story-muted:rgba(238,239,245,.72)}
+main .section{padding-block:clamp(68px,9vw,132px)}
+main .section-heading,main .section-head{margin-bottom:clamp(30px,5vw,64px)}
+main .section-heading h2,main .section-head h2{max-width:850px;font-size:clamp(32px,5vw,64px);line-height:1.04;letter-spacing:-.055em}
+main .section-heading>p,main .section-head>p,main .section-intro{max-width:650px;line-height:1.85}
+main .work-grid,main .grid3,main .ecosystem-grid,main .status-grid,main .astra-stories{display:block!important}
+main .work-card,main .grid3>.card,main .ecosystem-grid>.card,main .status-grid>.status-card,main .astra-story{
+ display:grid!important;grid-template-columns:minmax(80px,.28fr) minmax(0,1fr) minmax(150px,.35fr);align-items:center;gap:clamp(18px,4vw,60px);
+ min-height:0!important;padding:clamp(28px,4vw,58px) 0!important;margin:0!important;border:0!important;border-top:1px solid var(--story-rule)!important;border-radius:0!important;background:transparent!important;box-shadow:none!important
+}
+main .work-card:last-child,main .grid3>.card:last-child,main .ecosystem-grid>.card:last-child,main .status-grid>.status-card:last-child,main .astra-story:last-child{border-bottom:1px solid var(--story-rule)!important}
+main .work-art{grid-column:1;grid-row:1 / span 4;width:100%;min-height:120px;aspect-ratio:1.2/1;border-radius:8px}
+main .work-copy{display:contents}
+main .work-topline{grid-column:2;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--story-muted)}
+main .work-card h3,main .grid3>.card h3,main .ecosystem-grid>.card h3,main .status-grid>.status-card h3,main .astra-story h2{grid-column:2;margin:0!important;font-size:clamp(23px,3vw,38px)!important;line-height:1.1;letter-spacing:-.045em}
+main .work-card p,main .grid3>.card p,main .ecosystem-grid>.card p,main .status-grid>.status-card p,main .astra-story p{grid-column:3;margin:0!important;color:var(--story-muted);font-size:14px;line-height:1.85}
+main .work-link,main .grid3>.card a,main .ecosystem-grid>.card a,main .astra-story>a{grid-column:2;justify-self:start;margin-top:4px;color:#a5a6ff;text-decoration:none}
+main .work-link:hover,main .grid3>.card a:hover,main .ecosystem-grid>.card a:hover,main .astra-story>a:hover{color:#fff}
+main .ecosystem-grid>.card p:last-child{grid-column:2;margin-top:10px!important}
+main .status-grid>.status-card .status-label,main .astra-story .step{grid-column:1;grid-row:1 / span 3;align-self:start;font-size:11px;letter-spacing:.12em;color:#a5a6ff}
+main .astra-story h2{grid-column:2}
+main .astra-story p{grid-column:3}
+main .astra-story>a{grid-column:3}
+main .section .feature,main .section .about-panel,main .section .company-meta,main .section .product-layout{background:transparent!important;box-shadow:none!important}
+main .company-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-block:1px solid var(--story-rule)}
+main .company-meta>div{padding:28px 24px 28px 0;border:0!important;border-radius:0!important;background:transparent!important}
+main .company-meta>div+div{border-left:1px solid var(--story-rule)!important;padding-left:24px}
+main .about-signal,main .project-row,main .timeline-pro article,main .robotics-grid article{background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+main .project-stack>.project-row,main .timeline-pro article{border-top:1px solid var(--story-rule)!important;padding:24px 0!important}
+main .robotics-grid{display:block!important}
+main .robotics-grid article{display:grid;grid-template-columns:minmax(180px,.4fr) 1fr;gap:24px;padding:26px 0;border-top:1px solid var(--story-rule)!important}
+main .robotics-grid article:last-child{border-bottom:1px solid var(--story-rule)!important}
+main .final,main .cta{padding-block:clamp(48px,7vw,92px)!important}
+@media(max-width:760px){
+ main .work-card,main .grid3>.card,main .ecosystem-grid>.card,main .status-grid>.status-card,main .astra-story{grid-template-columns:76px minmax(0,1fr)!important;gap:12px 18px;padding:26px 0!important}
+ main .work-art{grid-column:1;grid-row:1 / span 3;min-height:76px;align-self:start}
+ main .work-topline,main .work-card h3,main .grid3>.card h3,main .ecosystem-grid>.card h3,main .status-grid>.status-card h3,main .astra-story h2{grid-column:2}
+ main .work-card p,main .grid3>.card p,main .ecosystem-grid>.card p,main .status-grid>.status-card p,main .astra-story p{grid-column:2}
+ main .work-link,main .grid3>.card a,main .ecosystem-grid>.card a,main .astra-story>a{grid-column:2}
+ main .status-grid>.status-card .status-label,main .astra-story .step{grid-column:1;grid-row:1 / span 2}
+ main .company-meta{grid-template-columns:1fr}
+ main .company-meta>div,main .company-meta>div+div{padding:20px 0;border-left:0!important;border-top:1px solid var(--story-rule)!important}
+ main .robotics-grid article{grid-template-columns:1fr;gap:8px}
+}
+@media(prefers-reduced-motion:no-preference){main .work-card,main .grid3>.card,main .ecosystem-grid>.card,main .status-grid>.status-card,main .astra-story{transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .55s ease}main .work-card:hover,main .grid3>.card:hover,main .ecosystem-grid>.card:hover,main .astra-story:hover{transform:translateX(6px)}}
