@@ -367,8 +367,19 @@ body.cine-ready .robotics-scene-hero,body.cine-ready .robotics-hero{overflow:hid
 .astra-hero.space-scene-hero:after,.robotics-hero.robotics-scene-hero:after{background:linear-gradient(90deg,rgba(3,5,9,.84) 0%,rgba(3,5,9,.68) 38%,rgba(3,5,9,.40) 75%,rgba(3,5,9,.42) 100%),linear-gradient(0deg,rgba(3,5,9,.48),transparent 55%)!important}
 .astra-hero.space-scene-hero .cinematic-stock-video{opacity:.70!important;filter:brightness(.70) saturate(.9)!important}
 .robotics-hero.robotics-scene-hero .cinematic-stock-video{opacity:.64!important;filter:brightness(.70) saturate(.88)!important}
-/* SEO-ADD: Item # — replace the CSS cartoon rocket/satellite in the home feature with a real NASA mission still. */
-.art-space{background-image:linear-gradient(0deg,rgba(3,5,9,.62),rgba(3,5,9,.08) 62%,rgba(3,5,9,.18)),url("https://images-assets.nasa.gov/video/0117_SLS_XP_Artemis%201%20Mission%20Scenario07032019_Final/0117_SLS_XP_Artemis%201%20Mission%20Scenario07032019_Final~thumb.jpg")!important;background-size:cover!important;background-position:center 45%!important}
-.art-space>.space-orbit,.art-space>.space-rocket,.art-space>.space-satellite{display:none!important}
-.art-space:after{content:"NASA · ARTEMIS MISSION CONCEPT";position:absolute;left:18px;bottom:15px;color:rgba(255,255,255,.78);font:10px/1.4 monospace;letter-spacing:.12em;text-shadow:0 1px 8px #000}
+/* Homepage only: restore the original animated space illustration.
+   Keep the NASA footage and cinematic overlays limited to the Astra and Robotics pages. */
+.art-space{background:radial-gradient(ellipse at 60% 40%,rgba(99,102,241,.22),transparent 48%),linear-gradient(145deg,#10111b,#07080c)!important}
+.art-space>.space-orbit,.art-space>.space-rocket,.art-space>.space-satellite{display:block!important}
+.art-space:after{content:none!important}
+.art-space .space-orbit{animation:homeOrbitDrift 18s ease-in-out infinite alternate}
+.art-space .orbit-b{animation-delay:-7s}
+.art-space .space-rocket{animation:homeRocketFloat 5s ease-in-out infinite;transform-origin:50% 50%}
+.art-space .rocket-flame{animation:homeFlame 850ms ease-in-out infinite alternate;transform-origin:50% 0}
+.art-space .space-satellite{animation:homeSatelliteDrift 8s ease-in-out infinite alternate}
+@keyframes homeOrbitDrift{from{opacity:.55;filter:brightness(.8);transform:translate(-50%,-50%) rotate(-25deg) scale(.96)}to{opacity:1;filter:brightness(1.25);transform:translate(-50%,-50%) rotate(-12deg) scale(1.04)}}
+@keyframes homeRocketFloat{0%,100%{transform:translate(-50%,-50%) rotate(28deg)}50%{transform:translate(-50%,calc(-50% - 7px)) rotate(24deg)}}
+@keyframes homeFlame{from{opacity:.55;transform:scaleY(.78) scaleX(.82)}to{opacity:1;transform:scaleY(1.18) scaleX(1.08)}}
+@keyframes homeSatelliteDrift{from{transform:translate3d(0,0,0) rotate(-20deg)}to{transform:translate3d(-9px,7px,0) rotate(-12deg)}}
+@media(prefers-reduced-motion:reduce){.art-space .space-orbit,.art-space .space-rocket,.art-space .rocket-flame,.art-space .space-satellite{animation:none!important}}
 @media(max-width:760px){.cinematic-stock-video{opacity:.48!important;filter:brightness(.66) saturate(.86)!important}.cinematic-stock-shade{background:linear-gradient(180deg,rgba(3,5,9,.66),rgba(3,5,9,.72) 48%,rgba(3,5,9,.92))!important}}
