@@ -238,3 +238,34 @@ body.cine-ready .robotics-scene-hero,body.cine-ready .robotics-hero{overflow:hid
 .cine-scene-wipe.is-entering{transform:scaleY(0);transform-origin:top}
 @media(max-width:760px){.cine-launch-fx{opacity:.42;mask-image:linear-gradient(180deg,transparent 10%,#000 65%)}.cine-launch-fx:before{right:12%;height:45%;width:110px}.cine-launch-fx:after{right:calc(12% + 20px);height:32%}.cine-smoke{right:3%;height:35%;opacity:.28}.cine-robotics-fx{opacity:.32}.cine-robotics-fx:before{right:-20%;top:18%;width:220px}.cine-robotics-fx .cine-hud{right:2%;top:25%;width:120px;height:200px}.cine-scene-wipe{transition-duration:450ms}}
 @media(prefers-reduced-motion:reduce){.cine-launch-fx:before,.cine-launch-fx:after,.cine-smoke i,.cine-robotics-fx:before,.cine-robotics-fx:after,.cine-scene-wipe{animation:none!important;transition:none!important}.cine-launch-fx,.cine-smoke,.cine-robotics-fx{opacity:.12}}
+
+
+/* Site-wide final polish: cinematic restraint, typography rhythm, responsive reading */
+:root{--hfl-reading-width:74ch;--hfl-section-space:clamp(64px,8vw,112px)}
+html{scroll-padding-top:88px}
+body{font-kerning:normal;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+main section:not(.hero):not(.page-hero):not(.robotics-hero):not(.astra-hero){scroll-margin-top:84px}
+main p{max-width:var(--hfl-reading-width);line-height:1.85}
+main h1,main h2,main h3{overflow-wrap:break-word;text-wrap:balance}
+main h1{line-height:1.04;letter-spacing:-.055em}
+main h2{line-height:1.12;letter-spacing:-.04em}
+main h3{line-height:1.22;letter-spacing:-.025em}
+main section>.wrap>h2+ p,main section .wrap>h2+ p{margin-top:14px}
+main section .wrap>h2:not(:first-child){margin-top:clamp(34px,4.5vw,56px)}
+main .section-intro,main .lead{max-width:68ch;line-height:1.85}
+main .section-heading,main .section-head{margin-bottom:clamp(28px,4vw,52px)}
+main .button,main .btn{transition:transform .22s ease,background-color .22s ease,border-color .22s ease}
+main .button:hover,main .btn:hover{transform:translateY(-2px)}
+main .card,main .panel,main .feature-card{overflow:hidden}
+main img,main video{max-width:100%}
+main video{background:#07090c}
+main .hero,main .page-hero,main .robotics-hero,main .astra-hero{isolation:isolate}
+main .hero:before,main .page-hero:before{pointer-events:none}
+@media(max-width:760px){
+ :root{--hfl-section-space:clamp(48px,13vw,72px)}
+ main p{line-height:1.82}
+ main section .wrap>h2:not(:first-child){margin-top:34px}
+ main .section-heading,main .section-head{margin-bottom:28px}
+ main h1{letter-spacing:-.045em}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}main .button,main .btn{transition:none!important}main .button:hover,main .btn:hover{transform:none!important}}
