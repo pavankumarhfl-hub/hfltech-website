@@ -106,7 +106,7 @@ select(0);
 /* Global usability helpers: mobile navigation for legacy headers, current year, and favicon. */
 (()=> {
   if(!document.querySelector('link[rel="icon"]')){
-    const icon=document.createElement('link');icon.rel='icon';icon.type='image/svg+xml';icon.href='/assets/favicon.svg';document.head.appendChild(icon);
+    const icon=document.createElement('link');icon.rel='icon';icon.type='image/svg+xml';icon.href='/favicon.svg';document.head.appendChild(icon);
   }
   document.querySelectorAll('footer').forEach(footer=>{
     footer.querySelectorAll('*').forEach(el=>{
@@ -128,7 +128,7 @@ select(0);
 /* Site-wide finishing details: current year, predictable mobile navigation, and keyboard close. */
 (()=>{
  const year=String(new Date().getFullYear());
- document.querySelectorAll('footer, .footer, .legal, .footer-bottom, .hfl-footer-bottom').forEach(el=>{el.innerHTML=el.innerHTML.replace(/©\\s*(?:202[0-9]|20XX)\\s*/g,'© '+year+' ')});
+ document.querySelectorAll('footer, .footer, .legal, .footer-bottom, .hfl-footer-bottom').forEach(el=>{el.innerHTML=el.innerHTML.replace(/©\\s*(?:202[0-9]|20XX)\\s*/gg,'© '+year+' ')});
  const mobile=document.querySelector('.mobile-btn'); const pop=document.querySelector('.mobile-pop');
  if(mobile&&pop){mobile.setAttribute('aria-controls','hfl-mobile-menu');pop.id='hfl-mobile-menu';mobile.setAttribute('aria-expanded',String(!pop.hidden));pop.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{pop.hidden=true;mobile.setAttribute('aria-expanded','false')}));document.addEventListener('keydown',e=>{if(e.key==='Escape'){pop.hidden=true;mobile.setAttribute('aria-expanded','false');mobile.focus()}})}
 })();
