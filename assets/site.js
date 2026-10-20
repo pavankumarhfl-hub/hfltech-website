@@ -136,3 +136,27 @@ select(0);
 
 /* Compact footer legal-link wrapping on narrow screens. */
 (()=>{if(document.querySelector('[data-hfl-footer-mobile-fix]'))return;const s=document.createElement('style');s.dataset.hflFooterMobileFix='true';s.textContent="\n/* Mobile QA pass: prevent footer legal links and page layouts from colliding. */\nhtml{width:100%;max-width:100%;overflow-x:clip}\nbody{width:100%;max-width:100%;overflow-x:clip}\nimg,video,canvas,svg,iframe{max-width:100%}\n@media(max-width:640px){\n .wrap,.container,.shell{width:min(100% - 32px, var(--max,1160px));max-width:100%}\n .compact-footer{width:100%;min-width:0;padding:22px 0 18px}\n .compact-footer-categories{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 20px}\n .compact-footer-categories>a{min-width:0;overflow-wrap:anywhere;padding:14px 0;font-size:14px}\n .compact-footer-bottom{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;min-width:0}\n .compact-footer-bottom>span{min-width:0;width:100%}\n .compact-footer-bottom>span:last-child{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px;align-items:start}\n .compact-footer-bottom a{display:block;min-width:0;white-space:normal;overflow-wrap:anywhere;line-height:1.55;font-size:12px}\n .footer-bottom,.footer-legal{min-width:0}\n .footer-legal{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px!important;align-items:start}\n .footer-legal a{min-width:0;white-space:normal;overflow-wrap:anywhere;line-height:1.55}\n .footer-top{min-width:0}\n .footer-col,.footer-brand{min-width:0;overflow-wrap:anywhere}\n .footer-bottom{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}\n}\n@media(max-width:380px){\n .wrap,.container,.shell{width:calc(100% - 28px)}\n .compact-footer-categories{column-gap:14px}\n .compact-footer-bottom>span:last-child,.footer-legal{column-gap:12px!important}\n}\n";document.head.appendChild(s)})();
+
+/* Cinematic scroll choreography: progressive reveals, staggered rows, no scroll hijacking. */
+(()=> {
+ if(window.__hflFilmMotion) return;
+ window.__hflFilmMotion=true;
+ const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const main=document.querySelector('main');
+ if(!main||reduce){if(main)main.querySelectorAll('.film-reveal,.film-reveal-left,.film-line').forEach(el=>el.classList.add('is-visible'));return;}
+ const selectors=['main section:not(:first-child) > .wrap','main .section-heading','main .section-head','main .work-card','main .directory-item','main .ecosystem-chapter','main .astra-story','main .company-meta > div','main .timeline-pro article','main .project-row','main .robotics-grid article','main .section > .wrap > h2','main .section > .wrap > p'];
+ const seen=new Set();
+ selectors.forEach(selector=>main.querySelectorAll(selector).forEach((el,index)=>{
+  if(seen.has(el)||el.closest('.hero,.page-hero,.robotics-hero,.founder-hero,.astra-hero,.story-hero,.ecosystem-hero,.directory-hero'))return;
+  seen.add(el);el.classList.add('film-reveal');
+  if(el.matches('.work-card,.directory-item,.ecosystem-chapter,.astra-story,.company-meta > div,.timeline-pro article,.project-row,.robotics-grid article'))el.style.setProperty('--film-delay',Math.min(index%4,3)*85+'ms');
+ }));
+ main.querySelectorAll('hr,.section-heading:after,.section-head:after').forEach(el=>el.classList.add('film-line'));
+ const reveal=el=>el.classList.add('is-visible');
+ if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){reveal(entry.target);io.unobserve(entry.target)}}),{threshold:.12,rootMargin:'0px 0px -7% 0px'});
+  seen.forEach(el=>io.observe(el));main.querySelectorAll('.film-line').forEach(el=>io.observe(el));
+ }else{seen.forEach(reveal);main.querySelectorAll('.film-line').forEach(reveal)}
+ const hero=main.querySelector('.hero,.page-hero,.robotics-hero,.founder-hero,.astra-hero,.story-hero,.ecosystem-hero,.directory-hero');
+ if(hero){hero.querySelectorAll('h1,p,.eyebrow,.hero-actions,.button,.btn').forEach((el,i)=>{el.style.setProperty('--film-order',i);el.style.animationDelay=(Math.min(i,5)*90)+'ms'})}
+})();
