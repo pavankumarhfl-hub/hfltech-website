@@ -29,3 +29,8 @@
 .sat-panel{position:absolute;top:12px;width:28px;height:18px;background:repeating-linear-gradient(90deg,#4d56a9 0 5px,#9ba4ff 5px 6px);border:1px solid #a5a6ff}
 .panel-left{left:0}.panel-right{right:0}
 @media(max-width:760px){.art-space{min-height:220px}.space-satellite{right:10%;top:18%}}
+
+/* Reference-matched scroll-direction navigation: hide on descent, reveal on ascent. */
+.topbar,header.nav,.site-header{transition:transform .36s cubic-bezier(.22,1,.36,1),background .25s ease,border-color .25s ease!important;will-change:transform}
+.topbar.scroll-hidden,header.nav.scroll-hidden,.site-header.scroll-hidden{transform:translateY(-110%)!important}
+@media(prefers-reduced-motion:reduce){.topbar,header.nav,.site-header{transition:none!important}.topbar.scroll-hidden,header.nav.scroll-hidden,.site-header.scroll-hidden{transform:none!important}}
