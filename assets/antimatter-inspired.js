@@ -1,1 +1,57 @@
-(()=>{const header=document.querySelector('.topbar');const menu=document.querySelector('.menu-toggle');const mobile=document.querySelector('.mobile-nav');const close=()=>{mobile?.classList.remove('open');menu?.setAttribute('aria-expanded','false');menu?.setAttribute('aria-label','Open menu');if(menu)menu.textContent='☰'};const scroll=()=>header?.classList.toggle('scrolled',window.scrollY>16);window.addEventListener('scroll',scroll,{passive:true});scroll();menu?.addEventListener('click',()=>{const open=!mobile.classList.contains('open');mobile.classList.toggle('open',open);menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close menu':'Open menu');menu.textContent=open?'×':'☰'});mobile?.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));document.querySelectorAll('[data-year]').forEach(el=>el.textContent=String(new Date().getFullYear()));const canvas=document.getElementById('hero-sphere');if(canvas){const ctx=canvas.getContext('2d');let frameId=0;let visible=true;const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;const observer=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible&&!reduced)draw()});observer.observe(canvas);let w=0,h=0,dpr=1,points=[],mouse={x:0,y:0},tick=0;function resize(){const r=canvas.getBoundingClientRect();w=r.width;h=r.height;dpr=Math.min(window.devicePixelRatio||1,1.7);canvas.width=w*dpr;canvas.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);points=[];const n=420;for(let i=0;i<n;i++){const y=1-(i/(n-1))*2;const rad=Math.sqrt(1-y*y);const a=Math.PI*(3-Math.sqrt(5))*i;points.push({x:Math.cos(a)*rad,y,z:Math.sin(a)*rad,sz:.5+Math.random()*1.15})}}function draw(){if(!visible||reduced)return;tick+=.0035;ctx.clearRect(0,0,w,h);const radius=Math.min(w,h)*.34,cx=w*.5,cy=h*.49;const ca=Math.cos(tick),sa=Math.sin(tick),cb=Math.cos(mouse.y*.08),sb=Math.sin(mouse.y*.08);const arr=points.map(p=>{let x=p.x*ca-p.z*sa,z=p.x*sa+p.z*ca,y=p.y*cb-z*sb;z=p.y*sb+z*cb;return{x:cx+x*radius,y:cy+y*radius,z,sz:p.sz}}).sort((a,b)=>a.z-b.z);ctx.save();ctx.globalCompositeOperation='lighter';const glow=ctx.createRadialGradient(cx,cy,radius*.08,cx,cy,radius*1.25);glow.addColorStop(0,'rgba(110,214,195,.15)');glow.addColorStop(.6,'rgba(110,214,195,.055)');glow.addColorStop(1,'rgba(110,214,195,0)');ctx.fillStyle=glow;ctx.beginPath();ctx.arc(cx,cy,radius*1.3,0,Math.PI*2);ctx.fill();arr.forEach(p=>{const alpha=.23+(p.z+1)*.28;ctx.fillStyle='rgba(174,239,228,'+alpha+')';ctx.beginPath();ctx.arc(p.x,p.y,p.sz*(.65+(p.z+1)*.4),0,Math.PI*2);ctx.fill()});ctx.restore();frameId=requestAnimationFrame(draw)}canvas.addEventListener('pointermove',e=>{const r=canvas.getBoundingClientRect();mouse.y=(e.clientY-r.top)/r.height-.5});canvas.addEventListener('pointerleave',()=>{mouse.x=0;mouse.y=0});resize();window.addEventListener('resize',resize,{passive:true});draw()}const form=document.getElementById('contact-form');if(form){form.addEventListener('submit',e=>{e.preventDefault();const data=new FormData(form);let ok=true;form.querySelectorAll('[data-error]').forEach(el=>el.textContent='');for(const field of form.querySelectorAll('[required]')){if(!field.value.trim()||(field.type==='email'&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(field.value.trim()))){const err=form.querySelector('[data-error="'+field.name+'"]');if(err)err.textContent=field.type==='email'?'Enter a valid email address.':'This field is required.';ok=false}}if(!ok)return;const subject=encodeURIComponent('HFL Tech enquiry · '+data.get('topic'));const body=encodeURIComponent('Name: '+data.get('name')+'\nEmail: '+data.get('email')+'\nCompany: '+(data.get('company')||'—')+'\nTopic: '+data.get('topic')+'\n\n'+data.get('message'));const status=document.getElementById('form-status');status.hidden=false;status.textContent='Your email app will open with your message ready to send.';window.location.href='mailto:HFLFOUNDER@GMAIL.COM?subject='+subject+'&body='+body})}})();
+(()=>{
+  const header=document.querySelector('.topbar');
+  const menu=document.querySelector('.menu-toggle');
+  const mobile=document.querySelector('.mobile-nav');
+  const close=()=>{
+    mobile?.classList.remove('open');
+    menu?.setAttribute('aria-expanded','false');
+    menu?.setAttribute('aria-label','Open menu');
+    if(menu)menu.textContent='☰';
+  };
+  const updateHeader=()=>header?.classList.toggle('scrolled',window.scrollY>16);
+  window.addEventListener('scroll',updateHeader,{passive:true});
+  updateHeader();
+  menu?.addEventListener('click',()=>{
+    const open=!mobile.classList.contains('open');
+    mobile.classList.toggle('open',open);
+    menu.setAttribute('aria-expanded',String(open));
+    menu.setAttribute('aria-label',open?'Close menu':'Open menu');
+    menu.textContent=open?'×':'☰';
+  });
+  mobile?.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+  if('IntersectionObserver'in window){
+    const io=new IntersectionObserver(entries=>entries.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}
+    }),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  }else{
+    document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));
+  }
+  document.querySelectorAll('[data-year]').forEach(el=>el.textContent=String(new Date().getFullYear()));
+  // The hero canvas is rendered by immersive-site.js with Three.js. Do not request a 2D context here.
+  const form=document.getElementById('contact-form');
+  if(form){
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      const data=new FormData(form);
+      let valid=true;
+      form.querySelectorAll('[data-error]').forEach(el=>el.textContent='');
+      for(const field of form.querySelectorAll('[required]')){
+        const value=field.value.trim();
+        const bad=!value||(field.type==='email'&&!/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/.test(value));
+        if(bad){
+          const error=form.querySelector('[data-error="'+field.name+'"]');
+          if(error)error.textContent=field.type==='email'?'Enter a valid email address.':'This field is required.';
+          valid=false;
+        }
+      }
+      if(!valid)return;
+      const subject=encodeURIComponent('HFL Tech enquiry · '+data.get('topic'));
+      const body=encodeURIComponent('Name: '+data.get('name')+'\\nEmail: '+data.get('email')+'\\nCompany: '+(data.get('company')||'—')+'\\nTopic: '+data.get('topic')+'\\n\\n'+data.get('message'));
+      const status=document.getElementById('form-status');
+      if(status){status.hidden=false;status.textContent='Your email app will open with your message ready to send.';}
+      window.location.href='mailto:HFLFOUNDER@GMAIL.COM?subject='+subject+'&body='+body;
+    });
+  }
+})();
