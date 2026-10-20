@@ -133,3 +133,47 @@ img,video,canvas,svg,iframe{max-width:100%}
  .compact-footer-categories{column-gap:14px}
  .compact-footer-bottom>span:last-child,.footer-legal{column-gap:12px!important}
 }
+
+/* CINEMATIC STORY SYSTEM — restrained filmic motion, not decorative clutter */
+:root{--film-ease:cubic-bezier(.22,.72,.18,1);--film-duration:850ms}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{animation:filmPageEnter 720ms var(--film-ease) both}
+@keyframes filmPageEnter{from{opacity:.45}to{opacity:1}}
+main .hero,main .page-hero,main .robotics-hero,main .founder-hero,main .astra-hero,main .story-hero,main .ecosystem-hero,main .directory-hero,main .page-scene-hero{isolation:isolate}
+main .hero:before,main .page-hero:before,main .robotics-hero:before,main .founder-hero:before,main .astra-hero:before,main .story-hero:before,main .ecosystem-hero:before,main .directory-hero:before{
+ content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 78% 24%,rgba(99,102,241,.12),transparent 43%);opacity:.75;animation:filmGlow 12s ease-in-out infinite alternate
+}
+@keyframes filmGlow{from{transform:scale(.98);opacity:.42}to{transform:scale(1.06);opacity:.9}}
+main .hero h1,main .page-hero h1,main .robotics-hero h1,main .founder-hero h1,main .astra-hero h1,main .story-hero h1,main .ecosystem-hero h1,main .directory-hero h1{
+ animation:filmTitleIn 1s var(--film-ease) both;animation-delay:100ms
+}
+main .hero p,main .page-hero p,main .robotics-hero p,main .founder-hero p,main .astra-hero p,main .story-hero p,main .ecosystem-hero p,main .directory-hero p{
+ animation:filmCopyIn 900ms var(--film-ease) both;animation-delay:220ms
+}
+@keyframes filmTitleIn{from{opacity:0;transform:translate3d(0,24px,0);filter:blur(7px)}to{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}}
+@keyframes filmCopyIn{from{opacity:0;transform:translate3d(0,16px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+.film-reveal{opacity:0;transform:translate3d(0,26px,0);filter:blur(3px);transition:opacity 760ms var(--film-ease),transform 760ms var(--film-ease),filter 760ms var(--film-ease);transition-delay:var(--film-delay,0ms);will-change:opacity,transform}
+.film-reveal.is-visible{opacity:1;transform:translate3d(0,0,0);filter:blur(0);will-change:auto}
+.film-reveal-left{opacity:0;transform:translate3d(-24px,0,0);filter:blur(2px);transition:opacity 800ms var(--film-ease),transform 800ms var(--film-ease),filter 800ms var(--film-ease)}
+.film-reveal-left.is-visible{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}
+.film-line{transform:scaleX(0);transform-origin:left;transition:transform 1s var(--film-ease)}
+.film-line.is-visible{transform:scaleX(1)}
+main section{scroll-margin-top:84px}
+main section .section-heading,main section .section-head{transition:transform .7s var(--film-ease)}
+main .work-card,main .directory-item,main .ecosystem-chapter,main .astra-story,main .timeline-pro article,main .project-row{transition:transform 650ms var(--film-ease),border-color 450ms ease,opacity 650ms var(--film-ease)}
+main .work-card:hover,main .directory-item:hover,main .ecosystem-chapter:hover,main .astra-story:hover{transform:translate3d(5px,0,0)}
+main a,main button,.nav a,.nav button{ -webkit-tap-highlight-color:transparent}
+main .button,main .btn{transition:transform 250ms var(--film-ease),box-shadow 300ms ease,background-color 300ms ease}
+main .button:hover,main .btn:hover{transform:translateY(-2px)}
+main .button:active,main .btn:active{transform:translateY(0) scale(.98)}
+@media(max-width:640px){
+ .film-reveal{transform:translate3d(0,16px,0);filter:none;transition-duration:600ms}
+ .film-reveal-left{transform:translate3d(0,16px,0);filter:none;transition-duration:600ms}
+ main .work-card:hover,main .directory-item:hover,main .ecosystem-chapter:hover,main .astra-story:hover{transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ body,main .hero h1,main .page-hero h1,main .robotics-hero h1,main .founder-hero h1,main .astra-hero h1,main .story-hero h1,main .ecosystem-hero h1,main .directory-hero h1,main .hero p,main .page-hero p,main .robotics-hero p,main .founder-hero p,main .astra-hero p,main .story-hero p,main .ecosystem-hero p,main .directory-hero p{animation:none!important}
+ .film-reveal,.film-reveal-left{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+ .film-line{transform:none!important;transition:none!important}
+}
