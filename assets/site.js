@@ -110,7 +110,7 @@ select(0);
   }
   document.querySelectorAll('footer').forEach(footer=>{
     footer.querySelectorAll('*').forEach(el=>{
-      if(el.children.length===0 && /©\\s*20\\d{2}/.test(el.textContent)) el.textContent=el.textContent.replace(/©\\s*20\\d{2}/,'© '+new Date().getFullYear());
+      if(el.children.length===0 && /©\s*20\d{2}/.test(el.textContent)) el.textContent=el.textContent.replace(/©\s*20\d{2}/,'© '+new Date().getFullYear());
     });
   });
   document.querySelectorAll('header.site-header, header:not(.nav)').forEach(header=>{
