@@ -307,3 +307,13 @@ body.cine-ready .robotics-scene-hero,body.cine-ready .robotics-hero{overflow:hid
 .cine-scene-wipe.is-entering{transform:scaleY(0);transform-origin:top}
 @media(max-width:760px){.cine-launch-fx{opacity:.42;mask-image:linear-gradient(180deg,transparent 10%,#000 65%)}.cine-launch-fx:before{right:12%;height:45%;width:110px}.cine-launch-fx:after{right:calc(12% + 20px);height:32%}.cine-smoke{right:3%;height:35%;opacity:.28}.cine-robotics-fx{opacity:.32}.cine-robotics-fx:before{right:-20%;top:18%;width:220px}.cine-robotics-fx .cine-hud{right:2%;top:25%;width:120px;height:200px}.cine-scene-wipe{transition-duration:450ms}}
 @media(prefers-reduced-motion:reduce){.cine-launch-fx:before,.cine-launch-fx:after,.cine-smoke i,.cine-robotics-fx:before,.cine-robotics-fx:after,.cine-scene-wipe{animation:none!important;transition:none!important}.cine-launch-fx,.cine-smoke,.cine-robotics-fx{opacity:.12}}
+
+/* Free NASA cinematic footage: local page context only, muted inline backgrounds. */
+.cinematic-stock-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 48%;z-index:0;opacity:.5;pointer-events:none;background:#07080c}
+.cinematic-stock-shade{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(5,7,12,.97) 0%,rgba(5,7,12,.82) 38%,rgba(5,7,12,.3) 75%,rgba(5,7,12,.45) 100%),linear-gradient(0deg,rgba(5,7,12,.68),transparent 60%)}
+.astra-hero.space-scene-hero>.wrap,.robotics-hero.robotics-scene-hero>.wrap{position:relative;z-index:4}
+.astra-hero.space-scene-hero .cine-launch-fx,.robotics-hero.robotics-scene-hero .cine-robotics-fx{z-index:2}
+.astra-hero.space-scene-hero .cinematic-stock-video{object-position:center 56%;opacity:.58}
+.robotics-hero.robotics-scene-hero .cinematic-stock-video{object-position:center 42%;opacity:.4}
+@media(max-width:760px){.cinematic-stock-video{opacity:.32;object-position:center}.cinematic-stock-shade{background:linear-gradient(180deg,rgba(5,7,12,.65),rgba(5,7,12,.78) 50%,rgba(5,7,12,.96) 100%)}.astra-hero.space-scene-hero .cinematic-stock-video{opacity:.42}}
+@media(prefers-reduced-motion:reduce){.cinematic-stock-video{display:none!important}}
