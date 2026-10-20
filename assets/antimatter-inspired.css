@@ -74,3 +74,57 @@ main .final,main .cta{padding-block:clamp(48px,7vw,92px)!important}
  main .robotics-grid article{grid-template-columns:1fr;gap:8px}
 }
 @media(prefers-reduced-motion:no-preference){main .work-card,main .grid3>.card,main .ecosystem-grid>.card,main .status-grid>.status-card,main .astra-story{transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .55s ease}main .work-card:hover,main .grid3>.card:hover,main .ecosystem-grid>.card:hover,main .astra-story:hover{transform:translateX(6px)}}
+
+/* Typography, hero layering, and responsive navigation polish */
+html{scroll-behavior:smooth}
+body{line-height:1.65;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+p,li,dd,blockquote{line-height:1.75}
+h1,h2,h3,h4,h5,h6{line-height:1.12!important;text-wrap:pretty}
+h1{letter-spacing:-.045em}
+h2{letter-spacing:-.035em}
+h3{letter-spacing:-.025em}
+.hero h1,.page-hero h1,.robotics-hero h1,.founder-hero h1,.astra-hero h1,.story-hero h1,.ecosystem-hero h1{line-height:1.08!important;max-width:17ch}
+.hero p,.page-hero p,.robotics-hero p,.founder-hero p,.astra-hero p,.story-hero p{line-height:1.75!important;max-width:66ch}
+.hero-copy,.hero-grid>.hero-copy,.robotics-hero>.wrap,.astra-hero>.wrap,.page-scene-hero>.wrap{position:relative;z-index:3}
+.page-scene-canvas{z-index:0!important;pointer-events:none;clip-path:inset(0 0 0 43%)}
+.page-scene-hero:after{z-index:1}
+.page-scene-hero>.wrap{z-index:3!important}
+.robotics-hero .status-line{display:inline-flex;align-items:center;gap:.35em;flex-wrap:wrap;max-width:100%;margin:22px 0 0;padding:10px 12px;line-height:1.55;border:1px solid rgba(130,201,229,.22);text-decoration:none!important}
+.robotics-hero .status-line *{text-decoration:none!important}
+.hero-actions{display:flex;align-items:center;justify-content:flex-start;gap:12px 18px;flex-wrap:wrap;margin-top:26px}
+.hero-actions .button,.hero-actions .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;line-height:1.25;text-align:center}
+.hero-actions .link,.hero-actions .ghost{display:inline-flex;align-items:center;min-height:40px;line-height:1.4}
+.section h2,.section h3{margin-top:0}
+.section p+p{margin-top:14px}
+.section-heading,.section-head{align-items:start}
+.section-heading>*,.section-head>*{min-width:0}
+.nav{z-index:1000}
+.nav-in{display:flex;align-items:center;gap:clamp(12px,2vw,26px);min-height:70px}
+.nav .brand{flex:0 0 auto;align-items:center;white-space:nowrap}
+.nav .links{display:flex;align-items:center;justify-content:flex-end;gap:clamp(8px,1.2vw,18px);min-width:0}
+.nav .links>a,.nav .links>.menu{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;line-height:1.2;padding:10px 0;font-size:12px}
+.nav .actions{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+.nav .actions .button{white-space:nowrap;line-height:1.2;text-align:center}
+@media(max-width:1100px){.nav .links{gap:10px}.nav .links>a,.nav .links>.menu{font-size:11px}.nav .actions .button{font-size:11px;padding-inline:12px}}
+@media(max-width:860px){
+ .nav-in{min-height:64px;justify-content:space-between}
+ .nav .links{display:none!important}
+ .nav .actions .button{display:none}
+ .nav .actions .mobile-btn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;font-size:22px}
+ .mobile-pop:not([hidden]){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;padding:12px 16px 18px;background:rgba(9,10,14,.98);border-top:1px solid var(--line)}
+ .mobile-pop a{display:flex;align-items:center;min-height:42px;padding:8px 10px;line-height:1.4;border-radius:6px}
+ .page-scene-canvas{clip-path:inset(0 0 0 48%);opacity:.38!important}
+ .page-scene-hero:after{background:linear-gradient(90deg,rgba(10,10,10,.99) 0%,rgba(10,10,10,.96) 48%,rgba(10,10,10,.45) 100%)!important}
+}
+@media(max-width:560px){
+ h1{font-size:clamp(36px,10vw,48px)!important;line-height:1.08!important}
+ h2{font-size:clamp(27px,7.5vw,36px)!important;line-height:1.12!important}
+ h3{line-height:1.18!important}
+ p,li{line-height:1.75!important}
+ .hero-actions{align-items:stretch;flex-direction:column}
+ .hero-actions .button,.hero-actions .btn,.hero-actions .link,.hero-actions .ghost{align-self:flex-start}
+ .page-scene-canvas{clip-path:inset(0 0 0 55%);opacity:.26!important}
+ .robotics-hero .status-line{font-size:12px}
+ .mobile-pop:not([hidden]){grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.page-scene-canvas{clip-path:none}}
