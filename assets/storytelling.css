@@ -143,3 +143,36 @@ main .hero h1,main .page-hero h1,main .robotics-hero h1,main .founder-hero h1,ma
 .page-scene-canvas{clip-path:inset(0 0 0 46%)!important;pointer-events:none!important}
 @media(max-width:860px){.page-scene-canvas{clip-path:inset(0 0 0 50%)!important;opacity:.34!important}}
 @media(max-width:560px){.page-scene-canvas{clip-path:inset(0 0 0 56%)!important;opacity:.25!important}}
+
+/* Homepage mobile: reduce oversized vertical rhythm while keeping the product story clear. */
+@media(max-width:640px){
+ #work.section{padding:54px 0 42px!important}
+ #work .section-heading{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:22px}
+ #work .section-heading h2{font-size:clamp(30px,8vw,38px)!important;line-height:1.08!important}
+ #work .section-heading>p{margin:0;max-width:38ch;font-size:13px;line-height:1.65!important}
+ #work .work-grid{display:grid;grid-template-columns:1fr;gap:0}
+ #work .work-card{display:grid;grid-template-columns:76px minmax(0,1fr);align-items:start;gap:14px;padding:20px 0!important;min-height:0;border-radius:0;border-left:0;border-right:0;border-top:1px solid var(--line,rgba(255,255,255,.1));background:transparent!important;box-shadow:none!important}
+ #work .work-card:last-child{border-bottom:1px solid var(--line,rgba(255,255,255,.1))}
+ #work .work-art{grid-column:1;grid-row:1;align-self:start;width:76px!important;height:104px!important;min-height:104px!important;margin:0!important;border-radius:8px;overflow:hidden}
+ #work .work-copy{grid-column:2;min-width:0;display:flex;flex-direction:column;gap:8px;padding:0!important}
+ #work .work-topline{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;flex-wrap:wrap;margin:0!important;font-size:8px;line-height:1.45}
+ #work .work-copy h3{margin:2px 0!important;font-size:18px!important;line-height:1.2!important;overflow-wrap:anywhere}
+ #work .work-copy p{margin:0!important;font-size:12px!important;line-height:1.65!important;max-width:42ch}
+ #work .work-link{display:inline-flex;align-items:center;gap:6px;min-height:30px;margin-top:2px;font-size:11px;line-height:1.4}
+ #contact.cta{padding:38px 0!important;min-height:0!important}
+ #contact .cta-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+ #contact .cta-copy{min-width:0;max-width:72%}
+ #contact .cta-copy h2{font-size:clamp(24px,6.4vw,31px)!important;line-height:1.12!important;margin:8px 0}
+ #contact .cta-copy p{font-size:12px!important;line-height:1.6!important;margin:0}
+ #contact .btn{flex:0 0 auto;min-height:40px;padding:10px 13px;font-size:11px;white-space:nowrap}
+ footer.footer{padding:34px 0 22px!important}
+ footer.footer .footer-grid{gap:20px 16px}
+ footer.footer .legal{margin-top:24px;padding-top:14px;gap:10px}
+}
+@media(max-width:380px){
+ #work .work-card{grid-template-columns:64px minmax(0,1fr);gap:11px}
+ #work .work-art{width:64px!important;height:90px!important;min-height:90px!important}
+ #work .work-topline span{font-size:7px}
+ #contact .cta-inner{align-items:flex-start;flex-direction:column}
+ #contact .cta-copy{max-width:100%}
+}
