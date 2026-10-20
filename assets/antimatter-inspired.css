@@ -4,3 +4,7 @@
 
 /* HFL Tech visual direction: restrained black, teal, real depth. 3D hero preserved. */
 body:before{display:none!important}.hero h1 .gradient{background:none!important;color:#6ED6C3!important;-webkit-text-fill-color:#6ED6C3!important}.service-card,.trust-card,.work-card{box-shadow:0 14px 38px rgba(0,0,0,.18)}.service-card:before{display:none}.orb-label{background:#111518;backdrop-filter:none;border-radius:7px}.orb-glow{background:radial-gradient(circle,rgba(110,214,195,.19),rgba(110,214,195,.035) 42%,transparent 69%)}.hero:after{background:radial-gradient(circle,rgba(110,214,195,.15),transparent 64%)}.eyebrow-dot,.signal{background:#6ED6C3;box-shadow:0 0 12px rgba(110,214,195,.3)}.work-link,.trust-card a{color:#6ED6C3}.art-agent .mini-core{background:radial-gradient(circle at 30% 25%,#9de8dc,#245b55 42%,#101516 72%);box-shadow:0 0 70px rgba(110,214,195,.24)}.ui-row:before{background:#6ED6C3}.btn-primary:hover{box-shadow:0 12px 34px rgba(110,214,195,.18)}
+
+/* HFL mobile 3D canvas sizing: avoid inherited tablet min-height after phone breakpoints. */
+@media(max-width:760px){.orb-stage,#hero-sphere{height:260px!important;min-height:260px!important}}
+@media(max-width:390px){.orb-stage,#hero-sphere{height:320px!important;min-height:320px!important}}
