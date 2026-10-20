@@ -85,21 +85,16 @@ select(0);
   if(!footer || footer.dataset.compactFooter==='true') return;
   footer.dataset.compactFooter='true';
   footer.innerHTML=`<div class="wrap compact-footer">
-    <div class="compact-footer-main">
-      <a class="brand" href="/" aria-label="HFL Tech home"><span class="brand-mark" aria-hidden="true"></span><span>HFL Tech</span></a>
-      <nav class="compact-footer-links" aria-label="Footer navigation">
-        <a href="agentmesh.html">AgentMesh</a>
-        <a href="evidence.html">Evidence</a>
-        <a href="docs.html">Docs</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="contact.html">Contact</a>
-        <a href="ecosystem.html">HFL ecosystem <span aria-hidden="true">↗</span></a>
-      </nav>
-    </div>
-    <div class="compact-footer-bottom"><span>© ${new Date().getFullYear()} HFL Tech Private Limited</span><span><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="legal/cookies.html">Cookies</a><a href="legal/acceptable-use.html">Acceptable use</a></span></div>
+    <nav class="compact-footer-categories" aria-label="Footer directories">
+      <a href="/product-directory.html">Product <span aria-hidden="true">↗</span></a>
+      <a href="/company-directory.html">Company <span aria-hidden="true">↗</span></a>
+      <a href="/trust-directory.html">Trust <span aria-hidden="true">↗</span></a>
+      <a href="/ecosystem-directory.html">HFL Ecosystem <span aria-hidden="true">↗</span></a>
+    </nav>
+    <div class="compact-footer-bottom"><span>© ${new Date().getFullYear()} HFL Tech Private Limited</span><span><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/legal/cookies.html">Cookies</a><a href="/legal/acceptable-use.html">Acceptable use</a></span></div>
   </div>`;
   const style=document.createElement('style');
-  style.textContent=`.compact-footer{padding-top:28px;padding-bottom:20px}.compact-footer-main{display:flex;align-items:flex-start;justify-content:space-between;gap:28px;flex-wrap:wrap}.compact-footer .brand{display:inline-flex;align-items:center;gap:9px;color:var(--text,#eceff3);text-decoration:none;font-weight:650}.compact-footer-links{display:flex;gap:10px 22px;align-items:center;justify-content:flex-end;flex-wrap:wrap}.compact-footer-links a,.compact-footer-bottom a{color:var(--muted,#9aa4b2);text-decoration:none;font-size:13px;line-height:1.5}.compact-footer-links a:hover,.compact-footer-bottom a:hover{color:var(--text,#eceff3)}.compact-footer-bottom{margin-top:22px;padding-top:14px;border-top:1px solid var(--border,#232a33);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--muted,#9aa4b2);font-size:12px}.compact-footer-bottom span:last-child{display:flex;gap:18px}@media(max-width:640px){.compact-footer{padding-top:22px}.compact-footer-main{display:block}.compact-footer-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px;margin-top:22px;justify-content:stretch}.compact-footer-links a{font-size:14px;min-height:32px;display:flex;align-items:center}.compact-footer-bottom{margin-top:16px}.compact-footer-bottom span:first-child{width:100%}}`;
+  style.textContent=`.compact-footer{padding-top:28px;padding-bottom:20px}.compact-footer-categories{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}.compact-footer-categories a{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 0;border-top:1px solid var(--line,rgba(255,255,255,.13));color:var(--text,#eceff3);text-decoration:none;font-size:15px;font-weight:550;line-height:1.4}.compact-footer-categories a span{color:#a5a6ff;transition:transform .2s ease}.compact-footer-categories a:hover span{transform:translate(3px,-3px)}.compact-footer-bottom{margin-top:22px;padding-top:14px;border-top:1px solid var(--border,#232a33);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--muted,#9aa4b2);font-size:12px}.compact-footer-bottom a{color:var(--muted,#9aa4b2);text-decoration:none}.compact-footer-bottom span:last-child{display:flex;gap:18px;flex-wrap:wrap}@media(max-width:640px){.compact-footer{padding-top:22px}.compact-footer-categories{grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 20px}.compact-footer-categories a{font-size:14px;padding:14px 0}.compact-footer-bottom{margin-top:16px}.compact-footer-bottom span:first-child{width:100%}}`;
   document.head.appendChild(style);
 })();
 
