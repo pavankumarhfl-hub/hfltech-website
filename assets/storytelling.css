@@ -358,3 +358,17 @@ body.cine-ready .robotics-scene-hero,body.cine-ready .robotics-hero{overflow:hid
  .robotics-content .robotics-grid article{grid-template-columns:1fr!important;gap:8px!important;padding:22px 0!important}
 }
 @media(prefers-reduced-motion:reduce){.cinematic-stock-video{display:none!important}}
+
+
+/* SEO-ADD: Item #8 — high-contrast cinematic footage treatment; Item # — real imagery on homepage.
+   Keep footage atmospheric and protect text contrast instead of exposing raw video. */
+.cinematic-stock-video{opacity:.68!important;filter:brightness(.72) saturate(.88)!important}
+.cinematic-stock-shade{background:linear-gradient(90deg,rgba(3,5,9,.88) 0%,rgba(3,5,9,.72) 34%,rgba(3,5,9,.46) 70%,rgba(3,5,9,.48) 100%),linear-gradient(0deg,rgba(3,5,9,.62),rgba(3,5,9,.30) 45%,rgba(3,5,9,.28))!important}
+.astra-hero.space-scene-hero:after,.robotics-hero.robotics-scene-hero:after{background:linear-gradient(90deg,rgba(3,5,9,.84) 0%,rgba(3,5,9,.68) 38%,rgba(3,5,9,.40) 75%,rgba(3,5,9,.42) 100%),linear-gradient(0deg,rgba(3,5,9,.48),transparent 55%)!important}
+.astra-hero.space-scene-hero .cinematic-stock-video{opacity:.70!important;filter:brightness(.70) saturate(.9)!important}
+.robotics-hero.robotics-scene-hero .cinematic-stock-video{opacity:.64!important;filter:brightness(.70) saturate(.88)!important}
+/* SEO-ADD: Item # — replace the CSS cartoon rocket/satellite in the home feature with a real NASA mission still. */
+.art-space{background-image:linear-gradient(0deg,rgba(3,5,9,.62),rgba(3,5,9,.08) 62%,rgba(3,5,9,.18)),url("https://images-assets.nasa.gov/video/0117_SLS_XP_Artemis%201%20Mission%20Scenario07032019_Final/0117_SLS_XP_Artemis%201%20Mission%20Scenario07032019_Final~thumb.jpg")!important;background-size:cover!important;background-position:center 45%!important}
+.art-space>.space-orbit,.art-space>.space-rocket,.art-space>.space-satellite{display:none!important}
+.art-space:after{content:"NASA · ARTEMIS MISSION CONCEPT";position:absolute;left:18px;bottom:15px;color:rgba(255,255,255,.78);font:10px/1.4 monospace;letter-spacing:.12em;text-shadow:0 1px 8px #000}
+@media(max-width:760px){.cinematic-stock-video{opacity:.48!important;filter:brightness(.66) saturate(.86)!important}.cinematic-stock-shade{background:linear-gradient(180deg,rgba(3,5,9,.66),rgba(3,5,9,.72) 48%,rgba(3,5,9,.92))!important}}
