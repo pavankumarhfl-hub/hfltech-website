@@ -38,7 +38,7 @@ if(hero&&page&&!reduced){
    const put=(geo,m,x,y,z,rz=0)=>{const o=new T.Mesh(geo,m);o.position.set(x,y,z);o.rotation.z=rz;bot.add(o);return o};
    put(new T.BoxGeometry(.78,.94,.42),silver,0,.2,0);put(new T.BoxGeometry(.62,.12,.46),indigo,0,.55,.02);
    put(new T.BoxGeometry(.55,.48,.43),dark,0,1.04,0);put(new T.BoxGeometry(.42,.23,.06),indigo,0,1.05,.24);
-   sphere(.045,blue,1.35,1.05,.28); // tiny decorative node in the shared scene
+   // no unrelated ornament outside the robot group
    const eye1=put(new T.SphereGeometry(.055,14,12),blue,-.12,1.07,.24),eye2=put(new T.SphereGeometry(.055,14,12),blue,.12,1.07,.24);
    put(new T.CylinderGeometry(.09,.09,.24,16),gold,0,.78,0);
    const limb=(a,b,r,m)=>{const v=new T.Vector3(...b).sub(new T.Vector3(...a));const o=new T.Mesh(new T.CylinderGeometry(r*.8,r,v.length(),14),m);o.position.set((a[0]+b[0])/2,(a[1]+b[1])/2,(a[2]+b[2])/2);o.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),v.normalize());bot.add(o);sphere(r*1.2,m,...a)};
@@ -56,8 +56,8 @@ if(hero&&page&&!reduced){
    const orbit=new T.Mesh(new T.TorusGeometry(1.8,.008,6,100),blue);orbit.rotation.set(.8,.35,.3);root.add(orbit);
    for(let i=0;i<75;i++){const a=i*2.39996,r=1.9+(i%8)*.09;sphere(.012,i%5===0?blue:glow,Math.cos(a)*r,Math.sin(a)*r*.72,(i%9-4)*.14)}
   }
-  const resize=()=>{const box=hero.getBoundingClientRect();const w=Math.max(1,box.width),h=Math.max(1,box.height);renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();root.position.x=w<760?.25:1.35;root.scale.setScalar(w<760?.62:1);};
-  resize();window.addEventListener('resize',resize,{passive:true});if('ResizeObserver'in window){resizeObserver=new ResizeObserver(resize);resizeObserver.observe(hero)}
+  const resizeTarget=canvas===existing?canvas.parentElement:hero;const resize=()=>{const box=resizeTarget.getBoundingClientRect();const w=Math.max(1,box.width),h=Math.max(1,box.height);renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();root.position.x=w<760?.25:1.35;root.scale.setScalar(w<760?.62:1);};
+  resize();window.addEventListener('resize',resize,{passive:true});if('ResizeObserver'in window){resizeObserver=new ResizeObserver(resize);resizeObserver.observe(resizeTarget)}
   let last=0,scroll=0;const render=t=>{raf=requestAnimationFrame(render);if(t-last<30)return;last=t;root.rotation.y+=page==='space'?.002:.0015;root.rotation.x=Math.sin(t*.00022)*.045;renderer.render(scene,camera)};render(0);
   document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelAnimationFrame(raf);else render(0)});
   load('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js').then(()=>load('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js')).then(()=>{if(!window.gsap||!window.ScrollTrigger)return;window.gsap.registerPlugin(window.ScrollTrigger);const p={v:0};window.gsap.to(p,{v:1,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:1},onUpdate(){root.rotation.y=.1+p.v*.8}});window.gsap.utils.toArray('main .section h2,main .card,main .work-card,main .robotics-grid article,main .ecosystem-grid article').forEach((el,i)=>window.gsap.fromTo(el,{y:26,opacity:0},{y:0,opacity:1,duration:.7,delay:(i%3)*.05,ease:'power2.out',clearProps:'transform,opacity',scrollTrigger:{trigger:el,start:'top 84%',once:true}}));window.ScrollTrigger.refresh()}).catch(()=>{});
