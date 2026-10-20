@@ -124,3 +124,11 @@ select(0);
   });
   document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.mobile-pop').forEach(p=>p.hidden=true);document.querySelectorAll('.mobile-btn').forEach(b=>{b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','Open navigation');b.textContent='☰'});document.querySelectorAll('.dropdown').forEach(p=>p.hidden=true)}});
 })();
+
+/* Site-wide finishing details: current year, predictable mobile navigation, and keyboard close. */
+(()=>{
+ const year=String(new Date().getFullYear());
+ document.querySelectorAll('footer, .footer, .legal, .footer-bottom, .hfl-footer-bottom').forEach(el=>{el.innerHTML=el.innerHTML.replace(/©\\s*(?:202[0-9]|20XX)\\s*/g,'© '+year+' ')});
+ const mobile=document.querySelector('.mobile-btn'); const pop=document.querySelector('.mobile-pop');
+ if(mobile&&pop){mobile.setAttribute('aria-controls','hfl-mobile-menu');pop.id='hfl-mobile-menu';mobile.setAttribute('aria-expanded',String(!pop.hidden));pop.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{pop.hidden=true;mobile.setAttribute('aria-expanded','false')}));document.addEventListener('keydown',e=>{if(e.key==='Escape'){pop.hidden=true;mobile.setAttribute('aria-expanded','false');mobile.focus()}})}
+})();
