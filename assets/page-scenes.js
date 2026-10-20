@@ -41,7 +41,7 @@ if(hero&&page&&!reduced){
    // no unrelated ornament outside the robot group
    const eye1=put(new T.SphereGeometry(.055,14,12),blue,-.12,1.07,.24),eye2=put(new T.SphereGeometry(.055,14,12),blue,.12,1.07,.24);
    put(new T.CylinderGeometry(.09,.09,.24,16),gold,0,.78,0);
-   const limb=(a,b,r,m)=>{const v=new T.Vector3(...b).sub(new T.Vector3(...a));const o=new T.Mesh(new T.CylinderGeometry(r*.8,r,v.length(),14),m);o.position.set((a[0]+b[0])/2,(a[1]+b[1])/2,(a[2]+b[2])/2);o.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),v.normalize());bot.add(o);sphere(r*1.2,m,...a)};
+   const limb=(a,b,r,m)=>{const v=new T.Vector3(...b).sub(new T.Vector3(...a));const o=new T.Mesh(new T.CylinderGeometry(r*.8,r,v.length(),14),m);o.position.set((a[0]+b[0])/2,(a[1]+b[1])/2,(a[2]+b[2])/2);o.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),v.normalize());bot.add(o);put(new T.SphereGeometry(r*1.2,14,12),m,...a)};
    limb([-.43,.48,0],[-.73,-.08,0],.105,silver);limb([.43,.48,0],[.72,-.08,0],.105,silver);
    limb([-.22,-.28,0],[-.29,-.91,0],.13,silver);limb([.22,-.28,0],[.29,-.91,0],.13,silver);
    put(new T.BoxGeometry(.38,.12,.52),dark,-.29,-.99,.08);put(new T.BoxGeometry(.38,.12,.52),dark,.29,-.99,.08);
