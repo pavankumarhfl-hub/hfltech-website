@@ -360,7 +360,7 @@ body.cine-ready .robotics-scene-hero,body.cine-ready .robotics-hero{overflow:hid
 @media(prefers-reduced-motion:reduce){.cinematic-stock-video{display:none!important}}
 
 
-/* SEO-ADD: Item #8 — high-contrast cinematic footage treatment; Item # — real imagery on homepage.
+/* SEO-ADD: Item #8 — high-contrast cinematic footage treatment; Item #8 — real imagery on homepage.
    Keep footage atmospheric and protect text contrast instead of exposing raw video. */
 .cinematic-stock-video{opacity:.68!important;filter:brightness(.72) saturate(.88)!important}
 .cinematic-stock-shade{background:linear-gradient(90deg,rgba(3,5,9,.88) 0%,rgba(3,5,9,.72) 34%,rgba(3,5,9,.46) 70%,rgba(3,5,9,.48) 100%),linear-gradient(0deg,rgba(3,5,9,.62),rgba(3,5,9,.30) 45%,rgba(3,5,9,.28))!important}
