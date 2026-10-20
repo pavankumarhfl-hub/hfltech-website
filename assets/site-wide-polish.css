@@ -232,3 +232,19 @@ html.js-scroll-motion [data-scroll-reveal="scale"].is-in-view{transform:translat
 @media(prefers-reduced-motion:reduce){
  html.js-scroll-motion [data-scroll-reveal],html.js-scroll-motion [data-scroll-reveal].is-in-view{opacity:1!important;transform:none!important;transition:none!important;will-change:auto!important}
 }
+
+/* Production QA patch: responsive containment, keyboard access, and mobile navigation. */
+html,body{max-width:100%;overflow-x:clip}
+img,video,svg,canvas,iframe{max-width:100%}
+pre,code,table{max-width:100%}pre{overflow-x:auto}
+.wrap,.container,.nav-in,.hero,.section,.page-hero,main,footer{min-width:0}
+button,a,input,select,textarea{touch-action:manipulation}
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:2px solid #6ED6C3!important;outline-offset:3px}
+.mobile-btn{display:none;align-items:center;justify-content:center;min-width:44px;min-height:44px;font-size:20px;line-height:1}
+.mobile-pop{z-index:100;max-height:calc(100dvh - 78px);overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.mobile-pop a{min-height:44px;display:flex;align-items:center}
+.dropdown{z-index:101;max-height:calc(100dvh - 80px);overflow:auto}
+footer a{overflow-wrap:anywhere}input,select,textarea{max-width:100%}
+@media(max-width:900px){.links{display:none!important}.mobile-btn{display:inline-flex!important}.nav-in{gap:12px}.nav-in .actions{margin-left:auto}.nav-in .actions .button{min-height:44px;padding-inline:12px}.nav-in .brand{flex-shrink:0}.dropdown{display:none!important}}
+@media(max-width:520px){.nav-in .actions .button{font-size:11px;max-width:150px;white-space:normal;text-align:center}.nav-in .brand{font-size:13px}.wrap{width:min(calc(100% - 28px),var(--max,1160px))}.hero h1,.page-hero h1{overflow-wrap:anywhere}.footer-grid,.hfl-footer-top{grid-template-columns:repeat(2,minmax(0,1fr))}.legal,.hfl-footer-bottom{gap:10px;flex-wrap:wrap}.product-window,.visual,.card,.page-grid{min-width:0;max-width:100%}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
