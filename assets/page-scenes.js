@@ -1,5 +1,9 @@
 (()=>{if(window.__hflStoryScenes)return;window.__hflStoryScenes=true;
 const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const navHeaders=[...document.querySelectorAll('.topbar,header.nav,.site-header')];let lastScrollY=window.scrollY;let scrollTicking=false;
+const updateNavDirection=()=>{const y=window.scrollY;const menuOpen=!!document.querySelector('.mobile-nav.open,.mobile-pop:not([hidden])');navHeaders.forEach(el=>{if(menuOpen||y<32||y<lastScrollY-3)el.classList.remove('scroll-hidden');else if(y>120&&y>lastScrollY+3)el.classList.add('scroll-hidden')});lastScrollY=y;scrollTicking=false};
+window.addEventListener('scroll',()=>{if(!scrollTicking){scrollTicking=true;requestAnimationFrame(updateNavDirection)}},{passive:true});
+
 const path=location.pathname.toLowerCase();
 const page=path.includes('hfl-astra-space-technologies')?'space':path.includes('robotics')?'robotics':path.includes('agentmesh')||path==='/'||path.endsWith('/index.html')?'agents':path.includes('flux-ai')?'flux':null;
 const hero=document.querySelector('main .astra-hero,main .robotics-hero,main .page-hero,main>.hero,main .hero');
