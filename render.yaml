@@ -27,3 +27,13 @@ services:
       - path: /assets/*
         name: Cache-Control
         value: "public, max-age=86400"
+
+    routes:
+      - type: redirect
+        source: /privacy-policy.html
+        destination: /privacy-policy/
+        status: 301
+      - type: redirect
+        source: /privacy
+        destination: /privacy-policy/
+        status: 301
