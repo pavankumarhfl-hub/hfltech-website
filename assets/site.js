@@ -126,3 +126,5 @@ select(0);
 })();
 
 (()=>{document.querySelectorAll('img').forEach((img,i)=>{if(i>0&&!img.hasAttribute('loading'))img.loading='lazy';if(!img.hasAttribute('decoding'))img.decoding='async'});document.querySelectorAll('a[href^="mailto:"]').forEach(a=>{if(!a.hasAttribute('aria-label'))a.setAttribute('aria-label','Email '+a.textContent.trim())})})();
+
+(()=>{const icon=document.querySelector('link[rel~="icon"]');if(icon&&icon.getAttribute('href')==='/favicon.svg')icon.href='/assets/favicon.svg';if(!icon){const n=document.createElement('link');n.rel='icon';n.type='image/svg+xml';n.href='/assets/favicon.svg';document.head.appendChild(n)}})();
