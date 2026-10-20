@@ -1,0 +1,14 @@
+/* Page-specific visual storytelling: 3D belongs to the product, not to every route. */
+.page-scene-canvas{position:absolute!important;inset:0;width:100%;height:100%;display:block;pointer-events:none;z-index:0;opacity:.98}
+.page-scene-hero{position:relative;isolation:isolate;overflow:hidden}
+.page-scene-hero>.wrap{position:relative;z-index:2}
+.page-scene-hero:after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(10,10,10,.99) 0%,rgba(10,10,10,.9) 35%,rgba(10,10,10,.15) 76%,rgba(10,10,10,.05) 100%)}
+.astra-hero.page-scene-hero,.robotics-hero.page-scene-hero,.page-hero.page-scene-hero{min-height:570px}
+.astra-hero.page-scene-hero>.wrap,.robotics-hero.page-scene-hero>.wrap,.page-hero.page-scene-hero>.wrap{max-width:1200px}
+.astra-hero.page-scene-hero .lead,.robotics-hero.page-scene-hero p,.page-hero.page-scene-hero> .wrap>p{max-width:650px}
+#hero-sphere{position:relative;z-index:1}
+.orb-stage{isolation:isolate}
+.founder-hero{background:radial-gradient(ellipse at 82% 35%,rgba(99,102,241,.10),transparent 35%)}
+.founder-hero:after{content:none!important}
+@media(max-width:760px){.astra-hero.page-scene-hero,.robotics-hero.page-scene-hero,.page-hero.page-scene-hero{min-height:0}.page-scene-hero:after{background:linear-gradient(180deg,rgba(10,10,10,.9),rgba(10,10,10,.72) 58%,rgba(10,10,10,.5))}.page-scene-canvas{opacity:.42}.page-scene-hero>.wrap{z-index:2}}
+@media(prefers-reduced-motion:reduce){.page-scene-canvas{display:none!important}}
