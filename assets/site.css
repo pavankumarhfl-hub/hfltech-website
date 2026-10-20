@@ -96,3 +96,14 @@ main .hero h1,main .page-hero h1,main .robotics-hero h1,main .founder-hero h1,ma
  #contact .cta-inner{align-items:flex-start;flex-direction:column}
  #contact .cta-copy{max-width:100%}
 }
+
+/* Compact four-category footer, including the static homepage shell. */
+.compact-footer{padding-top:28px;padding-bottom:20px}
+.compact-footer-categories{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.compact-footer-categories a{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 0;border-top:1px solid var(--line,rgba(255,255,255,.13));color:var(--text,#eceff3);text-decoration:none;font-size:15px;font-weight:550;line-height:1.4}
+.compact-footer-categories a span{color:#a5a6ff;transition:transform .2s ease}
+.compact-footer-categories a:hover span{transform:translate(3px,-3px)}
+.compact-footer-bottom{margin-top:22px;padding-top:14px;border-top:1px solid var(--line,rgba(255,255,255,.13));display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--muted,#9aa4b2);font-size:12px}
+.compact-footer-bottom a{color:var(--muted,#9aa4b2);text-decoration:none}
+.compact-footer-bottom span:last-child{display:flex;gap:18px;flex-wrap:wrap}
+@media(max-width:640px){.compact-footer{padding-top:22px}.compact-footer-categories{grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 20px}.compact-footer-categories a{font-size:14px;padding:14px 0}.compact-footer-bottom{margin-top:16px}.compact-footer-bottom span:first-child{width:100%}}
