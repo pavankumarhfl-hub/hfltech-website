@@ -128,3 +128,13 @@ select(0);
 (()=>{document.querySelectorAll('img').forEach((img,i)=>{if(i>0&&!img.hasAttribute('loading'))img.loading='lazy';if(!img.hasAttribute('decoding'))img.decoding='async'});document.querySelectorAll('a[href^="mailto:"]').forEach(a=>{if(!a.hasAttribute('aria-label'))a.setAttribute('aria-label','Email '+a.textContent.trim())})})();
 
 (()=>{const icon=document.querySelector('link[rel~="icon"]');if(icon&&icon.getAttribute('href')==='/favicon.svg')icon.href='/assets/favicon.svg';if(!icon){const n=document.createElement('link');n.rel='icon';n.type='image/svg+xml';n.href='/assets/favicon.svg';document.head.appendChild(n)}})();
+
+/* Shared immersive design system and 3D motion layer across legacy and product pages. */
+(()=> {
+  if(!document.querySelector('link[data-hfl-immersive-style]')){
+    const link=document.createElement('link');link.rel='stylesheet';link.href='/assets/antimatter-pages.css';link.dataset.hflImmersiveStyle='true';document.head.appendChild(link);
+  }
+  if(!document.querySelector('script[data-hfl-immersive]')){
+    const script=document.createElement('script');script.src='/assets/immersive-site.js';script.defer=true;script.dataset.hflImmersive='true';document.body.appendChild(script);
+  }
+})();
