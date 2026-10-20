@@ -1,0 +1,31 @@
+/* Page-specific visual storytelling: 3D belongs to the product, not to every route. */
+.page-scene-canvas{position:absolute!important;inset:0;width:100%;height:100%;display:block;pointer-events:none;z-index:0;opacity:.98}
+.page-scene-hero{position:relative;isolation:isolate;overflow:hidden}
+.page-scene-hero>.wrap{position:relative;z-index:2}
+.page-scene-hero:after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(10,10,10,.99) 0%,rgba(10,10,10,.9) 35%,rgba(10,10,10,.15) 76%,rgba(10,10,10,.05) 100%)}
+.astra-hero.page-scene-hero,.robotics-hero.page-scene-hero,.page-hero.page-scene-hero{min-height:570px}
+.astra-hero.page-scene-hero>.wrap,.robotics-hero.page-scene-hero>.wrap,.page-hero.page-scene-hero>.wrap{max-width:1200px}
+.astra-hero.page-scene-hero .lead,.robotics-hero.page-scene-hero p,.page-hero.page-scene-hero> .wrap>p{max-width:650px}
+#hero-sphere{position:relative;z-index:1}
+.orb-stage{isolation:isolate}
+.founder-hero{background:radial-gradient(ellipse at 82% 35%,rgba(99,102,241,.10),transparent 35%)}
+.founder-hero:after{content:none!important}
+@media(max-width:760px){.astra-hero.page-scene-hero,.robotics-hero.page-scene-hero,.page-hero.page-scene-hero{min-height:0}.page-scene-hero:after{background:linear-gradient(180deg,rgba(10,10,10,.9),rgba(10,10,10,.72) 58%,rgba(10,10,10,.5))}.page-scene-canvas{opacity:.42}.page-scene-hero>.wrap{z-index:2}}
+@media(prefers-reduced-motion:reduce){.page-scene-canvas{display:none!important}}
+
+/* Compact editorial space illustration for the homepage feature card. */
+.art-space{position:relative;overflow:hidden;background:radial-gradient(ellipse at 60% 40%,rgba(99,102,241,.22),transparent 48%),linear-gradient(145deg,#10111b,#07080c)!important}
+.space-orbit{position:absolute;left:50%;top:50%;border:1px solid rgba(165,166,255,.35);border-radius:50%;transform:translate(-50%,-50%) rotate(-25deg)}
+.orbit-a{width:290px;height:110px}.orbit-b{width:235px;height:165px;transform:translate(-50%,-50%) rotate(42deg);border-color:rgba(127,214,255,.24)}
+.space-rocket{position:absolute;left:51%;top:50%;width:36px;height:124px;transform:translate(-50%,-50%) rotate(28deg);filter:drop-shadow(0 0 18px rgba(99,102,241,.35))}
+.rocket-body{position:absolute;left:7px;top:22px;width:22px;height:74px;border-radius:12px 12px 7px 7px;background:linear-gradient(90deg,#8c90a7,#f1f2f7 42%,#9da2b8);border:1px solid #d9dcf0}
+.rocket-nose{position:absolute;left:7px;top:0;width:22px;height:30px;background:#7779ff;clip-path:polygon(50% 0,100% 100%,0 100%);border-radius:4px}
+.rocket-window{position:absolute;left:14px;top:42px;width:9px;height:9px;border-radius:50%;background:#8fe0ff;box-shadow:0 0 12px #8fe0ff}
+.rocket-fin{position:absolute;top:75px;width:11px;height:30px;background:#7779ff}
+.fin-left{left:0;clip-path:polygon(100% 0,100% 100%,0 100%)}.fin-right{right:0;clip-path:polygon(0 0,100% 100%,0 100%)}
+.rocket-flame{position:absolute;left:12px;bottom:-16px;width:13px;height:28px;background:linear-gradient(#ffd28d,rgba(99,102,241,0));clip-path:polygon(0 0,100% 0,50% 100%);filter:blur(.3px)}
+.space-satellite{position:absolute;right:16%;top:23%;width:80px;height:44px;transform:rotate(-20deg)}
+.sat-core{position:absolute;left:31px;top:10px;width:18px;height:22px;background:linear-gradient(135deg,#d5d9e6,#646a83);border:1px solid #a5a6ff}
+.sat-panel{position:absolute;top:12px;width:28px;height:18px;background:repeating-linear-gradient(90deg,#4d56a9 0 5px,#9ba4ff 5px 6px);border:1px solid #a5a6ff}
+.panel-left{left:0}.panel-right{right:0}
+@media(max-width:760px){.art-space{min-height:220px}.space-satellite{right:10%;top:18%}}
