@@ -96,7 +96,7 @@ select(0);
         <a href="ecosystem.html">HFL ecosystem <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
-    <div class="compact-footer-bottom"><span>© 2026 HFL Tech Private Limited</span><span><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="legal/cookies.html">Cookies</a><a href="legal/acceptable-use.html">Acceptable use</a></span></div>
+    <div class="compact-footer-bottom"><span>© ${new Date().getFullYear()} HFL Tech Private Limited</span><span><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="legal/cookies.html">Cookies</a><a href="legal/acceptable-use.html">Acceptable use</a></span></div>
   </div>`;
   const style=document.createElement('style');
   style.textContent=`.compact-footer{padding-top:28px;padding-bottom:20px}.compact-footer-main{display:flex;align-items:flex-start;justify-content:space-between;gap:28px;flex-wrap:wrap}.compact-footer .brand{display:inline-flex;align-items:center;gap:9px;color:var(--text,#eceff3);text-decoration:none;font-weight:650}.compact-footer-links{display:flex;gap:10px 22px;align-items:center;justify-content:flex-end;flex-wrap:wrap}.compact-footer-links a,.compact-footer-bottom a{color:var(--muted,#9aa4b2);text-decoration:none;font-size:13px;line-height:1.5}.compact-footer-links a:hover,.compact-footer-bottom a:hover{color:var(--text,#eceff3)}.compact-footer-bottom{margin-top:22px;padding-top:14px;border-top:1px solid var(--border,#232a33);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--muted,#9aa4b2);font-size:12px}.compact-footer-bottom span:last-child{display:flex;gap:18px}@media(max-width:640px){.compact-footer{padding-top:22px}.compact-footer-main{display:block}.compact-footer-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px;margin-top:22px;justify-content:stretch}.compact-footer-links a{font-size:14px;min-height:32px;display:flex;align-items:center}.compact-footer-bottom{margin-top:16px}.compact-footer-bottom span:first-child{width:100%}}`;
@@ -106,7 +106,7 @@ select(0);
 /* Global usability helpers: mobile navigation for legacy headers, current year, and favicon. */
 (()=> {
   if(!document.querySelector('link[rel="icon"]')){
-    const icon=document.createElement('link');icon.rel='icon';icon.type='image/svg+xml';icon.href='/favicon.svg';document.head.appendChild(icon);
+    const icon=document.createElement('link');icon.rel='icon';icon.type='image/svg+xml';icon.href='/assets/favicon.svg';document.head.appendChild(icon);
   }
   document.querySelectorAll('footer').forEach(footer=>{
     footer.querySelectorAll('*').forEach(el=>{
@@ -132,3 +132,5 @@ select(0);
  const mobile=document.querySelector('.mobile-btn'); const pop=document.querySelector('.mobile-pop');
  if(mobile&&pop){mobile.setAttribute('aria-controls','hfl-mobile-menu');pop.id='hfl-mobile-menu';mobile.setAttribute('aria-expanded',String(!pop.hidden));pop.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{pop.hidden=true;mobile.setAttribute('aria-expanded','false')}));document.addEventListener('keydown',e=>{if(e.key==='Escape'){pop.hidden=true;mobile.setAttribute('aria-expanded','false');mobile.focus()}})}
 })();
+
+(()=>{document.querySelectorAll('img').forEach((img,i)=>{if(i>0&&!img.hasAttribute('loading'))img.loading='lazy';if(!img.hasAttribute('decoding'))img.decoding='async'});document.querySelectorAll('a[href^="mailto:"]').forEach(a=>{if(!a.hasAttribute('aria-label'))a.setAttribute('aria-label','Email '+a.textContent.trim())})})();
