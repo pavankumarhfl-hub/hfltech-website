@@ -517,3 +517,26 @@ main .page-hero,main .hero,main .astra-hero,main .story-hero,main .cinema-hero{i
  .hfl-motion-ready [data-hfl-reveal],.hfl-motion-ready [data-hfl-reveal].hfl-in-view,.hfl-kinetic-word>span{opacity:1!important;transform:none!important;filter:none!important;transition:none!important;animation:none!important}
  .hfl-caret{display:none!important}
 }
+
+/* Final responsive and motion safeguards for the HFL Tech experience. */
+.founder-hero h1{white-space:normal!important;overflow-wrap:normal;word-break:normal}
+html{scrollbar-gutter:stable}
+body{isolation:isolate}
+main .section-head h2,main .section-heading h2,main .section h2{max-width:100%}
+main .section-head,main .section-heading{min-width:0}
+main .section-head>* ,main .section-heading>*{min-width:0}
+main .section img,main .section video{height:auto}
+main .section [style*="grid-template-columns"]{min-width:0}
+main .page-hero .wrap,main .hero .wrap,main .astra-hero .wrap,main .story-hero .wrap{position:relative;z-index:2}
+main .section .grid3>*,main .section .page-grid>*,main .section .feature-grid>*,main .section .role-grid>*,main .section .astra-job-grid>*{min-width:0}
+main .section .card,main .section article{overflow-wrap:anywhere}
+main .section a:not(.button):not(.btn):not(.cta){text-underline-offset:4px}
+main .section a:not(.button):not(.btn):not(.cta):focus-visible{text-decoration:underline}
+main .form,main form.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 22px}
+main .form .field,main form.form .field{min-width:0}
+main .form .field:has(textarea),main .form .consent,main .form .form-error,main .form .form-note,main .form button[type="submit"],main form.form .field:has(textarea),main form.form .consent,main form.form .form-error,main form.form .form-note,main form.form button[type="submit"]{grid-column:1/-1}
+main .form .field:has(select),main form.form .field:has(select){min-width:0}
+main .form .field[style*="position:absolute"],main form.form .field[style*="position:absolute"]{grid-column:1/-1}
+main .form .consent{display:flex;align-items:flex-start}
+main .form .consent span{font-weight:400}
+@media(max-width:680px){main .form,main form.form{grid-template-columns:minmax(0,1fr);gap:0}main .form .field,main form.form .field{grid-column:1/-1}.founder-hero h1{font-size:clamp(44px,12vw,68px)!important}}
