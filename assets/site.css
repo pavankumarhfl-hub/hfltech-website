@@ -269,3 +269,8 @@ main .hero:before,main .page-hero:before{pointer-events:none}
  main h1{letter-spacing:-.045em}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}main .button,main .btn{transition:none!important}main .button:hover,main .btn:hover{transform:none!important}}
+
+
+/* Shared structural safety net for pages that still use the base site stylesheet. */
+main{min-width:0;overflow-x:clip}main section{min-width:0}main h1,main h2,main h3{overflow-wrap:normal;word-break:normal;text-wrap:balance}main p{line-height:1.8}main .section-head{min-width:0}main .section-head h2{min-width:0;max-width:100%}main .grid3,main .plans,main .robotics-grid,main .astra-stories{align-items:stretch}main .grid3>* ,main .plans>* ,main .robotics-grid>* ,main .astra-stories>*{min-width:0}main .made{margin-top:clamp(28px,5vw,54px);padding:clamp(28px,5vw,56px) 0}main .made h2{max-width:100%;line-height:1.08}main .made p{max-width:68ch;margin-inline:auto}
+@media(max-width:760px){.wrap{width:calc(100% - 40px)}.hero h1,main h1{overflow-wrap:normal;word-break:normal;line-height:1.04}.hero-actions{flex-wrap:wrap}.section-head{gap:12px}.plans{grid-template-columns:1fr}.made{text-align:left}.made p{margin-left:0}}
