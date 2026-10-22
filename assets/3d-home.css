@@ -48,3 +48,45 @@
 @media(max-width:800px){.h3-nav{height:68px;padding-inline:20px}.h3-nav nav{gap:13px}.h3-nav nav a{font-size:10px}.h3-headline{grid-template-columns:1fr;gap:18px}.h3-headline p{max-width:560px}.h3-tile{min-height:390px}.cube-wrap{height:220px}.tile-copy{display:block}.tile-status{display:inline-block;margin-top:14px}.h3-follow{grid-template-columns:1fr;gap:24px}.h3-follow>a{grid-column:1}.h3-footer{align-items:flex-start;flex-wrap:wrap}.h3-footer>div{width:100%}}
 @media(max-width:560px){.h3-nav{gap:10px}.h3-brand{font-size:17px}.h3-brand span{font-size:8px}.h3-nav nav{display:none}.h3-nav-cta{font-size:10px;padding:10px}.h3-hero{padding-top:48px}.h3-headline h1{font-size:clamp(49px,15vw,72px)}.h3-stage{grid-template-columns:1fr}.h3-tile{min-height:360px}.cube-wrap{height:205px}.h3-bottomline{align-items:flex-start;flex-direction:column;line-height:1.8}.h3-footer{gap:14px}.h3-footer>div{gap:14px}}
 @media(prefers-reduced-motion:reduce){.cube,.cube-shadow,.cube-orbit{animation:none!important}.h3-tile{transition:none}}
+
+/* Refined reference pass: restrained Linear-like product UI, less decorative clutter. */
+.hfl3d{background-image:radial-gradient(ellipse at 50% -10%,rgba(111,116,255,.12),transparent 48%),linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:auto,48px 48px,48px 48px;background-position:center top}
+.h3-nav{height:70px;border-bottom-color:rgba(255,255,255,.075);background:rgba(8,9,13,.78);padding-inline:clamp(20px,6vw,96px)}
+.h3-brand{font-size:18px}.h3-nav nav a{font-size:12px;letter-spacing:-.01em}.h3-nav-cta{border-radius:6px;padding:11px 14px}
+.h3-hero{padding-top:clamp(44px,6.4vw,84px);padding-inline:clamp(20px,6vw,96px)}
+.h3-kicker{font-size:10px;letter-spacing:.13em}.h3-headline{grid-template-columns:1.1fr .9fr;gap:7vw;margin:24px 0 clamp(30px,4vw,52px)}
+.h3-headline h1{font-size:clamp(54px,7.4vw,104px);line-height:.93;letter-spacing:-.075em}
+.h3-headline h1 em{background:linear-gradient(100deg,#f7f7fb,#a5a7ff 80%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.h3-headline p{font-size:15px;max-width:390px;line-height:1.8}
+.h3-stage{gap:18px;perspective:1600px}
+.h3-tile{min-height:400px;border-radius:10px;padding:clamp(18px,2.4vw,30px);background:linear-gradient(145deg,rgba(23,24,33,.92),rgba(10,11,16,.97));box-shadow:0 22px 80px rgba(0,0,0,.14);transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s,box-shadow .35s}
+.h3-tile:before{background:linear-gradient(135deg,rgba(255,255,255,.045),transparent 38%,rgba(255,255,255,.012));}
+.h3-tile:hover{box-shadow:0 28px 90px rgba(0,0,0,.28);transform:translateY(-3px)}
+.tile-top{font-size:9px;letter-spacing:.12em}
+.cube-wrap{height:230px;overflow:visible;perspective:1000px}
+.cube{--cube-size:88px;animation:cube-drift 8s ease-in-out infinite,cube-spin 26s linear infinite;filter:drop-shadow(0 14px 28px color-mix(in srgb,var(--tile-accent) 15%,transparent))}
+.cube .front{transform:translateZ(44px);font-size:38px}
+.cube .back{transform:rotateY(180deg) translateZ(44px)}.cube .right{transform:rotateY(90deg) translateZ(44px)}.cube .left{transform:rotateY(-90deg) translateZ(44px)}.cube .top{transform:rotateX(90deg) translateZ(44px)}.cube .bottom{transform:rotateX(-90deg) translateZ(44px)}
+.cube .face{border-color:color-mix(in srgb,var(--tile-accent) 38%,rgba(255,255,255,.25));box-shadow:inset 0 0 24px color-mix(in srgb,var(--tile-accent) 10%,transparent);backdrop-filter:blur(2px)}
+.cube-ai .face{background:linear-gradient(145deg,rgba(105,111,255,.36),rgba(20,22,39,.82) 70%,rgba(88,93,185,.28))}
+.cube-space .face{background:linear-gradient(145deg,rgba(93,190,226,.32),rgba(14,24,35,.84) 70%,rgba(35,104,144,.28))}
+.cube-people .face{background:linear-gradient(145deg,rgba(199,166,106,.3),rgba(30,26,20,.85) 70%,rgba(111,79,36,.25))}
+.cube-education .face{background:linear-gradient(145deg,rgba(117,173,144,.32),rgba(17,29,23,.86) 70%,rgba(48,100,72,.26))}
+.cube-shadow{width:125px;height:24px;filter:blur(20px);opacity:.12}
+.cube-orbit{width:170px;height:60px;border-color:color-mix(in srgb,var(--tile-accent) 23%,transparent);animation-duration:20s}
+.orbit-two{width:195px;height:78px;opacity:.35}
+.tile-copy{align-items:center;gap:14px}
+.tile-copy h2{font-size:clamp(24px,2.6vw,32px);letter-spacing:-.045em}
+.tile-copy p{font-size:12px;max-width:300px}
+.tile-status{font-size:8px;letter-spacing:.09em;padding:8px 9px;border-radius:4px}
+.h3-bottomline{border-top:1px solid var(--h3-line);padding-top:18px;margin-top:18px;font-size:9px;letter-spacing:.1em}
+.h3-follow{padding-inline:clamp(20px,6vw,96px);max-width:none;grid-template-columns:1fr .8fr;gap:5vw 10vw}
+.h3-follow h2{font-size:clamp(40px,5vw,68px);letter-spacing:-.065em}
+.h3-follow>p{font-size:14px}
+.h3-footer{padding-inline:clamp(20px,6vw,96px)}
+.foundation3d .h3-headline h1 em{background:linear-gradient(100deg,#f0d8a4,#c7a66a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.foundation3d .h3-tile{background:linear-gradient(145deg,rgba(24,22,19,.94),rgba(9,9,9,.98))}
+.foundation3d .tile-education{background:linear-gradient(145deg,rgba(19,25,21,.94),rgba(8,9,8,.98))}
+@media(max-width:800px){.h3-headline{grid-template-columns:1fr;gap:18px}.h3-stage{gap:14px}.h3-tile{min-height:380px}.cube-wrap{height:210px}.h3-follow{grid-template-columns:1fr;gap:24px}}
+@media(max-width:560px){.h3-nav{height:64px}.h3-hero{padding-top:40px}.h3-headline h1{font-size:clamp(48px,13vw,68px)}.h3-tile{min-height:350px}.cube-wrap{height:195px}.tile-copy{display:flex;align-items:flex-start;flex-direction:column}.tile-status{margin-top:0}.h3-bottomline{line-height:1.8}}
+@media(prefers-reduced-motion:reduce){.cube,.cube-shadow,.cube-orbit{animation:none!important}}
