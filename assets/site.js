@@ -231,3 +231,34 @@ select(0);
  const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('hfl-in-view');io.unobserve(entry.target);}}),{threshold:.12,rootMargin:'0px 0px -7% 0px'});
  document.querySelectorAll('.hfl-scroll-reveal').forEach(el=>io.observe(el));
 })();
+
+/* HFL premium scroll motion: progressive reveal, restrained 3D lift and kinetic headings. */
+(()=>{
+ const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const ready=()=>{
+  const root=document.documentElement;
+  const sections=[...document.querySelectorAll('main section')];
+  const revealSelectors=['.section-head','.section-heading','.section-intro','.card','.panel','.feature-card','.project-row','.principle','.astra-story','.investor-card','.role','.culture','.resource-links>a','.ecosystem-grid>article','.career-intro>div','.company-meta>div','.about-panel>div','.trust-card','.work-card','.notice','.apply-box','.astra-info','.astra-job','.comparison-row','.comparison-head','.system-node','.editorial-row','.capital-side','.founder-editorial-aside'];
+  const seen=new Set();
+  sections.forEach(section=>{
+   if(section.matches('.cinema-hero,.astra-hero,.page-hero,.hero,.story-hero,.no-scroll-motion'))return;
+   revealSelectors.forEach(sel=>section.querySelectorAll(sel).forEach(el=>{
+    if(seen.has(el)||el.closest('header,footer,[data-no-reveal]'))return;seen.add(el);
+    el.setAttribute('data-hfl-reveal',(/card|story|investor|role|principle|article|resource-links|astra-job/i.test(sel)?'depth':'up'));
+    const siblings=[...el.parentElement.children].filter(n=>n.matches(sel));
+    if(siblings.length>1)el.style.setProperty('--hfl-delay',Math.min(siblings.indexOf(el),5)*75+'ms');
+   }));
+  });
+  if(reduce){document.querySelectorAll('[data-hfl-reveal]').forEach(el=>el.classList.add('hfl-in-view'));return;}
+  root.classList.add('hfl-motion-ready');
+  if(!('IntersectionObserver'in window)){document.querySelectorAll('[data-hfl-reveal]').forEach(el=>el.classList.add('hfl-in-view'));return;}
+  const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('hfl-in-view');io.unobserve(entry.target)}}),{threshold:.12,rootMargin:'0px 0px -28px 0px'});
+  document.querySelectorAll('[data-hfl-reveal]').forEach(el=>io.observe(el));
+  /* Animate only the main display headline; keep body copy readable and selectable. */
+  document.querySelectorAll('main .page-hero h1,main .hero h1,main .astra-hero h1,main .story-hero h1,main .cinema-hero h1').forEach(h=>{
+   if(h.querySelector('video,svg,img,[data-typewriter]')||h.dataset.kineticDone)return;
+   h.dataset.kineticDone='1';h.classList.add('hfl-display-title');
+  });
+ };
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ready,{once:true});else ready();
+})();
