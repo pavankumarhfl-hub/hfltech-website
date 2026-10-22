@@ -218,3 +218,16 @@ select(0);
   });
  });
 })();
+
+/* Scroll-driven editorial motion — native view timelines where supported, safe static fallback elsewhere. */
+(()=>{
+ const root=document.documentElement;
+ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ if(CSS.supports('animation-timeline:view()')){root.classList.add('hfl-reveal-ready');return;}
+ if(!('IntersectionObserver'in window))return;
+ root.classList.add('hfl-reveal-ready');
+ const targets='main .section-head,main .section-heading,main .section-intro,main .grid3,main .page-grid,main .feature-grid,main .card,main .panel,main .feature-card,main article,main blockquote,main .final .wrap,main .made,main .early-access,main h1,main h2,main h3';
+ document.querySelectorAll(targets).forEach((el,i)=>{el.classList.add('hfl-scroll-reveal');if(/^H[123]$/.test(el.tagName))el.classList.add('hfl-scroll-title');if(el.matches('.card,article'))el.style.setProperty('--hfl-reveal-delay',Math.min(i%4,3)*65+'ms');});
+ const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('hfl-in-view');io.unobserve(entry.target);}}),{threshold:.12,rootMargin:'0px 0px -7% 0px'});
+ document.querySelectorAll('.hfl-scroll-reveal').forEach(el=>io.observe(el));
+})();
