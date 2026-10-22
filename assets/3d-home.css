@@ -84,3 +84,42 @@
 .lab-glass-panel{position:absolute;right:4%;top:12%;width:17%;height:48%;border:1px solid rgba(220,230,240,.18);background:linear-gradient(140deg,rgba(220,230,240,.08),transparent);backdrop-filter:blur(2px)}
 @media(max-width:760px){.engineering-orbit{right:-35%;width:95vw;opacity:.7}.engineering-core{right:15%;}.engineering-data{right:5%;font-size:7px}.robotics-robot{right:7%;width:190px;height:55%;bottom:24%}.robotics-workbench{right:-10%;width:80%}.astra-visual-orbit{right:-15%;width:75vw}.astra-visual-core{right:22%}.robotics-visual-label,.astra-visual>span{font-size:7px;right:12px}.lab-prototype{right:8%;width:45%}.lab-glass-panel{right:2%;width:20%}}
 @media(prefers-reduced-motion:reduce){.robotics-robot,.robot-arm-right,.robot-leg-left,.robot-leg-right{animation:none!important}}
+
+
+/* HFL Astra 3D satellite + engineering philosophy: meaningful depth, isolated text, responsive composition */
+.frontier-astra .astra-visual{background:radial-gradient(ellipse at 74% 44%,rgba(80,112,165,.24),transparent 33%),linear-gradient(120deg,#05070a 0%,#0b101a 55%,#06080c 100%)!important;overflow:hidden!important}
+.frontier-astra .astra-visual:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(190,210,230,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(190,210,230,.055) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(90deg,transparent,#000 65%);opacity:.7}
+.frontier-astra .astra-visual-orbit{position:absolute;right:10%;top:50%;width:clamp(220px,35vw,470px);aspect-ratio:1;border:1px solid rgba(165,195,228,.45);border-radius:50%;transform:translateY(-50%) rotateX(68deg) rotateZ(-24deg);box-shadow:0 0 55px rgba(90,140,205,.12);animation:astraOrbitTurn 24s linear infinite}
+.frontier-astra .astra-visual-orbit:before{content:"";position:absolute;inset:14%;border:1px solid rgba(165,195,228,.25);border-radius:50%;transform:rotateZ(48deg) scaleX(.62)}
+.frontier-astra .astra-visual-core{position:absolute;right:calc(10% + clamp(110px,17.5vw,235px));top:50%;width:clamp(22px,3.5vw,44px);aspect-ratio:1;transform:translate(50%,-50%) rotate(45deg);background:linear-gradient(145deg,#f0f4f8 0%,#8397ad 35%,#26384f 72%,#0b111a 100%);clip-path:polygon(50% 0,100% 35%,82% 100%,18% 100%,0 35%);box-shadow:0 0 24px rgba(153,194,238,.5);z-index:1;animation:astraSatelliteDrift 7s ease-in-out infinite}
+.frontier-astra .astra-visual-core:after{content:"";position:absolute;width:210%;height:1px;left:-55%;top:49%;background:#a9d0ff;box-shadow:0 0 8px #6c9ed9;transform:rotate(-45deg)}
+.frontier-astra .astra-visual>span{position:absolute;right:clamp(20px,5vw,70px);bottom:clamp(20px,4vw,45px);z-index:3;font:600 8px/1.4 Inter,sans-serif;letter-spacing:.18em;color:#aebed0}
+@keyframes astraOrbitTurn{0%{transform:translateY(-50%) rotateX(68deg) rotateZ(-24deg)}100%{transform:translateY(-50%) rotateX(68deg) rotateZ(336deg)}}
+@keyframes astraSatelliteDrift{0%,100%{translate:0 0;filter:brightness(.9)}50%{translate:0 -9px;filter:brightness(1.25)}}
+/* Engineering philosophy uses a clear CAD/workbench metaphor; keep all illustration behind copy. */
+.feature-film{position:relative;isolation:isolate;display:grid!important;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr)!important;align-items:center!important;gap:clamp(24px,5vw,76px)!important;min-height:clamp(420px,48vw,650px)!important;padding:clamp(56px,8vw,110px) clamp(22px,8vw,128px)!important;overflow:hidden!important;background:linear-gradient(120deg,#07090c,#0b0e13 62%,#07090c)!important}
+.feature-film .feature-visual{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;z-index:-1!important;pointer-events:none!important;opacity:.85}
+.feature-film .engineering-lab-visual{background:radial-gradient(ellipse at 30% 50%,rgba(122,157,255,.10),transparent 38%),linear-gradient(90deg,rgba(5,6,8,.1),rgba(5,6,8,.15))!important}
+.feature-film .lab-blueprint{position:absolute;inset:0;background-image:linear-gradient(rgba(170,190,215,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(170,190,215,.09) 1px,transparent 1px);background-size:38px 38px;mask-image:linear-gradient(90deg,#000,transparent 72%);animation:labGridMove 22s linear infinite}
+.feature-film .lab-prototype{position:absolute;left:clamp(20px,8vw,125px);right:auto;top:50%;width:clamp(190px,29vw,390px);height:clamp(220px,30vw,380px);transform:translateY(-50%) perspective(700px) rotateY(-18deg) rotateZ(-5deg);border:1px solid rgba(170,190,215,.42);background:linear-gradient(140deg,rgba(130,155,190,.12),rgba(6,9,13,.22));box-shadow:0 30px 90px rgba(0,0,0,.25);animation:labPrototypeFloat 8s ease-in-out infinite}
+.feature-film .lab-prototype:before{inset:12%;border-color:rgba(170,190,215,.5);transform:rotate(24deg)}
+.feature-film .lab-prototype:after{inset:12%;border-color:rgba(216,255,100,.28);transform:rotate(-24deg)}
+.feature-film .lab-glass-panel{position:absolute;left:clamp(150px,27vw,370px);right:auto;top:20%;width:clamp(65px,9vw,120px);height:56%;border:1px solid rgba(216,255,100,.2);background:linear-gradient(140deg,rgba(220,230,240,.06),transparent)}
+.feature-film .feature-copy{position:relative;z-index:2;grid-column:2;max-width:540px;margin-left:auto;padding:clamp(20px,3vw,40px);background:linear-gradient(90deg,rgba(6,8,11,.92),rgba(6,8,11,.72));border:1px solid rgba(255,255,255,.09);box-shadow:0 20px 65px rgba(0,0,0,.18);backdrop-filter:blur(8px)}
+.feature-film .feature-copy h2{font:600 clamp(36px,5vw,68px)/.98 'Space Grotesk',Inter,sans-serif;letter-spacing:-.07em;margin:18px 0 20px;max-width:10ch}
+.feature-film .feature-copy p{max-width:44ch;color:#b4bac4;font-size:clamp(14px,1.2vw,16px);line-height:1.8}
+.feature-film .feature-copy .text-link{display:inline-flex;margin-top:12px}
+@keyframes labGridMove{to{background-position:38px 38px,-38px 19px}}
+@keyframes labPrototypeFloat{0%,100%{translate:0 0;rotate:0deg}50%{translate:0 -8px;rotate:1deg}}
+@media(max-width:760px){
+ .frontier-astra .astra-visual-orbit{right:-7%;width:75vw;opacity:.85}
+ .frontier-astra .astra-visual-core{right:30%}
+ .feature-film{display:block!important;min-height:540px!important;padding:52px 20px!important}
+ .feature-film .feature-visual{opacity:.68}
+ .feature-film .lab-prototype{left:4%;top:34%;width:55%;height:36%;transform:translateY(-50%) perspective(700px) rotateY(-18deg) rotateZ(-5deg)}
+ .feature-film .lab-glass-panel{left:42%;top:18%;height:38%}
+ .feature-film .feature-copy{margin:180px 0 0 auto!important;max-width:100%!important;padding:22px!important;background:rgba(5,7,10,.92)!important;backdrop-filter:blur(14px)}
+ .feature-film .feature-copy h2{font-size:clamp(34px,8.6vw,48px)!important;max-width:12ch!important}
+ .feature-film .feature-copy p{max-width:58ch}
+}
+@media(prefers-reduced-motion:reduce){.frontier-astra .astra-visual-orbit,.frontier-astra .astra-visual-core,.feature-film .lab-blueprint,.feature-film .lab-prototype{animation:none!important}}
