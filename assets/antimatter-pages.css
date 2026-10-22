@@ -352,3 +352,46 @@ main h3{line-height:1.22;letter-spacing:-.025em}
 main .lead,main .section-intro{max-width:68ch;line-height:1.85}
 main img,main video{max-width:100%}
 @media(max-width:760px){main p{line-height:1.82}main h1{letter-spacing:-.045em}}
+
+
+/* GLOBAL LAYOUT AUDIT HOTFIX — consistent editorial alignment and no hidden content. */
+:root{--hfl-page-width:1200px;--hfl-page-gutter:clamp(20px,5vw,64px)}
+html{scroll-padding-top:88px}
+body{overflow-x:clip}
+main{min-width:0}
+main>.section{padding:clamp(48px,7vw,88px) 0!important;min-height:0!important}
+main>.section>.wrap,main>.page-hero>.wrap,main>.hero>.wrap{width:min(var(--hfl-page-width),calc(100% - 2*var(--hfl-page-gutter)))!important;margin-inline:auto!important}
+main .section-head{display:grid!important;grid-template-columns:minmax(140px,.28fr) minmax(0,1fr)!important;column-gap:clamp(24px,5vw,76px)!important;row-gap:12px!important;align-items:start!important;margin:0 0 clamp(26px,4vw,46px)!important}
+main .section-head>.eyebrow,main .section-head>.section-index{grid-column:1!important;grid-row:1 / span 2!important;align-self:start!important;margin-top:8px!important}
+main .section-head>h2{grid-column:2!important;grid-row:1!important;max-width:900px!important;margin:0!important;text-wrap:balance!important}
+main .section-head>p,main .section-head>.section-intro{grid-column:2!important;grid-row:2!important;max-width:68ch!important;margin:0!important;line-height:1.85!important}
+main .section-head.centered{display:flex!important;flex-direction:column!important;align-items:center!important;text-align:center!important;gap:12px!important}
+main .section-head.centered>*{grid-column:auto!important;grid-row:auto!important}
+main .page-hero{min-height:0!important;padding:clamp(100px,13vw,160px) 0 clamp(58px,8vw,92px)!important}
+main .page-hero h1{max-width:920px!important;font-size:clamp(42px,6.3vw,78px)!important;line-height:1.02!important;letter-spacing:-.06em!important;margin:20px 0 22px!important;overflow-wrap:normal!important;word-break:normal!important}
+main .page-hero p{max-width:70ch!important;line-height:1.85!important}
+main .page-hero .hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px!important;margin-top:26px!important}
+main .section .card,main .section .feature,main .section .project-row{min-width:0}
+main .grid3,main .page-grid,main .services-grid,main .feature-grid{align-items:stretch!important;gap:clamp(12px,2vw,20px)!important}
+main .grid3>.card{min-width:0}
+main .grid3>.card h3{overflow-wrap:normal!important;word-break:normal!important}
+main .grid3>.card p{max-width:65ch}
+main .made{margin:clamp(32px,5vw,56px) 0 0!important;padding:clamp(28px,5vw,56px) 0!important;text-align:center!important}
+main .made h2{max-width:100%!important;margin:0 auto!important;font-size:clamp(28px,4.6vw,54px)!important;line-height:1.08!important;letter-spacing:-.055em!important;text-wrap:balance!important}
+main .made p{max-width:68ch!important;margin:14px auto 0!important;line-height:1.8!important}
+/* A failed or delayed observer must never make essential page content disappear. */
+.reveal{opacity:1!important;transform:none!important;filter:none!important}
+@media(max-width:760px){
+ main>.section{padding:52px 0!important}
+ main>.section>.wrap,main>.page-hero>.wrap,main>.hero>.wrap{width:calc(100% - 40px)!important}
+ main .section-head{grid-template-columns:minmax(0,1fr)!important;gap:12px!important}
+ main .section-head>.eyebrow,main .section-head>.section-index{grid-column:1!important;grid-row:auto!important;margin:0!important}
+ main .section-head>h2,main .section-head>p,main .section-head>.section-intro{grid-column:1!important;grid-row:auto!important}
+ main .page-hero{padding:98px 0 54px!important}
+ main .page-hero h1{font-size:clamp(38px,9.5vw,56px)!important;line-height:1.04!important;max-width:100%!important}
+ main .page-hero p{font-size:15px!important;line-height:1.8!important}
+ main .made{text-align:left!important;padding:30px 0!important}
+ main .made h2{margin:0!important;font-size:clamp(30px,8vw,44px)!important}
+ main .made p{margin:12px 0 0!important}
+}
+@media(prefers-reduced-motion:reduce){.reveal{transition:none!important}}
