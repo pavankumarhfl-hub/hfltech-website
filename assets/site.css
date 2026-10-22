@@ -321,3 +321,16 @@ main img,main video,main svg,main canvas{max-width:100%}
  main .section-head,main .section-heading{grid-template-columns:minmax(0,1fr) minmax(220px,.7fr);gap:28px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+
+/* Performance and responsive typography pass (shared across routes). */
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body:before{content:none!important}
+.nav,.site-header,.topbar{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.card,.service-card,.trust-card,.work-card,.project-row,.runtime-demo,.notice,.proof-grid>div,.runtime-controls,.runtime-log,.auth-card,.account-card,.legal-card,input,textarea,select{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.reveal{content-visibility:auto;contain-intrinsic-size:auto 360px}
+@media(prefers-reduced-motion:reduce){.reveal{content-visibility:visible;opacity:1!important;transform:none!important}}
+img,video,iframe{max-width:100%;height:auto}
+img[loading="lazy"]{content-visibility:auto}
+main{min-width:0}h1,h2,h3,p,li,a{overflow-wrap:anywhere}h1,h2,h3{hyphens:auto;text-wrap:balance}
+@media(max-width:760px){.wrap{width:calc(100% - 32px)!important}.section-head h2,.section-heading h2{max-width:100%;font-size:clamp(29px,7.5vw,42px)!important;line-height:1.12!important}.section-head p,.section-heading p{max-width:100%}.footer-top{gap:20px}}
