@@ -1,0 +1,24 @@
+/* Homepage experience layer: purposeful product storytelling, restrained motion, responsive layouts. */
+.workflow-section{background:linear-gradient(180deg,#0a0a0a,#0d0e13 55%,#0a0a0a)}
+.workflow-rail{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid rgba(255,255,255,.12);border-radius:14px;overflow:hidden;margin-top:42px}
+.workflow-rail article{position:relative;min-height:270px;padding:28px 28px 30px;border-right:1px solid rgba(255,255,255,.1);background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.008))}
+.workflow-rail article:last-child{border-right:0}
+.workflow-index{font:600 11px 'Space Grotesk',sans-serif;letter-spacing:.12em;color:#8f92ff}
+.workflow-glyph{height:64px;width:86px;display:flex;align-items:center;gap:7px;margin:28px 0 24px}
+.workflow-glyph i{display:block;border:1px solid rgba(160,163,255,.55);background:rgba(99,102,241,.12);border-radius:6px}
+.glyph-context i{width:20px;height:40px}.glyph-context i:nth-child(2){height:56px;background:rgba(110,214,195,.15);border-color:rgba(110,214,195,.55)}.glyph-context i:nth-child(3){height:29px}
+.glyph-tools i{width:23px;height:23px;transform:rotate(45deg);border-radius:5px}.glyph-tools i:nth-child(2){width:30px;height:30px;background:rgba(110,214,195,.15);border-color:rgba(110,214,195,.55)}
+.glyph-review i{width:22px;height:22px;border-radius:50%}.glyph-review i:nth-child(2){width:36px;height:36px;border-color:rgba(110,214,195,.65);box-shadow:0 0 22px rgba(110,214,195,.12)}.glyph-review i:nth-child(3){width:12px;height:12px}
+.workflow-rail h3{font:500 21px 'Space Grotesk',sans-serif;letter-spacing:-.035em;margin:0 0 9px}.workflow-rail p,.ecosystem-strip p{font-size:13px;line-height:1.8;color:#a3a3aa;max-width:340px;margin:0}
+.workflow-foot{display:flex;align-items:center;gap:22px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.12);padding-top:22px;margin-top:22px}
+.workflow-foot>span{font-size:10px;letter-spacing:.13em;color:#8f92ff}.workflow-foot strong{font-size:13px;font-weight:500}.workflow-foot a{margin-left:auto;color:#c4c5ff;font-size:12px}
+.ecosystem-strip{background:radial-gradient(ellipse at 8% 20%,rgba(99,102,241,.09),transparent 38%),#0b0b0d}
+.ecosystem-strip-inner{display:grid;grid-template-columns:.9fr 1.1fr;gap:8vw;align-items:center}
+.ecosystem-strip h2{font:600 clamp(36px,4.5vw,58px)/1 'Space Grotesk',sans-serif;letter-spacing:-.06em;margin:18px 0}
+.ecosystem-links{border-top:1px solid rgba(255,255,255,.13)}
+.ecosystem-links>a{display:grid;grid-template-columns:32px 1fr 20px;align-items:center;gap:16px;padding:22px 0;border-bottom:1px solid rgba(255,255,255,.13);transition:padding .2s ease,color .2s ease}
+.ecosystem-links>a:hover{padding-left:8px;color:#bfc1ff}
+.ecosystem-links>a>span:first-child{font:11px 'Space Grotesk';color:#8f92ff}
+.ecosystem-links b,.ecosystem-links small{display:block}.ecosystem-links b{font:500 16px 'Space Grotesk'}.ecosystem-links small{font-size:11px;color:#909098;margin-top:5px}
+@media(max-width:760px){.workflow-rail{grid-template-columns:1fr}.workflow-rail article{min-height:0;border-right:0;border-bottom:1px solid rgba(255,255,255,.1);padding:23px}.workflow-rail article:last-child{border-bottom:0}.workflow-glyph{margin:20px 0 16px}.workflow-foot{align-items:flex-start;gap:10px;flex-direction:column}.workflow-foot a{margin-left:0}.ecosystem-strip-inner{grid-template-columns:1fr;gap:30px}}
+@media(prefers-reduced-motion:reduce){.ecosystem-links>a{transition:none}}
