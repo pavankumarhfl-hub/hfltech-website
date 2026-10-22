@@ -40,3 +40,47 @@
 /* Kinetic typography: real text, progressive typing, and a restrained terminal caret. */
 .type-line,.astra-typewriter{display:inline-block;max-width:100%;white-space:normal}.type-line.typing-active:after,.astra-typewriter.typing-active:after{content:"";display:inline-block;width:2px;height:.78em;vertical-align:-.03em;margin-left:.1em;background:var(--acid,#d8ff64);animation:hfl-caret .8s steps(1,end) infinite}.type-line-accent{color:var(--acid)}
 .capital-section{padding:clamp(76px,10vw,140px) clamp(22px,8vw,128px);border-top:1px solid var(--line);background:radial-gradient(ellipse at 80% 20%,rgba(216,255,100,.065),transparent 40%),#07080a}.capital-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.7fr);gap:clamp(34px,8vw,120px);max-width:1400px;margin:auto}.capital-grid h2{font:600 clamp(42px,6vw,78px)/.96 'Space Grotesk',sans-serif;letter-spacing:-.075em;margin:18px 0}.capital-grid h2 em{font-style:normal;color:var(--acid)}.capital-grid p{max-width:610px;color:#b9c0c9;font-size:14px;line-height:1.9}.capital-side{border:1px solid var(--line);background:rgba(255,255,255,.025);padding:26px 28px;align-self:center}.capital-side ul{list-style:none;padding:0;margin:22px 0}.capital-side li{display:flex;gap:16px;padding:15px 0;border-bottom:1px solid var(--line);font-size:12px;color:#d5d9df}.capital-side li span{font:10px ui-monospace,monospace;color:var(--acid)}.capital-side .capital-note{font-size:11px;color:#858c97}.astra-typewriter{line-height:1.06}.astra-typewriter-accent{color:#82c9e5}.astra-roadmap-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.astra-roadmap .astra-story{min-height:245px}.astra-roadmap .astra-vision{max-width:900px;margin-top:35px}.astra-roadmap .astra-vision .button{margin:8px 12px 0 0}@keyframes hfl-caret{50%{opacity:0}}@media(max-width:760px){.capital-grid{grid-template-columns:1fr}.capital-side{padding:20px}.astra-roadmap-grid{grid-template-columns:1fr}.type-line,.astra-typewriter{overflow-wrap:normal;word-break:normal}}
+
+/* HFL homepage visual reset: project-specific visuals, no unrelated NASA footage. */
+.hero-engineering-visual{position:absolute;inset:0;overflow:hidden;background:radial-gradient(ellipse at 72% 42%,rgba(103,132,151,.22),transparent 26%),linear-gradient(115deg,#07090c 0%,#111923 48%,#050608 100%);z-index:0}
+.hero-engineering-visual:before,.robotics-visual:before,.engineering-lab-visual:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(210,220,232,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(210,220,232,.055) 1px,transparent 1px);background-size:52px 52px;mask-image:linear-gradient(90deg,transparent,#000 45%,#000)}
+.engineering-orbit{position:absolute;width:min(56vw,740px);aspect-ratio:1;right:3%;top:50%;transform:translateY(-50%) rotate(-28deg);border:1px solid rgba(216,255,100,.25);border-radius:50%;box-shadow:0 0 90px rgba(117,149,182,.12),inset 0 0 65px rgba(117,149,182,.08)}
+.engineering-orbit:before,.engineering-orbit:after{content:"";position:absolute;inset:12%;border:1px solid rgba(255,255,255,.16);border-radius:50%;transform:rotate(55deg) scaleX(.38)}
+.engineering-orbit:after{transform:rotate(-55deg) scaleX(.38)}
+.engineering-core{position:absolute;width:clamp(90px,13vw,180px);aspect-ratio:1;right:calc(3% + min(28vw,370px));top:50%;transform:translate(50%,-50%);border-radius:50%;background:radial-gradient(circle at 35% 28%,#f5f7fa 0%,#6f8394 8%,#1a2732 30%,#080b10 68%);box-shadow:0 0 75px rgba(176,199,219,.22),inset -14px -18px 30px #020305}
+.engineering-data{position:absolute;right:7%;font:600 9px/1.4 Inter,sans-serif;letter-spacing:.22em;color:#9ea9b7}
+.engineering-data-a{top:25%}.engineering-data-b{bottom:23%;color:#d8ff64}
+.frontier-slide{isolation:isolate}
+.frontier-footage{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.astra-visual{background:radial-gradient(ellipse at 68% 45%,rgba(100,132,174,.2),transparent 35%),linear-gradient(125deg,#080b11,#17212c 55%,#050608);overflow:hidden}
+.astra-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,5,8,.85),rgba(3,5,8,.1) 65%,rgba(3,5,8,.5))}
+.astra-visual-orbit{position:absolute;right:9%;top:50%;width:min(43vw,550px);aspect-ratio:1;border:1px solid rgba(180,202,225,.28);border-radius:50%;transform:translateY(-50%) rotate(-25deg) scaleY(.42);box-shadow:0 0 65px rgba(145,177,218,.13)}
+.astra-visual-core{position:absolute;right:calc(9% + min(21.5vw,275px));top:50%;width:clamp(45px,7vw,90px);aspect-ratio:1;transform:translate(50%,-50%);background:linear-gradient(135deg,#d9e1e8,#596b7c 50%,#101720);clip-path:polygon(50% 0,84% 22%,100% 50%,80% 80%,50% 100%,20% 80%,0 50%,16% 22%);box-shadow:0 0 50px rgba(181,204,229,.2);z-index:1}
+.astra-visual>span,.robotics-visual-label{position:absolute;right:25px;bottom:22px;z-index:2;font:600 8px Inter,sans-serif;letter-spacing:.18em;color:#c3cbd5}
+.robotics-visual{background:radial-gradient(ellipse at 65% 40%,rgba(143,163,179,.2),transparent 38%),linear-gradient(110deg,#080a0d,#202a32 60%,#080a0d);overflow:hidden}
+.robotics-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,5,7,.95),rgba(4,5,7,.25) 65%,rgba(4,5,7,.65)),linear-gradient(0deg,rgba(4,5,7,.78),transparent 50%);pointer-events:none}
+.robotics-workcell{position:absolute;inset:0;perspective:900px}
+.robotics-workbench{position:absolute;width:58%;height:16%;right:6%;bottom:16%;transform:skewY(-8deg);border:1px solid rgba(200,214,227,.3);background:linear-gradient(180deg,rgba(164,180,196,.2),rgba(9,13,17,.9));box-shadow:0 25px 50px #020305}
+.robotics-robot{position:absolute;right:24%;bottom:22%;width:clamp(135px,20vw,285px);height:62%;filter:drop-shadow(0 0 22px rgba(183,205,220,.18));animation:roboticsIdle 4.8s ease-in-out infinite;z-index:1}
+.robotics-robot i{display:block;position:absolute;background:linear-gradient(115deg,#f0f3f5,#697782 38%,#171f27 72%,#c3cbd1);border:1px solid rgba(255,255,255,.32);box-shadow:inset -7px -5px 10px rgba(0,0,0,.55)}
+.robot-head{width:25%;height:14%;top:0;left:37%;border-radius:38% 38% 32% 32%;background:linear-gradient(90deg,#0b1016,#e5e9eb 24%,#667784 60%,#10151b)!important}
+.robot-torso{width:34%;height:33%;top:17%;left:32%;clip-path:polygon(15% 0,85% 0,100% 78%,75% 100%,25% 100%,0 78%);border-radius:15px}
+.robot-arm{width:13%;height:36%;top:21%;border-radius:20px;transform-origin:50% 8%}
+.robot-arm-left{left:20%;transform:rotate(24deg)}
+.robot-arm-right{left:66%;transform:rotate(-38deg);animation:robotArmWork 3.2s ease-in-out infinite}
+.robot-leg{width:15%;height:43%;top:49%;border-radius:14px;transform-origin:50% 5%}
+.robot-leg-left{left:34%;transform:rotate(5deg);animation:robotLegWalk 3.2s ease-in-out infinite}
+.robot-leg-right{left:53%;transform:rotate(-7deg);animation:robotLegWalk 3.2s ease-in-out infinite reverse}
+@keyframes roboticsIdle{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes robotArmWork{0%,100%{transform:rotate(-38deg)}50%{transform:rotate(-17deg)}}
+@keyframes robotLegWalk{0%,100%{translate:0 0}50%{translate:0 4px}}
+.engineering-lab-visual{position:relative;min-height:100%;overflow:hidden;background:radial-gradient(ellipse at 65% 42%,rgba(216,255,100,.1),transparent 27%),linear-gradient(125deg,#080a0d,#151c22 55%,#050608)}
+.lab-blueprint{position:absolute;inset:0;background-image:linear-gradient(rgba(195,210,220,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(195,210,220,.1) 1px,transparent 1px);background-size:35px 35px;mask-image:radial-gradient(ellipse at 65% 50%,#000,transparent 68%)}
+.lab-prototype{position:absolute;right:17%;top:20%;width:35%;height:57%;border:1px solid rgba(216,255,100,.35);transform:skewY(-8deg);background:linear-gradient(135deg,rgba(220,230,236,.14),rgba(6,9,12,.2));box-shadow:0 0 70px rgba(216,255,100,.06)}
+.lab-prototype:before,.lab-prototype:after{content:"";position:absolute;inset:12%;border:1px solid rgba(210,222,232,.3);transform:rotate(24deg)}
+.lab-prototype:after{transform:rotate(-24deg)}
+.lab-prototype i,.lab-prototype b,.lab-prototype span{position:absolute;display:block;background:rgba(216,255,100,.6);box-shadow:0 0 18px rgba(216,255,100,.25)}
+.lab-prototype i{width:34%;height:1px;top:25%;left:10%}.lab-prototype b{width:1px;height:45%;top:22%;right:28%}.lab-prototype span{width:40%;height:1px;bottom:18%;left:18%}
+.lab-glass-panel{position:absolute;right:4%;top:12%;width:17%;height:48%;border:1px solid rgba(220,230,240,.18);background:linear-gradient(140deg,rgba(220,230,240,.08),transparent);backdrop-filter:blur(2px)}
+@media(max-width:760px){.engineering-orbit{right:-35%;width:95vw;opacity:.7}.engineering-core{right:15%;}.engineering-data{right:5%;font-size:7px}.robotics-robot{right:7%;width:190px;height:55%;bottom:24%}.robotics-workbench{right:-10%;width:80%}.astra-visual-orbit{right:-15%;width:75vw}.astra-visual-core{right:22%}.robotics-visual-label,.astra-visual>span{font-size:7px;right:12px}.lab-prototype{right:8%;width:45%}.lab-glass-panel{right:2%;width:20%}}
+@media(prefers-reduced-motion:reduce){.robotics-robot,.robot-arm-right,.robot-leg-left,.robot-leg-right{animation:none!important}}
