@@ -274,3 +274,50 @@ main .hero:before,main .page-hero:before{pointer-events:none}
 /* Shared structural safety net for pages that still use the base site stylesheet. */
 main{min-width:0;overflow-x:clip}main section{min-width:0}main h1,main h2,main h3{overflow-wrap:normal;word-break:normal;text-wrap:balance}main p{line-height:1.8}main .section-head{min-width:0}main .section-head h2{min-width:0;max-width:100%}main .grid3,main .plans,main .robotics-grid,main .astra-stories{align-items:stretch}main .grid3>* ,main .plans>* ,main .robotics-grid>* ,main .astra-stories>*{min-width:0}main .made{margin-top:clamp(28px,5vw,54px);padding:clamp(28px,5vw,56px) 0}main .made h2{max-width:100%;line-height:1.08}main .made p{max-width:68ch;margin-inline:auto}
 @media(max-width:760px){.wrap{width:calc(100% - 40px)}.hero h1,main h1{overflow-wrap:normal;word-break:normal;line-height:1.04}.hero-actions{flex-wrap:wrap}.section-head{gap:12px}.plans{grid-template-columns:1fr}.made{text-align:left}.made p{margin-left:0}}
+
+
+/* HFL Tech universal editorial system — shared storytelling rhythm across product, company and technical routes.
+   Page-specific content remains unique; typography, spacing, hierarchy and navigation remain consistent. */
+:root{--hfl-story-bg:#07090c;--hfl-story-panel:#10141a;--hfl-story-line:rgba(226,235,245,.13);--hfl-story-text:#f5f7fa;--hfl-story-muted:#aab4c0;--hfl-story-accent:#d8ff64;--hfl-story-max:1160px}
+html{max-width:100%;overflow-x:clip;scroll-padding-top:88px}
+body{max-width:100%;overflow-x:clip;color:var(--hfl-story-text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+main{width:100%;min-width:0;overflow:clip}
+main section{min-width:0}
+main .wrap{width:min(calc(100% - 48px),var(--hfl-story-max));margin-inline:auto}
+main h1,main h2,main h3{font-family:"Space Grotesk",Inter,ui-sans-serif,system-ui,sans-serif;letter-spacing:-.055em;text-wrap:balance;overflow-wrap:normal;word-break:normal}
+main h1{font-size:clamp(40px,6.8vw,82px);line-height:1.01;font-weight:600;max-width:100%}
+main h2{font-size:clamp(30px,4.5vw,56px);line-height:1.06;font-weight:570}
+main h3{font-size:clamp(19px,2vw,24px);line-height:1.16;font-weight:570}
+main p,main li{font-size:15px;line-height:1.8;overflow-wrap:break-word}
+main p{max-width:72ch}
+main .eyebrow{font:600 10px/1.5 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.16em;text-transform:uppercase}
+main .hero,main .page-hero,main .story-hero,main .astra-hero,main .profile-hero{position:relative;isolation:isolate;overflow:hidden}
+main .hero>.wrap,main .page-hero>.wrap,main .story-hero>.wrap,main .astra-hero>.wrap{position:relative;z-index:2}
+main .section,main section.story-chapter{padding-block:clamp(56px,8vw,104px)}
+main .section-head,main .section-heading{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.72fr);align-items:end;gap:clamp(24px,5vw,72px);margin-bottom:clamp(28px,4vw,48px)}
+main .section-head>div,main .section-heading>div{min-width:0}
+main .section-head h2,main .section-heading h2{max-width:15ch;margin:12px 0 0}
+main .section-head p,main .section-heading p,main .section-intro{max-width:58ch;margin:0;color:var(--hfl-story-muted)}
+main .card,main .investor-card,main .astra-story,main .trust-card,main .service-card{min-width:0;border:1px solid var(--hfl-story-line);border-radius:14px;background:linear-gradient(145deg,rgba(21,27,36,.88),rgba(9,12,17,.92));box-shadow:0 18px 60px rgba(0,0,0,.12)}
+main .card p,main .investor-card p,main .astra-story p{color:var(--hfl-story-muted)}
+main .button,main .cta,main .button-primary,main .nav-contact{border-radius:8px;min-height:44px}
+main .feature,main .feature.reverse{align-items:center;min-width:0}
+main img,main video,main svg,main canvas{max-width:100%}
+@media(max-width:760px){
+ main .wrap{width:calc(100% - 36px)}
+ main h1{font-size:clamp(36px,9.5vw,52px);line-height:1.04;letter-spacing:-.06em}
+ main h2{font-size:clamp(29px,7.4vw,40px);line-height:1.08}
+ main p,main li{font-size:14px;line-height:1.8}
+ main .hero,main .page-hero,main .story-hero,main .astra-hero{padding-top:calc(64px + 38px)!important;padding-bottom:52px!important}
+ main .section,main section.story-chapter{padding-block:56px}
+ main .section-head,main .section-heading{display:block;grid-template-columns:minmax(0,1fr);margin-bottom:28px}
+ main .section-head h2,main .section-heading h2{max-width:18ch;margin:10px 0 16px}
+ main .section-head p,main .section-heading p,main .section-intro{max-width:68ch}
+ main .grid,main .grid3,main .page-grid,main .services-grid,main .trust-grid,main .astra-stories{grid-template-columns:1fr}
+ main .feature,main .feature.reverse{grid-template-columns:minmax(0,1fr);gap:26px}
+}
+@media(min-width:761px) and (max-width:1020px){
+ main .wrap{width:calc(100% - 56px)}
+ main .section-head,main .section-heading{grid-template-columns:minmax(0,1fr) minmax(220px,.7fr);gap:28px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
