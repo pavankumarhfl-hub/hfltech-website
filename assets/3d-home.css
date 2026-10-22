@@ -123,3 +123,39 @@
  .feature-film .feature-copy p{max-width:58ch}
 }
 @media(prefers-reduced-motion:reduce){.frontier-astra .astra-visual-orbit,.frontier-astra .astra-visual-core,.feature-film .lab-blueprint,.feature-film .lab-prototype{animation:none!important}}
+
+
+/* AgentMesh: interactive assistant workspace, inspired by modern AI chat products (original HFL UI). */
+.frontier-ai .ai-visual{background:radial-gradient(ellipse at 78% 48%,rgba(111,137,190,.16),transparent 45%),linear-gradient(110deg,#07090d,#0a0d13 58%,#080a0e)!important;overflow:hidden!important}
+.frontier-ai .ai-visual:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(185,200,225,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(185,200,225,.045) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(90deg,transparent,#000 80%);opacity:.65}
+.frontier-ai .ai-orb,.frontier-ai .ai-rings,.frontier-ai .ai-particles{display:none!important}
+.frontier-ai .interface-lines{position:absolute;z-index:1;right:clamp(16px,5vw,78px);top:50%;transform:translateY(-50%);width:clamp(270px,43vw,570px);height:clamp(290px,35vw,430px);border:1px solid rgba(255,255,255,.13);border-radius:16px;background:rgba(12,15,21,.88);box-shadow:0 28px 100px rgba(0,0,0,.55),0 0 80px rgba(110,135,185,.08);backdrop-filter:blur(18px);overflow:hidden}
+.frontier-ai .interface-lines:before{content:"AGENTMESH  /  WORKSPACE";position:absolute;left:20px;top:16px;font:600 8px/1.4 Inter,sans-serif;letter-spacing:.16em;color:#b6bfce}
+.frontier-ai .interface-lines:after{content:"";position:absolute;left:0;right:0;top:42px;height:1px;background:rgba(255,255,255,.1)}
+.frontier-ai .interface-lines .chat-window{display:none}
+.frontier-ai .interface-lines{background-image:linear-gradient(180deg,transparent 0 48px,rgba(255,255,255,.018) 48px 100%)}
+.frontier-ai .ai-visual:after{content:"";position:absolute;z-index:2;right:clamp(24px,6vw,90px);top:calc(50% - 155px);width:clamp(240px,40vw,530px);height:clamp(280px,32vw,390px);pointer-events:none;background:
+radial-gradient(circle at 50% 83%,rgba(210,220,240,.07),transparent 32%),
+linear-gradient(90deg,transparent 0 12%,rgba(255,255,255,.07) 12% 12.2%,transparent 12.2% 100%),
+linear-gradient(180deg,transparent 0 18%,rgba(255,255,255,.06) 18% 18.3%,transparent 18.3% 100%);opacity:.55}
+.frontier-ai .ai-visual:after{mask-image:linear-gradient(180deg,#000,transparent 100%)}
+.frontier-ai .frontier-content{z-index:4;max-width:560px!important}
+.frontier-ai .frontier-content h2,.frontier-ai .frontier-content p,.frontier-ai .frontier-content .eyebrow,.frontier-ai .frontier-content .stage-label,.frontier-ai .frontier-content .text-link{position:relative;z-index:5}
+.frontier-ai .frontier-shade{z-index:3;background:linear-gradient(90deg,rgba(5,6,8,.98) 0%,rgba(5,6,8,.9) 36%,rgba(5,6,8,.42) 72%,rgba(5,6,8,.2) 100%)!important}
+.frontier-astra .astra-visual-orbit{right:2%!important;width:clamp(320px,54vw,700px)!important;opacity:.92}
+.frontier-astra .astra-visual-core{right:calc(2% + clamp(160px,27vw,350px))!important;width:clamp(34px,5vw,64px)!important}
+.frontier-astra .astra-visual-orbit:after{content:"";position:absolute;top:50%;left:50%;width:36%;height:28%;transform:translate(-50%,-50%) rotate(-18deg);border:1px solid rgba(175,205,240,.5);border-radius:3px;background:linear-gradient(135deg,rgba(220,230,245,.08),rgba(70,100,145,.12));box-shadow:0 0 24px rgba(115,165,230,.12)}
+@media(max-width:760px){
+ .frontier-ai .interface-lines{right:12px;top:54%;width:58vw;height:245px;opacity:.85;border-radius:12px}
+ .frontier-ai .interface-lines:before{left:12px;top:12px;font-size:7px}
+ .frontier-ai .interface-lines:after{top:34px}
+ .frontier-ai .frontier-content{max-width:72%!important}
+ .frontier-ai .frontier-shade{background:linear-gradient(90deg,rgba(5,6,8,.98) 0%,rgba(5,6,8,.88) 54%,rgba(5,6,8,.42) 100%)!important}
+ .frontier-astra .astra-visual-orbit{right:-22%!important;width:100vw!important;opacity:.88}
+ .frontier-astra .astra-visual-core{right:28%!important;width:clamp(38px,9vw,54px)!important}
+}
+@media(max-width:420px){
+ .frontier-ai .interface-lines{right:6px;width:55vw;height:210px;top:56%}
+ .frontier-ai .frontier-content{max-width:78%!important}
+}
+@media(prefers-reduced-motion:reduce){.frontier-ai .interface-lines,.frontier-astra .astra-visual-orbit,.frontier-astra .astra-visual-core{animation:none!important}}
