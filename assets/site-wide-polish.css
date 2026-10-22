@@ -255,3 +255,33 @@ html{width:100%;max-width:100%;overflow-x:clip;scrollbar-gutter:stable}body{widt
 
 /* Cross-page layout QA: prevent narrow-column headings, nested reveal disappearance, and oversized accidental gaps. */
 html{scroll-padding-top:76px}body:not(.hfl-cinema) main{min-width:0}body:not(.hfl-cinema) main>.page-hero>.wrap,body:not(.hfl-cinema) main>.hero>.wrap{width:min(calc(100% - 56px),1180px);margin-inline:auto}body:not(.hfl-cinema) main .page-hero h1,body:not(.hfl-cinema) main>.hero h1{max-width:14ch;text-wrap:balance;overflow-wrap:normal;word-break:normal}body:not(.hfl-cinema) main .page-hero p,body:not(.hfl-cinema) main>.hero p{max-width:68ch}body:not(.hfl-cinema) main>.section{padding-block:clamp(48px,6vw,88px)!important}body:not(.hfl-cinema) main .section>.wrap{min-width:0}body:not(.hfl-cinema) main .section h2{max-width:22ch;text-wrap:balance}body:not(.hfl-cinema) main .section p{max-width:72ch}body:not(.hfl-cinema) main .section .wrap>section.card{margin-inline:auto}body:not(.hfl-cinema) main .section .early-access{max-width:760px;margin-inline:auto}body:not(.hfl-cinema) main .section .early-access h2{max-width:18ch}body:not(.hfl-cinema) main .section .made{margin-top:clamp(28px,4vw,44px)}body:not(.hfl-cinema) main .section .hero-actions{flex-wrap:wrap;gap:12px}body:not(.hfl-cinema) footer.footer{margin-top:0}body:not(.hfl-cinema) main .section-head{min-width:0}body:not(.hfl-cinema) main .section-head>*{min-width:0}@media(max-width:760px){body:not(.hfl-cinema) main>.page-hero>.wrap,body:not(.hfl-cinema) main>.hero>.wrap{width:calc(100% - 40px)}body:not(.hfl-cinema) main>.section{padding-block:46px!important}body:not(.hfl-cinema) main .page-hero h1,body:not(.hfl-cinema) main>.hero h1{font-size:clamp(38px,10vw,54px)!important;line-height:1.04!important;max-width:12ch}body:not(.hfl-cinema) main .section h2{font-size:clamp(28px,7vw,40px)!important;line-height:1.08!important}body:not(.hfl-cinema) main .section .early-access{padding:22px!important}body:not(.hfl-cinema) main .section .made{padding:24px 0}}
+
+
+/* Critical cross-page fix: single-child section headers were occupying only the first grid track.
+   Keep section copy full-width; use horizontal composition only where markup provides real columns. */
+.section-head,.section-heading{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important}
+.section-head>div,.section-heading>div{grid-column:1/-1!important;width:100%!important;max-width:100%!important;min-width:0!important}
+.section-head h2,.section-heading h2{width:100%!important;max-width:24ch!important;overflow-wrap:normal!important;word-break:normal!important}
+.section-head .section-intro,.section-heading .section-intro,.section-head p,.section-heading p{width:100%!important;max-width:72ch!important;overflow-wrap:normal!important;word-break:normal!important}
+.resource-links{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr))!important;gap:12px!important}
+.resource-links>a{min-width:0!important;min-height:88px!important}
+.comparison-grid{min-width:0!important;max-width:100%!important}
+@media(min-width:761px){
+ .section-head,.section-heading{display:block!important}
+ .section-head>div,.section-heading>div{width:100%!important}
+ .section-head h2,.section-heading h2{max-width:24ch!important}
+}
+@media(max-width:760px){
+ body:not(.hfl-cinema) main .section-head,body:not(.hfl-cinema) main .section-heading{display:block!important;width:100%!important}
+ body:not(.hfl-cinema) main .section-head>div,body:not(.hfl-cinema) main .section-heading>div{width:100%!important;max-width:100%!important;grid-column:1/-1!important}
+ body:not(.hfl-cinema) main .section-head h2,body:not(.hfl-cinema) main .section-heading h2{max-width:20ch!important;font-size:clamp(30px,7.5vw,42px)!important;line-height:1.08!important}
+ body:not(.hfl-cinema) main .section-head p,body:not(.hfl-cinema) main .section-heading p{max-width:68ch!important;font-size:15px!important;line-height:1.75!important}
+ body:not(.hfl-cinema) main .section .grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr))!important}
+ body:not(.hfl-cinema) main .investor-grid{grid-template-columns:1fr!important}
+ body:not(.hfl-cinema) main .resource-links{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ body:not(.hfl-cinema) main .hero .wrap,body:not(.hfl-cinema) main .section .wrap{width:calc(100% - 40px)!important}
+ body:not(.hfl-cinema) main .section h2{max-width:20ch!important}
+}
+@media(max-width:420px){
+ body:not(.hfl-cinema) main .resource-links{grid-template-columns:1fr!important}
+}
