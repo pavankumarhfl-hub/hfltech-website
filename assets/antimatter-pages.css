@@ -395,3 +395,42 @@ main .made p{max-width:68ch!important;margin:14px auto 0!important;line-height:1
  main .made p{margin:12px 0 0!important}
 }
 @media(prefers-reduced-motion:reduce){.reveal{transition:none!important}}
+
+
+/* SITE-WIDE STRUCTURE AUDIT FIX — consistent page rhythm, heading alignment and responsive content widths. */
+:root{--hfl-content-max:1200px;--hfl-reading-max:72ch;--hfl-section-y:clamp(64px,8vw,112px)}
+html{scroll-padding-top:84px}
+main{min-width:0;overflow-wrap:break-word}
+main>.section,main section.section,main>.final,main section.final{padding-block:var(--hfl-section-y)!important}
+main .wrap{width:min(var(--hfl-content-max),calc(100% - 64px))!important;margin-inline:auto!important;min-width:0}
+main .page-hero,main .hero,main .story-hero,main .founder-hero,main .astra-hero,main .robotics-hero{padding-top:clamp(112px,13vw,168px)!important;padding-bottom:clamp(64px,8vw,104px)!important;min-width:0}
+main .page-hero h1,main .hero h1,main .story-hero h1,main .founder-hero h1,main .astra-hero h1,main .robotics-hero h1{max-width:900px!important;margin:18px 0 22px!important;font-size:clamp(42px,6.4vw,76px)!important;line-height:1.02!important;letter-spacing:-.06em!important;text-wrap:balance;overflow-wrap:normal;word-break:normal}
+main .page-hero p,main .hero p,main .story-hero p,main .founder-hero p,main .astra-hero p,main .robotics-hero p{max-width:var(--hfl-reading-max)!important;font-size:clamp(15px,1.45vw,18px)!important;line-height:1.8!important}
+main .section-head,main .section-heading{max-width:100%;margin:0 0 clamp(24px,4vw,42px)!important;min-width:0}
+main .section-head h2,main .section-heading h2{max-width:900px;font-size:clamp(30px,4.4vw,54px)!important;line-height:1.06!important;letter-spacing:-.055em!important;text-wrap:balance;overflow-wrap:normal}
+main .section-head p,main .section-heading p,main .section-intro{max-width:var(--hfl-reading-max);line-height:1.8!important}
+main p,main li,main blockquote{max-width:var(--hfl-reading-max);line-height:1.8!important}
+main .section-head p,main .section-heading p{margin-top:16px}
+main .grid3,main .page-grid,main .feature-grid,main .plans,main .services-grid,main .trust-grid{gap:clamp(12px,1.8vw,20px)!important}
+main .card,main .panel,main .feature-card{min-width:0;overflow-wrap:break-word}
+main .card h3,main .panel h3,main .feature-card h3{margin-top:clamp(18px,2.6vw,30px)!important;line-height:1.18!important}
+main .final .wrap,main .cta .wrap{display:block;min-width:0}
+main .final h2,main .cta h2{max-width:850px;font-size:clamp(32px,5vw,60px)!important;line-height:1.05!important;margin:0 0 18px!important}
+main .final p,main .cta p{max-width:var(--hfl-reading-max);margin:0 0 24px!important}
+main .hero-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+main img,main video,main canvas{max-width:100%}
+@media(max-width:760px){
+ :root{--hfl-section-y:clamp(48px,11vw,72px)}
+ main .wrap{width:calc(100% - 40px)!important}
+ main .page-hero,main .hero,main .story-hero,main .founder-hero,main .astra-hero,main .robotics-hero{padding-top:clamp(92px,20vw,132px)!important;padding-bottom:clamp(48px,10vw,70px)!important}
+ main .page-hero h1,main .hero h1,main .story-hero h1,main .founder-hero h1,main .astra-hero h1,main .robotics-hero h1{font-size:clamp(38px,9vw,56px)!important;line-height:1.04!important;letter-spacing:-.05em!important;max-width:100%!important}
+ main .page-hero p,main .hero p,main .story-hero p,main .founder-hero p,main .astra-hero p,main .robotics-hero p{font-size:15px!important;line-height:1.8!important}
+ main .section-head,main .section-heading{display:block!important;margin-bottom:26px!important}
+ main .section-head h2,main .section-heading h2{font-size:clamp(28px,7.2vw,38px)!important;line-height:1.08!important;margin-top:12px!important;max-width:100%}
+ main .section-head p,main .section-heading p{margin-top:14px!important}
+ main .grid3,main .page-grid,main .feature-grid,main .plans,main .services-grid,main .trust-grid{grid-template-columns:minmax(0,1fr)!important}
+ main .card,main .panel,main .feature-card{padding:22px!important}
+ main .card h3,main .panel h3,main .feature-card h3{margin-top:8px!important}
+ main .final h2,main .cta h2{font-size:clamp(30px,8vw,42px)!important}
+}
+@media(max-width:420px){main .wrap{width:calc(100% - 32px)!important}main .page-hero h1,main .hero h1,main .story-hero h1,main .founder-hero h1,main .astra-hero h1,main .robotics-hero h1{font-size:clamp(35px,9vw,42px)!important}}
