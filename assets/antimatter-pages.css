@@ -434,3 +434,32 @@ main img,main video,main canvas{max-width:100%}
  main .final h2,main .cta h2{font-size:clamp(30px,8vw,42px)!important}
 }
 @media(max-width:420px){main .wrap{width:calc(100% - 32px)!important}main .page-hero h1,main .hero h1,main .story-hero h1,main .founder-hero h1,main .astra-hero h1,main .robotics-hero h1{font-size:clamp(35px,9vw,42px)!important}}
+
+
+/* HFL Tech scroll choreography: subtle 3D lift, staggered text reveals and section entrances. */
+@supports (animation-timeline:view()){ 
+ .hfl-scroll-reveal{animation:hflScrollReveal linear both;animation-timeline:view();animation-range:entry 0% entry 78%}
+ .hfl-scroll-title{animation:hflTitleReveal linear both;animation-timeline:view();animation-range:entry 0% entry 85%}
+}
+@keyframes hflScrollReveal{from{opacity:0;transform:translate3d(0,42px,0) rotateX(2deg);filter:blur(2px)}to{opacity:1;transform:translate3d(0,0,0) rotateX(0);filter:blur(0)}}
+@keyframes hflTitleReveal{from{opacity:.25;transform:perspective(900px) translate3d(0,34px,0) rotateX(7deg);transform-origin:50% 100%}to{opacity:1;transform:perspective(900px) translate3d(0,0,0) rotateX(0)}}
+html.hfl-reveal-ready main .section:not(.no-scroll-motion) .section-head,
+html.hfl-reveal-ready main .section:not(.no-scroll-motion) .section-heading,
+html.hfl-reveal-ready main .section:not(.no-scroll-motion) .section-intro,
+html.hfl-reveal-ready main .section:not(.no-scroll-motion) .grid3,
+html.hfl-reveal-ready main .section:not(.no-scroll-motion) .page-grid,
+html.hfl-reveal-ready main .section:not(.no-scroll-motion) .feature-grid,
+html.hfl-reveal-ready main .section:not(.no-scroll-motion) .card,
+html.hfl-reveal-ready main .section:not(.no-scroll-motion) .panel,
+html.hfl-reveal-ready main .section:not(.no-scroll-motion) .feature-card,
+html.hfl-reveal-ready main .section:not(.no-scroll-motion) article,
+html.hfl-reveal-ready main .section:not(.no-scroll-motion) blockquote,
+html.hfl-reveal-ready main .final .wrap,
+html.hfl-reveal-ready main .made,
+html.hfl-reveal-ready main .early-access{animation:hflScrollReveal .9s cubic-bezier(.2,.7,.2,1) both;animation-timeline:view();animation-range:entry 0% entry 82%;transform-origin:50% 100%;backface-visibility:hidden}
+html.hfl-reveal-ready main h1,html.hfl-reveal-ready main h2,html.hfl-reveal-ready main h3{animation:hflTitleReveal .85s cubic-bezier(.2,.7,.2,1) both;animation-timeline:view();animation-range:entry 0% entry 88%;transform-origin:50% 100%}
+html.hfl-reveal-ready main .section .card:nth-child(2),html.hfl-reveal-ready main .section article:nth-child(2){animation-delay:70ms}
+html.hfl-reveal-ready main .section .card:nth-child(3),html.hfl-reveal-ready main .section article:nth-child(3){animation-delay:130ms}
+html.hfl-reveal-ready main .section .card:nth-child(4),html.hfl-reveal-ready main .section article:nth-child(4){animation-delay:190ms}
+@media(max-width:760px){html.hfl-reveal-ready main .section:not(.no-scroll-motion) .section-head,html.hfl-reveal-ready main .section:not(.no-scroll-motion) .section-heading,html.hfl-reveal-ready main .section:not(.no-scroll-motion) .card,html.hfl-reveal-ready main .section:not(.no-scroll-motion) article,html.hfl-reveal-ready main .final .wrap{animation-range:entry 0% entry 70%}html.hfl-reveal-ready main h1,html.hfl-reveal-ready main h2,html.hfl-reveal-ready main h3{animation-range:entry 0% entry 76%}}
+@media(prefers-reduced-motion:reduce){html.hfl-reveal-ready main *,html.hfl-reveal-ready main *:before,html.hfl-reveal-ready main *:after{animation:none!important;scroll-behavior:auto!important;transform:none!important;filter:none!important}}
