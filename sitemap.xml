@@ -29,7 +29,7 @@
   <url><loc>https://hfltech.in/achievements.html</loc><lastmod>2026-10-20</lastmod></url>
   <url><loc>https://hfltech.in/ecosystem.html</loc><lastmod>2026-10-22</lastmod></url>
   <url><loc>https://hfltech.in/flux-ai.html</loc><lastmod>2026-10-20</lastmod></url>
-  <url><loc>https://hfltech.in/blog.html</loc><lastmod>2026-10-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hfltech.in/blog.html</loc><lastmod>2026-10-24</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://hfltech.in/blog-agentmesh.html</loc><lastmod>2026-10-20</lastmod></url>
   <url><loc>https://hfltech.in/blog-ai-agents.html</loc><lastmod>2026-10-20</lastmod></url>
   <url><loc>https://hfltech.in/blog-cybersecurity-basics.html</loc><lastmod>2026-10-20</lastmod></url>
@@ -76,4 +76,7 @@
   <url><loc>https://hfltech.in/blog-hfl-careers-how-to-apply.html</loc><lastmod>2026-10-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://hfltech.in/blog-hfl-astra-engineering-roadmap.html</loc><lastmod>2026-10-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://hfltech.in/blog-hfl-careers-technical-portfolio.html</loc><lastmod>2026-10-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hfltech.in/blog-indian-private-space-sector-explained.html</loc><lastmod>2026-10-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hfltech.in/blog-satellite-data-agriculture-disaster-management.html</loc><lastmod>2026-10-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://hfltech.in/blog-rocket-reusability-explained.html</loc><lastmod>2026-10-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
