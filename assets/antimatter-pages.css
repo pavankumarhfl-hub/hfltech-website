@@ -549,3 +549,39 @@ header.nav,.site-header,.topbar{backdrop-filter:none!important;-webkit-backdrop-
 html{scroll-padding-top:76px}main{min-width:0}img,video,iframe{max-width:100%}h1,h2,h3{hyphens:auto;text-wrap:balance;overflow-wrap:break-word}
 @media(max-width:760px){h1{font-size:clamp(34px,9vw,46px)!important;line-height:1.08!important}h2{font-size:clamp(28px,7.4vw,38px)!important;line-height:1.12!important}.wrap{width:calc(100% - 32px)!important}}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important}}
+
+
+/* HFL premium motion system — inspired by Skiper UI's scroll-led storytelling patterns.
+   Original implementation; motion remains subtle, responsive, and accessible. */
+:root{--hfl-motion-ease:cubic-bezier(.22,1,.36,1);--hfl-motion-duration:760ms}
+@media(prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth}
+  main [data-scroll-reveal]{opacity:0;transform:translate3d(0,30px,0) scale(.99);filter:blur(2px);transition:opacity var(--hfl-motion-duration) var(--hfl-motion-ease),transform var(--hfl-motion-duration) var(--hfl-motion-ease),filter var(--hfl-motion-duration) var(--hfl-motion-ease);transition-delay:var(--reveal-delay,0ms);will-change:opacity,transform}
+  main [data-scroll-reveal].is-in-view{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0);will-change:auto}
+  main .section-head h2,main .section-heading h2{ text-wrap:balance }
+  main .card,main .work-card,main .astra-story,main .project-row,main .service-card{transform-origin:50% 65%;transition:transform 520ms var(--hfl-motion-ease),border-color 350ms ease,background-color 350ms ease}
+  main .card:hover,main .work-card:hover,main .astra-story:hover,main .project-row:hover,main .service-card:hover{transform:translate3d(0,-4px,0);border-color:rgba(165,166,255,.42)!important}
+  main .button,main .btn,main a.button{transition:transform 320ms var(--hfl-motion-ease),box-shadow 320ms ease,background-color 220ms ease}
+  main .button:hover,main .btn:hover,main a.button:hover{transform:translateY(-2px)}
+  .section-head .eyebrow,.section-heading .eyebrow{transition:letter-spacing 500ms var(--hfl-motion-ease)}
+  .section-head:hover .eyebrow,.section-heading:hover .eyebrow{letter-spacing:.2em!important}
+}
+@media(max-width:900px){
+  /* Narrative rows become readable stacked stories before tablet columns get cramped. */
+  main .astra-stories,main .astra-roadmap-grid{display:block!important}
+  main .astra-story{display:grid!important;grid-template-columns:minmax(64px,.22fr) minmax(0,1fr)!important;gap:12px 20px!important;padding:28px 0!important}
+  main .astra-story .step{grid-column:1!important;grid-row:1 / span 3!important;align-self:start}
+  main .astra-story h2{grid-column:2!important;grid-row:1!important;margin:0!important;max-width:100%!important}
+  main .astra-story p{grid-column:2!important;grid-row:2!important;max-width:60ch!important}
+  main .astra-story>a{grid-column:2!important;grid-row:3!important;justify-self:start}
+}
+@media(max-width:560px){
+  main [data-scroll-reveal]{transform:translate3d(0,18px,0);filter:none}
+  main .astra-story{grid-template-columns:1fr!important;gap:10px!important}
+  main .astra-story .step,main .astra-story h2,main .astra-story p,main .astra-story>a{grid-column:1!important;grid-row:auto!important}
+  main .astra-story .step{margin-bottom:3px}
+}
+@media(prefers-reduced-motion:reduce){
+  main [data-scroll-reveal]{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+  main .card,main .work-card,main .astra-story,main .project-row,main .service-card,main .button,main .btn{transition:none!important}
+}
