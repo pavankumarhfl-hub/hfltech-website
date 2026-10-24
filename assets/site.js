@@ -262,3 +262,45 @@ select(0);
  };
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ready,{once:true});else ready();
 })();
+
+
+/* HFL Motion System v2: shared scroll progress + viewport reveals on every page loading site.js. */
+(()=> {
+ const doc=document.documentElement;
+ const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if(!document.querySelector('.hfl-scroll-progress')){
+  const bar=document.createElement('div');bar.className='hfl-scroll-progress';bar.setAttribute('aria-hidden','true');document.body.appendChild(bar);
+ }
+ let raf=false;
+ const update=()=>{const max=doc.scrollHeight-window.innerHeight;doc.style.setProperty('--hfl-scroll-progress',max>0?(window.scrollY/max).toFixed(4):'0');raf=false;};
+ const onScroll=()=>{if(!raf){raf=true;requestAnimationFrame(update)}};
+ window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',update,{passive:true});update();
+ const init=()=>{
+  const selectors=[
+   'main .section-head','main .section-heading','main .section-intro','main .feature:not(.hero)',
+   'main .feature-grid > *','main .grid > *','main .grid3 > *','main .page-grid > *',
+   'main .card','main .feature-card','main .project-card','main .ecosystem-card',
+   'main .editorial-row','main .story-chapter','main .astra-story','main .principle',
+   'main .faq-item','main .resource-links > *','main .final-cta','main .early-access',
+   'main blockquote','main .timeline-item','main .comparison-row'
+  ];
+  const found=new Set();
+  selectors.forEach(sel=>document.querySelectorAll(sel).forEach(el=>{
+   if(found.has(el)||el.closest('header,footer,[data-no-motion],.no-scroll-motion'))return;
+   if(el.getBoundingClientRect().height<8)return;
+   found.add(el);
+   const isCard=el.matches('.card,.feature-card,.project-card,.ecosystem-card,.grid > *, .grid3 > *, .page-grid > *, .feature-grid > *, .resource-links > *, .timeline-item');
+   el.dataset.hflMotion=isCard?'depth':'reveal';
+   const siblings=[...el.parentElement.children].filter(n=>n.dataset.hflMotion);
+   el.style.setProperty('--hfl-motion-delay',Math.min(Math.max(siblings.indexOf(el),0),5)*65+'ms');
+   if(isCard)el.classList.add('hfl-motion-sheen');
+  }));
+  if(reduce||!('IntersectionObserver'in window)){found.forEach(el=>el.classList.add('hfl-motion-visible'));return;}
+  doc.classList.add('hfl-motion-ready');
+  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+   if(entry.isIntersecting){entry.target.classList.add('hfl-motion-visible');observer.unobserve(entry.target)}
+  }),{threshold:.12,rootMargin:'0px 0px -36px 0px'});
+  found.forEach(el=>observer.observe(el));
+ };
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();
