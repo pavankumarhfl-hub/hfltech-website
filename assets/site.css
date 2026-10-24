@@ -362,3 +362,27 @@ main .hero .hero-actions,main .page-hero .hero-actions,main .story-hero .hero-ac
 .hfl-motion-sheen:after{content:"";position:absolute;inset:-120% auto -120% -45%;width:32%;transform:rotate(18deg) translateX(-220%);background:linear-gradient(90deg,transparent,rgba(255,255,255,.075),transparent);pointer-events:none;transition:transform 1s var(--hfl-motion-ease)}
 @media(hover:hover) and (pointer:fine){.hfl-motion-sheen:hover:after{transform:rotate(18deg) translateX(650%)}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hfl-scroll-progress,.hfl-motion-orb{display:none!important}.hfl-motion-ready [data-hfl-motion],main .hero h1,main .page-hero h1,main .story-hero h1,main .hero p,main .page-hero p,main .story-hero p{animation:none!important;opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important;transition:none!important}}
+
+
+/* HFL global typography repair — readable words, no arbitrary mid-word wrapping. */
+html{font-synthesis:none;text-size-adjust:100%;-webkit-text-size-adjust:100%}
+body{font-kerning:normal}
+h1,h2,h3,h4,h5,h6{hyphens:none!important;overflow-wrap:normal!important;word-break:normal!important;text-wrap:balance}
+p,li,a,small,strong,em,span{overflow-wrap:break-word}
+p{line-height:1.75}
+@media(max-width:760px){
+  h1{line-height:1.08} h2{line-height:1.14}
+  .section-head,.section-heading{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:0!important;min-width:0!important;width:100%!important}
+  .section-head h2,.section-heading h2{display:block!important;position:static!important;float:none!important;transform:none!important;inset:auto!important;width:100%!important;max-width:100%!important;margin:0 0 14px!important;white-space:normal!important;overflow-wrap:normal!important;word-break:normal!important}
+  .section-head p,.section-heading p{display:block!important;position:static!important;float:none!important;transform:none!important;width:100%!important;max-width:68ch!important;margin:0!important}
+  .section-head .button,.section-heading .button{display:inline-flex!important;position:static!important;transform:none!important;max-width:100%!important;white-space:normal!important;line-height:1.35!important}
+}
+/* Astra section repair. */
+body:has(.astra-ecosystem-cta) main .astra-ecosystem-cta .wrap,
+body:has(.astra-ecosystem-cta) main .astra-ecosystem-cta .section-head{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:flex-start!important;gap:0!important;position:static!important;transform:none!important;float:none!important;width:100%!important;max-width:100%!important;min-width:0!important}
+body:has(.astra-ecosystem-cta) main .astra-ecosystem-cta .section-head>.eyebrow{position:static!important;display:block!important;margin:0 0 14px!important}
+body:has(.astra-ecosystem-cta) main .astra-ecosystem-cta .section-head>h2{position:static!important;display:block!important;float:none!important;transform:none!important;inset:auto!important;width:100%!important;max-width:22ch!important;margin:0 0 14px!important;padding:0!important;font-size:clamp(30px,5vw,48px)!important;line-height:1.08!important;letter-spacing:-.045em!important;white-space:normal!important;overflow-wrap:normal!important;word-break:normal!important}
+body:has(.astra-ecosystem-cta) main .astra-ecosystem-cta .section-head>.section-intro{position:static!important;display:block!important;width:100%!important;max-width:65ch!important;margin:0!important;line-height:1.75!important}
+body:has(.astra-ecosystem-cta) main .astra-ecosystem-cta .astra-ecosystem-action{position:static!important;display:block!important;transform:none!important;width:100%!important;margin:20px 0 0!important}
+body:has(.astra-ecosystem-cta) main .astra-ecosystem-cta .astra-ecosystem-action>.button{position:static!important;display:inline-flex!important;transform:none!important;float:none!important;max-width:100%!important;min-height:44px!important;white-space:normal!important;line-height:1.35!important}
+@media(max-width:760px){body:has(.astra-ecosystem-cta) main .astra-ecosystem-cta .section-head>h2{max-width:100%!important;font-size:clamp(29px,7.7vw,40px)!important}body:has(.astra-ecosystem-cta) main .astra-ecosystem-cta .section-head>.section-intro{font-size:14px!important}body:has(.astra-ecosystem-cta) main .astra-ecosystem-cta .astra-ecosystem-action{margin-top:18px!important}}
