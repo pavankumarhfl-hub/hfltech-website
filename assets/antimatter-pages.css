@@ -585,3 +585,51 @@ html{scroll-padding-top:76px}main{min-width:0}img,video,iframe{max-width:100%}h1
   main [data-scroll-reveal]{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
   main .card,main .work-card,main .astra-story,main .project-row,main .service-card,main .button,main .btn{transition:none!important}
 }
+
+/* BRAND-FIX: Items #1-#17. HFL's own editorial system: graphite, silver and restrained signal-lime.
+   Preserve existing video and 3D storytelling while removing template effects and correcting mobile type. */
+:root{--hfl-ink:#080a0b;--hfl-panel:#111416;--hfl-silver:#b8bec4;--hfl-muted:#aeb5bc;--hfl-rule:rgba(230,235,239,.16);--hfl-signal:#d8ff64;--accent:#d8ff64}
+::selection{background:var(--hfl-signal)!important;color:#10120b!important}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--hfl-signal)!important;outline-offset:4px}
+h1,h2,h3,h4,h5,h6{overflow-wrap:normal;hyphens:manual;text-wrap:balance}p,li{overflow-wrap:break-word}
+main .card:hover,main .work-card:hover,main .astra-story:hover,main .project-row:hover,main .service-card:hover{transform:none!important;border-color:var(--hfl-rule)!important;background-color:transparent}
+main .section-head:hover .eyebrow,main .section-heading:hover .eyebrow{letter-spacing:inherit!important}
+main [data-scroll-reveal]{filter:none!important}
+.button-primary,.button,.btn,.button-quiet,.nav-contact{border-radius:3px}
+.button-primary{background:var(--hfl-signal)!important;color:#11130c!important}
+.button-quiet,.nav-contact{background:#101315!important;border-color:var(--hfl-rule)!important}
+.button-primary:hover,.button:hover,.btn:hover,.button-quiet:hover,.nav-contact:hover{transform:translateY(-1px)!important}
+.cinema-nav{background:#080a0b!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.cinema-hero{background-color:#080a0b}.hero-grid{opacity:.07!important}
+.hero-vignette{background:linear-gradient(90deg,rgba(4,5,6,.98) 0%,rgba(4,5,6,.83) 42%,rgba(4,5,6,.2) 100%),linear-gradient(0deg,#080a0b 0%,transparent 38%)!important}
+.ai-media,.frontier-ai .ai-visual{background:#0b0e10!important}
+.ai-media:before,.frontier-ai .ai-visual:before{opacity:.28}
+.frontier-ai .interface-lines{backdrop-filter:none!important;background-color:#101416!important;border-color:rgba(230,235,239,.18)!important;box-shadow:0 24px 65px rgba(0,0,0,.3)!important}
+.frontier-ai .frontier-shade{background:linear-gradient(90deg,rgba(5,6,8,.98) 0%,rgba(5,6,8,.92) 42%,rgba(5,6,8,.38) 100%)!important}
+.astra-ecosystem-cta .section-head{position:relative!important;display:block!important}
+.astra-ecosystem-cta .section-head h2{margin:0 0 16px!important;line-height:1.1!important}
+.astra-ecosystem-cta .section-head .section-intro{margin:0!important;max-width:62ch!important}
+.astra-ecosystem-action{position:relative!important;display:block!important;margin:24px 0 0!important}
+.astra-ecosystem-action .button{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:12px!important;min-height:48px!important;max-width:100%!important;padding:12px 18px!important;white-space:normal!important;line-height:1.35!important}
+.astra-faq-list article{padding:24px 0!important;border-top:1px solid var(--hfl-rule)!important}
+.astra-faq-list h3{margin:0 0 10px!important;font-size:clamp(19px,2.4vw,25px)!important;line-height:1.25!important}
+.astra-faq-list p{max-width:68ch!important;margin:0 0 10px!important;line-height:1.75!important}
+.story-body{font-size:16px}.story-body h2{font-size:clamp(25px,3.2vw,34px)!important;line-height:1.2!important;letter-spacing:-.035em!important}
+.story-body p,.story-body li{line-height:1.8!important}
+@media(max-width:760px){
+.cinema-nav{height:64px;padding-inline:16px}.cinema-nav nav{gap:10px}.cinema-nav nav a{font-size:10px}
+.cinema-nav nav a:nth-child(1),.cinema-nav nav a:nth-child(2){display:none}.cinema-brand{font-size:19px}.nav-contact{padding:10px 12px}
+.cinema-hero{min-height:760px;min-height:100svh;padding:120px 22px 100px}
+.cinema-hero h1{font-size:clamp(50px,13vw,86px);line-height:.9;letter-spacing:-.075em}.hero-content>p{font-size:15px;line-height:1.75}
+.hero-index{left:22px;right:22px;bottom:24px;font-size:8px;letter-spacing:.1em}.scroll-cue{display:none}
+.frontier-intro{gap:22px!important}.frontier-intro h2{font-size:clamp(32px,8.8vw,44px)!important;line-height:1.03!important}
+.frontier-slide{min-height:690px!important}.frontier-content{width:calc(100% - 40px)!important;max-width:100%!important;padding:0!important}
+.frontier-content h2{font-size:clamp(39px,10vw,58px)!important;line-height:.98!important;overflow-wrap:normal!important}
+.frontier-content p{font-size:14px!important;line-height:1.75!important;max-width:42ch!important}
+.frontier-ai .interface-lines{right:10px;top:58%;width:68vw;height:205px;opacity:.45}
+.frontier-ai .frontier-content{max-width:100%!important}.frontier-ai .frontier-shade{background:linear-gradient(90deg,rgba(5,6,8,.97),rgba(5,6,8,.8))!important}
+.astra-ecosystem-cta{padding-block:72px!important}.astra-ecosystem-cta .section-head h2{font-size:clamp(30px,8vw,42px)!important;max-width:100%!important}
+.astra-ecosystem-cta .section-intro{font-size:14px!important}.astra-ecosystem-action .button{width:auto!important;max-width:100%!important}
+.footer{padding-top:42px!important}
+}
+@media(prefers-reduced-motion:reduce){.cinema-hero *, .frontier-slide *, .feature-film *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
