@@ -69,3 +69,40 @@ footer{background:#050607!important;border-top:1px solid var(--hfl-line)!importa
  .system-line{width:1px;height:18px;justify-self:center}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+
+/* VISUAL QA REPAIR — high-contrast text, stable type scale and no overlapping footer controls. */
+body.hfl-cinema{color:var(--hfl-ink)!important;background:var(--hfl-bg)!important}
+body.hfl-cinema h1,body.hfl-cinema h2,body.hfl-cinema h3,body.hfl-cinema h4,
+body.hfl-cinema h5,body.hfl-cinema h6{color:var(--hfl-ink);opacity:1;text-shadow:none;mix-blend-mode:normal}
+body.hfl-cinema p,body.hfl-cinema li{color:var(--hfl-muted)}
+body.hfl-cinema .frontier-content h2 em,body.hfl-cinema .frontier-intro h2 em,
+body.hfl-cinema .feature-copy h2 em,body.hfl-cinema .capital-section h2 em{color:var(--hfl-silver)!important;-webkit-text-fill-color:var(--hfl-silver)!important}
+body.hfl-cinema .cinema-footer{display:grid;grid-template-columns:minmax(140px,1fr) minmax(180px,1fr);align-items:center;gap:22px 32px;padding:34px clamp(20px,5vw,72px) 22px;position:relative}
+body.hfl-cinema .cinema-footer>div{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px 24px}
+body.hfl-cinema .cinema-footer>span{justify-self:end;text-align:right}
+body.hfl-cinema .cinema-footer a{color:var(--hfl-muted);text-decoration:none}
+body.hfl-cinema .cinema-footer a:hover{color:var(--hfl-ink)}
+body.hfl-cinema .hero-content h1,body.hfl-cinema .frontier-content h2,
+body.hfl-cinema .frontier-intro h2,body.hfl-cinema .feature-copy h2{overflow-wrap:normal;word-break:normal;text-wrap:balance}
+body.hfl-cinema .hero-content>p,body.hfl-cinema .frontier-content>p,
+body.hfl-cinema .frontier-intro>p{color:var(--hfl-muted)!important}
+body.hfl-cinema .button-primary{color:#151910!important}
+@media(max-width:760px){
+ body.hfl-cinema .cinema-nav{display:flex;align-items:center;gap:12px;padding:14px 18px;min-height:0}
+ body.hfl-cinema .cinema-nav nav{order:3;width:100%;display:flex;flex-wrap:nowrap;overflow-x:auto;gap:18px;padding:8px 0}
+ body.hfl-cinema .cinema-nav nav a{white-space:nowrap;flex:0 0 auto}
+ body.hfl-cinema .cinema-nav .nav-contact{margin-left:auto;white-space:nowrap}
+ body.hfl-cinema .cinema-hero{min-height:0}
+ body.hfl-cinema .hero-content{padding:72px 22px 62px}
+ body.hfl-cinema .hero-content h1{font-size:clamp(3.2rem,13vw,5.2rem);line-height:1.02}
+ body.hfl-cinema .frontier-intro,body.hfl-cinema .frontier-slide{padding:58px 22px;gap:24px}
+ body.hfl-cinema .frontier-content h2,body.hfl-cinema .frontier-intro h2{font-size:clamp(2.25rem,9vw,3.6rem);line-height:1.06}
+ body.hfl-cinema .frontier-visual{min-height:190px}
+ body.hfl-cinema .cinema-footer{grid-template-columns:1fr;gap:16px;padding:28px 20px 24px}
+ body.hfl-cinema .cinema-footer>span{justify-self:start;text-align:left}
+ body.hfl-cinema .cinema-footer>div{grid-column:auto;gap:14px 18px}
+ body.hfl-cinema .cinema-footer .ask-agentmesh,body.hfl-cinema .ask-agentmesh,
+ body.hfl-cinema [aria-label*="Ask AgentMesh"]{position:static!important;float:none!important;margin:12px 0 0 auto!important}
+}
+@media(prefers-reduced-motion:reduce){body.hfl-cinema *{animation:none!important;transition:none!important}}
