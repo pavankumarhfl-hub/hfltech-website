@@ -386,3 +386,31 @@ body:has(.astra-ecosystem-cta) main .astra-ecosystem-cta .section-head>.section-
 body:has(.astra-ecosystem-cta) main .astra-ecosystem-cta .astra-ecosystem-action{position:static!important;display:block!important;transform:none!important;width:100%!important;margin:20px 0 0!important}
 body:has(.astra-ecosystem-cta) main .astra-ecosystem-cta .astra-ecosystem-action>.button{position:static!important;display:inline-flex!important;transform:none!important;float:none!important;max-width:100%!important;min-height:44px!important;white-space:normal!important;line-height:1.35!important}
 @media(max-width:760px){body:has(.astra-ecosystem-cta) main .astra-ecosystem-cta .section-head>h2{max-width:100%!important;font-size:clamp(29px,7.7vw,40px)!important}body:has(.astra-ecosystem-cta) main .astra-ecosystem-cta .section-head>.section-intro{font-size:14px!important}body:has(.astra-ecosystem-cta) main .astra-ecosystem-cta .astra-ecosystem-action{margin-top:18px!important}}
+
+
+/* BRAND-FIX: Items #3, #5, #6, #7, #11, #12, #13, #15, #16, #17.
+   HFL brand tokens: graphite, paper, silver and signal-lime. 8px spacing rhythm. */
+:root{--bg:#0b0d0e;--panel:#121617;--panel2:#191e1f;--text:#f3f4ef;--muted:#b4bbb7;--line:rgba(225,233,226,.16);--accent:#c5f36a;--purple:#c5f36a;--hfl-primary:#c5f36a;--hfl-secondary:#8da6a0;--hfl-ink:#0b0d0e;--hfl-paper:#f3f4ef;--max:1200px;--space-1:8px;--space-2:16px;--space-3:24px;--space-4:32px;--space-5:40px;--space-6:48px;--space-8:64px;--space-10:80px}
+body{background:var(--bg);color:var(--text);font-family:"IBM Plex Sans",Arial,sans-serif;line-height:1.65}
+h1,h2,h3,h4,.wordmark,.cinema-brand{font-family:"IBM Plex Sans",Arial,sans-serif;letter-spacing:-.035em}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--hfl-primary);outline-offset:4px}
+.topbar.scrolled,.nav,.site-header{background:#0b0d0e!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.card,.service-card,.trust-card,.work-card,.project-row,.runtime-demo,.notice,.proof-grid>div,.runtime-controls,.runtime-log,.auth-card,.account-card,.legal-card{background:var(--panel);backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+body:before{content:none!important}
+.hfl-journal{padding:clamp(56px,9vw,112px) max(24px,calc((100vw - 1200px)/2));background:#101414;border-top:1px solid var(--line)}
+.hfl-journal-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,.55fr);gap:48px;align-items:end;margin-bottom:40px}
+.hfl-journal-head h2{font-size:clamp(36px,5.4vw,68px);line-height:1.04;letter-spacing:-.055em;margin:12px 0 0}
+.hfl-journal-head h2 em{font-family:"IBM Plex Serif",Georgia,serif;font-weight:400;color:var(--hfl-primary)}
+.hfl-journal-head>p{max-width:44ch;color:var(--muted);line-height:1.8}
+.hfl-journal-list{border-top:1px solid var(--line)}
+.hfl-journal-list>a{display:grid;grid-template-columns:48px 170px minmax(0,1fr) 120px;align-items:center;gap:20px;padding:22px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.hfl-journal-list>a:hover strong{color:var(--hfl-primary)}
+.journal-index,.journal-topic,.journal-read{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.hfl-journal-list strong{font-size:clamp(16px,2vw,21px);font-weight:500;line-height:1.35;transition:color .18s}
+.journal-read{letter-spacing:0;text-transform:none;text-align:right}
+.journal-all{display:inline-flex;margin-top:28px;padding:12px 0;color:var(--hfl-primary);font-weight:600;border-bottom:1px solid var(--hfl-primary)}
+/* Only primary actions receive a lift. Content cards stay calm and editorial. */
+main .card,main .feature-card,main .project-card,main .ecosystem-card,main .resource-card{transition:border-color .2s ease}
+@media(hover:hover) and (pointer:fine){.button-primary:hover,.button:hover,.nav-contact:hover{filter:brightness(1.08);transform:translateY(-1px)}}
+@media(max-width:760px){.hfl-journal{padding:56px 20px}.hfl-journal-head{grid-template-columns:1fr;gap:8px;margin-bottom:24px}.hfl-journal-list>a{grid-template-columns:32px minmax(0,1fr);gap:8px 14px;padding:20px 0}.journal-topic{grid-column:2}.hfl-journal-list strong{grid-column:2}.journal-read{grid-column:2;text-align:left}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
