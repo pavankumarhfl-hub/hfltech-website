@@ -1,0 +1,3 @@
+/* BRAND-FIX: Item #1. Small custom HFL marks use the brand's square-ended line language. */
+.hfl-mark{display:inline-flex;width:24px;height:24px;align-items:center;justify-content:center;color:currentColor;flex:none}
+.hfl-mark svg{display:block;width:100%;height:100%;fill:none}
