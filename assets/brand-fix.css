@@ -1,0 +1,71 @@
+/* BRAND-FIX: Item #1 Custom HFL line-mark system; no icon-font dependency. */
+/* BRAND-FIX: Items #3, #11, #12, #13, #17 Solid graphite, silver and signal-lime; no blur, orbs, dots or rainbow gradients. */
+/* BRAND-FIX: Items #5, #6, #7, #8 Editorial typography and content-led layouts replace template grids and fake terminals. */
+/* BRAND-FIX: Items #14, #15, #16 No decorative sparkles, bouncing arrows or blanket hover motion. */
+:root{
+ --hfl-bg:#080a0c;--hfl-panel:#101316;--hfl-panel-2:#171b1e;--hfl-ink:#f4f5f3;
+ --hfl-muted:#b5bbb8;--hfl-line:#343a38;--hfl-silver:#c5cbc8;--hfl-accent:#c5e86c;
+ --hfl-serif:"IBM Plex Serif",Georgia,serif;--hfl-sans:"IBM Plex Sans",Arial,sans-serif;
+ --hfl-space:8px;--hfl-max:1200px;
+}
+html{background:var(--hfl-bg);scroll-behavior:auto}
+body,body.hfl-cinema{background:var(--hfl-bg)!important;color:var(--hfl-ink);font-family:var(--hfl-sans);background-image:none!important}
+body:before,.hero-grid,.engineering-orbit,.engineering-core,.ai-orb,.ai-rings,.ai-particles,.interface-lines,.hero-vignette,.frontier-visual:before,.frontier-visual:after{display:none!important;background-image:none!important;filter:none!important;box-shadow:none!important}
+h1,h2,h3,h4{font-family:var(--hfl-serif);font-weight:500;letter-spacing:-.035em}
+p{line-height:1.7}
+a{color:inherit}
+.cinema-nav,.site-header{background:var(--hfl-bg)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-bottom:1px solid var(--hfl-line)!important}
+.cinema-nav{min-height:76px;padding-inline:clamp(20px,5vw,72px)}
+.cinema-brand{color:var(--hfl-ink)!important;font-family:var(--hfl-sans);letter-spacing:.12em}
+.cinema-brand span{color:var(--hfl-silver)!important}
+.cinema-nav nav a,.cinema-nav .nav-contact{transition:none!important}
+.cinema-hero{min-height:min(760px,calc(100svh - 76px));background:var(--hfl-bg)!important;border-bottom:1px solid var(--hfl-line)}
+.hero-content{max-width:var(--hfl-max);padding:clamp(88px,12vw,160px) clamp(24px,7vw,96px)}
+.hero-content h1{font-size:clamp(3.8rem,9.4vw,8.4rem);line-height:.98;letter-spacing:-.055em}
+.type-line,.type-line-accent{color:var(--hfl-ink)!important;background:none!important;-webkit-text-fill-color:currentColor!important}
+.type-line-accent{font-style:italic;color:var(--hfl-silver)!important}
+.eyebrow,.hero-index,.scroll-cue,.stage-label{font-family:var(--hfl-sans)!important;letter-spacing:.14em;color:var(--hfl-muted)!important}
+.live-dot{display:inline-block;width:8px;height:8px;background:var(--hfl-accent);border-radius:0}
+.hero-content>p{max-width:690px;color:var(--hfl-muted);font-size:clamp(17px,1.6vw,20px)}
+.button-primary,.button-quiet,.nav-contact{border-radius:2px!important;box-shadow:none!important;text-decoration:none}
+.button-primary{background:var(--hfl-accent)!important;color:#151910!important;border:1px solid var(--hfl-accent)!important}
+.button-quiet{border:1px solid var(--hfl-line)!important;background:transparent!important;color:var(--hfl-ink)!important}
+.button-primary:hover,.button-quiet:hover,.nav-contact:hover{transform:none!important;filter:brightness(.94);box-shadow:none!important}
+.intro-strip,.frontier-intro,.frontier-slide,.section,.section-dark-alt{background:var(--hfl-bg)!important;background-image:none!important}
+.intro-strip{border-block:1px solid var(--hfl-line);padding:40px clamp(24px,7vw,96px)}
+.intro-strip p{max-width:850px;color:var(--hfl-muted)}
+.intro-mark{color:var(--hfl-silver)!important}
+.frontier-intro{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(260px,.8fr);gap:48px;padding:clamp(72px,9vw,120px) clamp(24px,7vw,96px);border-bottom:1px solid var(--hfl-line)}
+.frontier-intro h2,.frontier-content h2{font-size:clamp(2.6rem,6vw,5.5rem);line-height:1.03}
+.frontier-intro h2 em,.frontier-content h2 em{color:var(--hfl-silver);font-weight:400}
+.frontier-intro>p,.frontier-content>p{color:var(--hfl-muted);max-width:560px}
+.frontier-slide{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.82fr);align-items:stretch;gap:clamp(24px,5vw,72px);padding:clamp(64px,9vw,120px) clamp(24px,7vw,96px);border-bottom:1px solid var(--hfl-line)}
+.frontier-visual{order:2;min-height:300px;background:var(--hfl-panel)!important;border:1px solid var(--hfl-line);border-radius:2px}
+.frontier-content{order:1;position:static!important;max-width:700px}
+.frontier-content h2{margin:20px 0}
+.frontier-content .stage-label{display:inline-block;border:1px solid var(--hfl-line);padding:6px 9px;font-size:11px}
+.frontier-content .stage-label:before{content:"";display:inline-block;width:6px;height:6px;margin-right:8px;background:var(--hfl-accent)}
+.frontier-slide:nth-of-type(even){background:var(--hfl-panel)!important}
+.frontier-slide:nth-of-type(even) .frontier-visual{background:var(--hfl-bg)!important}
+.frontier-slide a,.text-link{color:var(--hfl-accent)}
+.card,.feature-card,.project-row,.technical-proof-card,.cine-glass,.cine-why-card,.system-node,.cx-agent-panel{background:var(--hfl-panel)!important;background-image:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:none!important;border:1px solid var(--hfl-line)!important;border-radius:2px!important}
+.cine-terminal,.terminal,.code-window{display:none!important}
+.cine-why-grid,.capability-grid{grid-template-columns:1fr!important;gap:0!important}
+.cine-why-card,.feature-card{border-width:0 0 1px!important;padding:28px 0!important;min-height:0!important}
+.cine-why-card:after{display:none!important}
+.system-visual{background:var(--hfl-panel)!important;border-color:var(--hfl-line)!important;border-radius:2px!important}
+.system-node{min-height:0!important}
+.cost-number,.cine-gradient-text,.cine-logo{background:none!important;color:var(--hfl-accent)!important;-webkit-text-fill-color:var(--hfl-accent)!important}
+footer{background:#050607!important;border-top:1px solid var(--hfl-line)!important}
+@media(max-width:760px){
+ .cinema-nav{gap:16px;flex-wrap:wrap;padding:18px 20px}
+ .cinema-nav nav{width:100%;display:flex;overflow-x:auto;gap:20px;padding:8px 0}
+ .cinema-hero{min-height:680px}
+ .hero-content{padding:88px 24px}
+ .frontier-intro,.frontier-slide{grid-template-columns:1fr;gap:28px}
+ .frontier-visual{order:1;min-height:200px}
+ .frontier-content{order:2}
+ .system-visual{grid-template-columns:1fr!important}
+ .system-line{width:1px;height:18px;justify-self:center}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
